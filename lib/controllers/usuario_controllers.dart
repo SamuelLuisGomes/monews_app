@@ -33,8 +33,6 @@ class UsuarioController {
     print(usuarioLogado());
     firebase.collection('usuario').doc(usuarioLogado().uid).set({
       "nome": model.nome,
-      "email": model.email,
-      "senha": model.senha,
       "uid": model.uid,
     });
     Navigator.of(context).pushReplacement(
