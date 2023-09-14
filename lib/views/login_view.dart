@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:monews_app/controllers/autenticacao_controllers.dart';
+import 'package:monews_app/controllers/formulario_controller.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -8,9 +10,13 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final _formKey = GlobalKey<FormState>();
 
+  AutenticacaoController auth = AutenticacaoController();
+
+  FormularioController controller = FormularioController();
+
+  bool carregando = false;
+
   bool _obscureText = true;
-  String? email;
-  String? senha;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +43,29 @@ class _LoginViewState extends State<LoginView> {
                     TextFormField(
                       /*== Criando o Input e adicionando suas características ==*/
                       decoration: InputDecoration(
+                        labelText: 'Nome',
+                        labelStyle: TextStyle(color: Colors.blueGrey[800]),
+                        prefix: Icon(
+                          Icons.person,
+                          color: Colors.white70,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Colors.white,
+                        )),
+                        fillColor: Color.fromARGB(255, 255, 255, 255),
+                        filled: true,
+                      ),
+                      controller: controller.nomeController,
+                      validator: (value) =>
+                          FormularioController.validarNome(value!),
+                    ),
+                    TextFormField(
+                      /*== Criando o Input e adicionando suas características ==*/
+                      decoration: InputDecoration(
                         labelText: 'Email',
                         labelStyle: TextStyle(color: Colors.blueGrey[800]),
                         prefix: Icon(
@@ -53,13 +82,9 @@ class _LoginViewState extends State<LoginView> {
                         fillColor: Color.fromARGB(255, 255, 255, 255),
                         filled: true,
                       ),
-                      onSaved: (value) => email = value!,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Campo Obrigatório";
-                        }
-                        return null;
-                      },
+                      controller: controller.emailController,
+                      validator: (value) =>
+                          FormularioController.validarEmail(value!),
                     ),
                     SizedBox(
                       height: 10,
@@ -96,50 +121,84 @@ class _LoginViewState extends State<LoginView> {
                         fillColor: Color.fromARGB(255, 255, 255, 255),
                         filled: true,
                       ),
-                      onSaved: (value) => senha = value!,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Campo Obrigatório";
-                        }
-                        if (value.length < 6) {
-                          return "Campo dee conter no mínimo 6 caracteres!";
-                        }
-                        return null;
-                      },
+                      controller: controller.senhaController,
+                      validator: (value) =>
+                          FormularioController.validarSenha(value!),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 18,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => LoginView(),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              'Esqueceu sua senha?',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
+                    GestureDetector(
+                      onTap: () => login(context),
+                      // Criando um container
+                      child: Container(
+                        // Adicionando altura a ele
+                        padding: const EdgeInsets.all(25),
+                        // Definindo a margem dele
+                        // margin:
+                        //     const EdgeInsets.symmetric(horizontal: 25.0),
+                        // Estilizando o container
+                        decoration: BoxDecoration(
+                          // Adicionando preenchimento a ele
+                          color: Color.fromARGB(255, 10, 140, 176),
+                          // Definindo a sua borda
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        // Definindo seu filho e centralizando
+                        child: Center(
+                          // Atribuindo um filho ao centro e o componente text
+
+                          child: Text(
+                            // Adicionando o texto
+                            "Registrar",
+                            //'Inscrever-se',
+                            // Estilizando o texto
+                            style: TextStyle(
+                              // Adicionando cor
+                              color: Colors.white,
+                              // Adicionando espessura da fonte
+                              fontWeight: FontWeight.bold,
+                              // Adicionando o tamanho da fonte
+                              fontSize: 16,
                             ),
-                          )
-                        ],
+                          ),
+                        ),
                       ),
                     ),
-                    SizedBox(
-                      height: 16,
+                    const SizedBox(height: 50),
+                    Row(
+                      // Criando a linha
+                      // Centralizando os filhos no centro
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      // Definindo os filhos da linha
+                      children: [
+                        // Adicionando texto
+                        Text(
+                          'Não Possui conta?',
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => LoginView(),
+                              ),
+                            );
+                          },
+                          child: // Adicionando texto
+                              const Text(
+                            'Faça seu Cadastro',
+                            // Estilizando ele
+                            style: TextStyle(
+                              // Adicionando cor
+                              color: Colors.purple,
+                              // Adicionando espesura da letra
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        )
+                      ],
                     )
-
-                    /*== Botão ==*/
-                    /*Redes Sociais*/
                   ],
                 ),
               ),
@@ -148,5 +207,25 @@ class _LoginViewState extends State<LoginView> {
         ),
       ),
     );
+  }
+
+  void login(BuildContext context) async {
+    setState(() => carregando = true);
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      try {
+        await auth.login(
+          context,
+          controller.emailController!.text,
+          controller.senhaController!.text,
+        );
+      } on AuthenticationException catch (e) {
+        setState(() => carregando = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.mensagem)),
+        );
+      }
+    }
+    setState(() => carregando = false);
   }
 }

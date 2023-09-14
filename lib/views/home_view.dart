@@ -10,6 +10,12 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Text('Bem Vindo a HOME!!'),
+        ),
+      ),
+    );
   }
 }

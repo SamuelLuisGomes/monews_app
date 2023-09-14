@@ -5,6 +5,7 @@ import 'package:monews_app/main.dart';
 
 import 'package:monews_app/models/usuario_model.dart';
 import 'package:monews_app/views/home_view.dart';
+import 'package:monews_app/views/login_view.dart';
 
 // Classe responsavel por pegar a resposa de erro Firebase
 class AuthenticationException implements Exception {
@@ -13,7 +14,8 @@ class AuthenticationException implements Exception {
 }
 
 // Criando classe do usuario e seus metodos
-class UsuarioController {
+class AutenticacaoController {
+  /* ==Criando variáveis para acessar o Firebase ==*/
   final auth = FirebaseAuth.instance;
   final firebase = FirebaseFirestore.instance;
 
@@ -37,10 +39,38 @@ class UsuarioController {
     });
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => HomeView(),
+        builder: (context) => LoginView(),
       ),
     );
   }
-  // login();
-  // logout();
+
+  login(BuildContext context, String email, String senha) async {
+    try {
+      await auth.signInWithEmailAndPassword(
+        email: email.toString(),
+        password: senha.toString(),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        throw AuthenticationException('Usuário não encontrado!');
+      }
+      if (e.code == 'wrong-password') {
+        throw AuthenticationException('Senha incorreta. Tente novamente!');
+      }
+    }
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (__) => HomeView(),
+      ),
+    );
+  }
+
+  logout(BuildContext context) async {
+    await auth.signOut();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (__) => LoginView(),
+      ),
+    );
+  }
 }
