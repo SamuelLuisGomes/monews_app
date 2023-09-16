@@ -9,8 +9,9 @@ const firebaseConfig = FirebaseOptions(
     storageBucket: "monews-9db1b.appspot.com",
     messagingSenderId: "978215004030",
     appId: "1:978215004030:web:f408e26c53a91ccfb1752f");
-    
+
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: firebaseConfig);
   runApp(MyApp());
 }

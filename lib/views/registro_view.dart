@@ -35,11 +35,11 @@ class _RegistroViewState extends State<RegistroView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     /*== Logo ==*/
-                    Image.asset(
-                      'lib/images/logoMonews.png',
-                      width: 320,
-                      height: 280,
-                    ),
+                    // Image.asset(
+                    //   'lib/images/logoMonews.png',
+                    //   width: 320,
+                    //   height: 280,
+                    // ),
                     /*== Campos Usuário e Senha ==*/
 
                     TextFormField(
@@ -49,7 +49,7 @@ class _RegistroViewState extends State<RegistroView> {
                         labelStyle: TextStyle(color: Colors.blueGrey[800]),
                         prefix: Icon(
                           Icons.person,
-                          color: Colors.white70,
+                          color: Color.fromARGB(255, 10, 140, 176),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -65,6 +65,9 @@ class _RegistroViewState extends State<RegistroView> {
                       validator: (value) =>
                           FormularioController.validarNome(value!),
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     TextFormField(
                       /*== Criando o Input e adicionando suas características ==*/
                       decoration: InputDecoration(
@@ -72,7 +75,7 @@ class _RegistroViewState extends State<RegistroView> {
                         labelStyle: TextStyle(color: Colors.blueGrey[800]),
                         prefix: Icon(
                           Icons.email,
-                          color: Colors.white70,
+                          color: Color.fromARGB(255, 10, 140, 176),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -99,12 +102,18 @@ class _RegistroViewState extends State<RegistroView> {
                         labelStyle: TextStyle(color: Colors.blueGrey[800]),
                         prefix: Icon(
                           Icons.lock,
-                          color: Colors.white70,
+                          color: Color.fromARGB(255, 10, 140, 176),
                         ),
                         suffixIcon: IconButton(
                           icon: _obscureText
-                              ? Icon(Icons.visibility_off)
-                              : Icon(Icons.visibility),
+                              ? Icon(
+                                  Icons.visibility_off,
+                                  color: Color.fromARGB(255, 10, 140, 176),
+                                )
+                              : Icon(
+                                  Icons.visibility,
+                                  color: Color.fromARGB(255, 10, 140, 176),
+                                ),
                           onPressed: () {
                             setState(() {
                               _obscureText = !_obscureText;
@@ -177,7 +186,7 @@ class _RegistroViewState extends State<RegistroView> {
                         // Adicionando texto
                         Text(
                           'Já possui conta?',
-                          style: TextStyle(color: Colors.grey[700]),
+                          style: TextStyle(color: Colors.white),
                         ),
                         TextButton(
                           onPressed: () {
@@ -193,7 +202,7 @@ class _RegistroViewState extends State<RegistroView> {
                             // Estilizando ele
                             style: TextStyle(
                               // Adicionando cor
-                              color: Colors.purple,
+                              color: Color.fromARGB(255, 10, 140, 176),
                               // Adicionando espesura da letra
                               fontWeight: FontWeight.bold,
                             ),
@@ -218,11 +227,11 @@ class _RegistroViewState extends State<RegistroView> {
       formKey.currentState!.save();
       try {
         UsuarioModel model = UsuarioModel(
-          nome: controller.nomeController.toString().trim(),
+          nome: controller.nomeController.text.trim(),
           uid: null,
         );
 
-        await auth.registro(
+        await auth.cadastro(
           controller.emailController!.text.trim(),
           controller.senhaController!.text.trim(),
           model,

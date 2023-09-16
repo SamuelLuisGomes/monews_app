@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monews_app/controllers/autenticacao_controllers.dart';
 import 'package:monews_app/controllers/formulario_controller.dart';
+import 'package:monews_app/views/registro_view.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -10,9 +11,9 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final _formKey = GlobalKey<FormState>();
 
-  AutenticacaoController auth = AutenticacaoController();
+  final AutenticacaoController auth = AutenticacaoController();
 
-  FormularioController controller = FormularioController();
+  final FormularioController controller = FormularioController();
 
   bool carregando = false;
 
@@ -32,36 +33,17 @@ class _LoginViewState extends State<LoginView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    
                     /*== Logo ==*/
-                    Image.asset(
-                      'lib/images/logoMonews.png',
-                      width: 320,
-                      height: 280,
-                    ),
+                    // Image.asset(
+                    //   'lib/images/logoMonews.png',
+                    //   width: 320,
+                    //   height: 280,
+                    // ),
                     /*== Campos Usuário e Senha ==*/
 
-                    TextFormField(
-                      /*== Criando o Input e adicionando suas características ==*/
-                      decoration: InputDecoration(
-                        labelText: 'Nome',
-                        labelStyle: TextStyle(color: Colors.blueGrey[800]),
-                        prefix: Icon(
-                          Icons.person,
-                          color: Colors.white70,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                          color: Colors.white,
-                        )),
-                        fillColor: Color.fromARGB(255, 255, 255, 255),
-                        filled: true,
-                      ),
-                      controller: controller.nomeController,
-                      validator: (value) =>
-                          FormularioController.validarNome(value!),
+                    SizedBox(
+                      height: 10,
                     ),
                     TextFormField(
                       /*== Criando o Input e adicionando suas características ==*/
@@ -70,7 +52,7 @@ class _LoginViewState extends State<LoginView> {
                         labelStyle: TextStyle(color: Colors.blueGrey[800]),
                         prefix: Icon(
                           Icons.email,
-                          color: Colors.white70,
+                          color: Color.fromARGB(255, 10, 140, 176),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -97,12 +79,18 @@ class _LoginViewState extends State<LoginView> {
                         labelStyle: TextStyle(color: Colors.blueGrey[800]),
                         prefix: Icon(
                           Icons.lock,
-                          color: Colors.white70,
+                          color: Color.fromARGB(255, 10, 140, 176),
                         ),
                         suffixIcon: IconButton(
                           icon: _obscureText
-                              ? Icon(Icons.visibility_off)
-                              : Icon(Icons.visibility),
+                              ? Icon(
+                                  Icons.visibility_off,
+                                  color: Color.fromARGB(255, 10, 140, 176),
+                                )
+                              : Icon(
+                                  Icons.visibility,
+                                  color: Color.fromARGB(255, 10, 140, 176),
+                                ),
                           onPressed: () {
                             setState(() {
                               _obscureText = !_obscureText;
@@ -150,7 +138,7 @@ class _LoginViewState extends State<LoginView> {
 
                           child: Text(
                             // Adicionando o texto
-                            "Registrar",
+                            "Logar",
                             //'Inscrever-se',
                             // Estilizando o texto
                             style: TextStyle(
@@ -175,13 +163,13 @@ class _LoginViewState extends State<LoginView> {
                         // Adicionando texto
                         Text(
                           'Não Possui conta?',
-                          style: TextStyle(color: Colors.grey[700]),
+                          style: TextStyle(color: Colors.white),
                         ),
                         TextButton(
                           onPressed: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => LoginView(),
+                                builder: (context) => RegistroView(),
                               ),
                             );
                           },
@@ -191,7 +179,7 @@ class _LoginViewState extends State<LoginView> {
                             // Estilizando ele
                             style: TextStyle(
                               // Adicionando cor
-                              color: Colors.purple,
+                              color: Color.fromARGB(255, 10, 140, 176),
                               // Adicionando espesura da letra
                               fontWeight: FontWeight.bold,
                             ),
@@ -216,8 +204,8 @@ class _LoginViewState extends State<LoginView> {
       try {
         await auth.login(
           context,
-          controller.emailController!.text,
-          controller.senhaController!.text,
+          controller.emailController.text,
+          controller.senhaController.text,
         );
       } on AuthenticationException catch (e) {
         setState(() => carregando = false);

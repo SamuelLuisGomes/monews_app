@@ -23,7 +23,7 @@ class AutenticacaoController {
     return auth.currentUser;
   }
 
-  registro(String email, String senha, UsuarioModel model,
+  cadastro(String email, String senha, UsuarioModel model,
       BuildContext context) async {
     try {
       await auth.createUserWithEmailAndPassword(email: email, password: senha);
@@ -47,8 +47,8 @@ class AutenticacaoController {
   login(BuildContext context, String email, String senha) async {
     try {
       await auth.signInWithEmailAndPassword(
-        email: email.toString(),
-        password: senha.toString(),
+        email: email.toString().trim(),
+        password: senha.toString().trim(),
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
