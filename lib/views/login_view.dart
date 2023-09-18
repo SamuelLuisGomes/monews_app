@@ -37,13 +37,13 @@ class _LoginViewState extends State<LoginView> {
                     /*== Logo ==*/
                     // Image.asset(
                     //   'lib/images/logoMonews.png',
-                    //   width: 320,
-                    //   height: 280,
+                    //   width: 100,
+                    //   height: 100,
                     // ),
                     /*== Campos Usuário e Senha ==*/
 
                     SizedBox(
-                      height: 10,
+                      height: 280,
                     ),
                     TextFormField(
                       /*== Criando o Input e adicionando suas características ==*/

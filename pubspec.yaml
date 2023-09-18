@@ -34,7 +34,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons:
   firebase_core: # Extensão para o Firebase
   cloud_firestore: # Extensão para o Firebase
   firebase_storage: # Extensão para armazenar arquivos/fotos
