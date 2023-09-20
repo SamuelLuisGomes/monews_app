@@ -42,12 +42,12 @@ class _HomeViewState extends State<HomeView> {
         onPageChanged: setPaginaAtual,
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(28),
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.2,
-          height: MediaQuery.of(context).size.height * 0.1,
+          width: MediaQuery.of(context).size.width * 0.04,
+          height: MediaQuery.of(context).size.height * 0.08,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(28),
             child: BottomNavigationBar(
               selectedItemColor: corSelecionada,
               currentIndex: paginaAtual,

@@ -114,7 +114,7 @@ class _LoginViewState extends State<LoginView> {
                           FormularioController.validarSenha(value!),
                     ),
                     SizedBox(
-                      height: 8,
+                      height: 12,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),

@@ -16,6 +16,7 @@ class _PerfilViewState extends State<PerfilView> {
       body: SafeArea(
           child: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Bem Vindo ao Perfil !!'),
             SizedBox(
@@ -30,7 +31,7 @@ class _PerfilViewState extends State<PerfilView> {
                 // Adicionando texto
                 Text(
                   'Deseja realizar logout?',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
                 ),
                 TextButton(
                   onPressed: () {

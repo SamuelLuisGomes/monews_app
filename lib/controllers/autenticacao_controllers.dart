@@ -73,4 +73,17 @@ class AutenticacaoController {
       ),
     );
   }
+
+  resetSenha(String email, BuildContext context) async {
+    try {
+      var metodosLogin = await auth.fetchSignInMethodsForEmail(email);
+      if (metodosLogin.isEmpty) {
+        throw AuthenticationException('Email não cadastrado!');
+      } else {
+        auth.sendPasswordResetEmail(email: email.toString().trim());
+      }
+    } on FirebaseAuthException catch (e) {
+      throw AuthenticationException(e.toString());
+    }
+  }
 }

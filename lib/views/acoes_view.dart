@@ -12,6 +12,7 @@ class _AcoesViewtState extends State<AcoesView> {
       body: SafeArea(
           child: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Bem Vindo as Ações !!'),
             SizedBox(
