@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:monews_app/controllers/autenticacao_controllers.dart';
 import 'package:monews_app/controllers/formulario_controller.dart';
 import 'package:monews_app/views/registro_view.dart';
+import 'package:monews_app/views/reset_senha_view.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -33,7 +34,6 @@ class _LoginViewState extends State<LoginView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    
                     /*== Logo ==*/
                     // Image.asset(
                     //   'lib/images/logoMonews.png',
@@ -114,7 +114,37 @@ class _LoginViewState extends State<LoginView> {
                           FormularioController.validarSenha(value!),
                     ),
                     SizedBox(
-                      height: 18,
+                      height: 8,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ResetSenhaView();
+                              },
+                            ),
+                          );
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Esqueceu sua senha?',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
                     ),
                     GestureDetector(
                       onTap: () => login(context),
