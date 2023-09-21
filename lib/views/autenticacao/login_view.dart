@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:monews_app/controllers/autenticacao_controllers.dart';
 import 'package:monews_app/controllers/formulario_controller.dart';
-import 'package:monews_app/views/registro_view.dart';
-import 'package:monews_app/views/reset_senha_view.dart';
+import 'package:monews_app/views/autenticacao/registro_view.dart';
+import 'package:monews_app/views/autenticacao/reset_senha_view.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -10,7 +10,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final _formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   final AutenticacaoController auth = AutenticacaoController();
 
@@ -27,7 +27,7 @@ class _LoginViewState extends State<LoginView> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(
-            key: _formKey,
+            key: formKey,
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -229,8 +229,8 @@ class _LoginViewState extends State<LoginView> {
 
   void login(BuildContext context) async {
     setState(() => carregando = true);
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
       try {
         await auth.login(
           context,

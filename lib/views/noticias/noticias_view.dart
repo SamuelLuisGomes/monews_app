@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monews_app/views/registro_view.dart';
+import 'package:monews_app/views/noticias/noticias_view.dart';
 
 class NoticiasView extends StatefulWidget {
   @override

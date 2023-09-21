@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:monews_app/controllers/autenticacao_controllers.dart';
 import 'package:monews_app/controllers/formulario_controller.dart';
 import 'package:monews_app/models/usuario_model.dart';
-import 'package:monews_app/views/login_view.dart';
+import 'package:monews_app/views/autenticacao/login_view.dart';
 
 class RegistroView extends StatefulWidget {
   @override
@@ -41,7 +41,9 @@ class _RegistroViewState extends State<RegistroView> {
                     //   height: 280,
                     // ),
                     /*== Campos Usuário e Senha ==*/
-
+                    SizedBox(
+                      height: 280,
+                    ),
                     TextFormField(
                       /*== Criando o Input e adicionando suas características ==*/
                       decoration: InputDecoration(

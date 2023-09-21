@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:monews_app/views/login_view.dart';
+import 'package:monews_app/views/autenticacao/login_view.dart';
+import 'package:monews_app/views/autenticacao/login_view.dart';
 
 AlertDialog showAlertDialogSucess(BuildContext context, String mensagem) {
   Future.delayed(Duration(seconds: 2), () {

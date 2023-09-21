@@ -5,7 +5,7 @@ import 'package:monews_app/main.dart';
 
 import 'package:monews_app/models/usuario_model.dart';
 import 'package:monews_app/views/home_view.dart';
-import 'package:monews_app/views/login_view.dart';
+import 'package:monews_app/views/autenticacao/login_view.dart';
 
 // Classe responsavel por pegar a resposa de erro Firebase
 class AuthenticationException implements Exception {
@@ -29,7 +29,9 @@ class AutenticacaoController {
       await auth.createUserWithEmailAndPassword(email: email, password: senha);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
-        throw AuthenticationException('Esse email já está cadastrado!');
+        throw AuthenticationException(
+          'Esse email já está cadastrado!',
+        );
       }
     }
     print(usuarioLogado());
@@ -44,6 +46,21 @@ class AutenticacaoController {
     );
   }
 
+  alterar(BuildContext context, String nome, String senha) async {
+    try {
+      final dadosUsuarios =
+          firebase.collection('usuario').doc(usuarioLogado().uid);
+      await dadosUsuarios.update({
+        nome: nome,
+        senha: senha,
+      });
+    } on FirebaseAuthException catch (e) {
+      throw AuthenticationException(
+        e.toString(),
+      );
+    }
+  }
+
   login(BuildContext context, String email, String senha) async {
     try {
       await auth.signInWithEmailAndPassword(
@@ -52,10 +69,14 @@ class AutenticacaoController {
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        throw AuthenticationException('Usuário não encontrado!');
+        throw AuthenticationException(
+          'Usuário não encontrado!',
+        );
       }
       if (e.code == 'wrong-password') {
-        throw AuthenticationException('Senha incorreta. Tente novamente!');
+        throw AuthenticationException(
+          'Senha incorreta. Tente novamente!',
+        );
       }
     }
     Navigator.of(context).pushReplacement(
@@ -83,7 +104,9 @@ class AutenticacaoController {
         auth.sendPasswordResetEmail(email: email.toString().trim());
       }
     } on FirebaseAuthException catch (e) {
-      throw AuthenticationException(e.toString());
+      throw AuthenticationException(
+        e.toString(),
+      );
     }
   }
 }
