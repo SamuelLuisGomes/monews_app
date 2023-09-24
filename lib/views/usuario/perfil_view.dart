@@ -39,13 +39,13 @@ class _PerfilViewState extends State<PerfilView> {
                             onTap: () {},
                             child: Container(
                               // Definindo a altura de 40.0
-                              height: 240.0,
+                              height: 180,
                               // Definindo a largura de de 40.0
-                              width: 240.0,
+                              width: 180,
                               // Decorando o container
                               decoration: BoxDecoration(
                                 // Arredondando a borda do conteiner
-                                borderRadius: BorderRadius.circular(20.0),
+                                borderRadius: BorderRadius.circular(140),
                                 color: Colors.grey,
 
                                 // Passando imagem por url
@@ -180,7 +180,6 @@ class _PerfilViewState extends State<PerfilView> {
                             // Definindo seu filho e centralizando
                             // Atribuindo um filho ao centro e o componente text
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Icon(
                                   CupertinoIcons.arrow_right_square_fill,

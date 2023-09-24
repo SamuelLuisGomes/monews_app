@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:monews_app/components/alert_dialog_components.dart';
 import 'package:monews_app/controllers/autenticacao_controllers.dart';
 import 'package:monews_app/controllers/formulario_controller.dart';
+import 'package:monews_app/views/autenticacao/login_view.dart';
 
 class ResetSenhaView extends StatefulWidget {
   @override
@@ -17,40 +18,64 @@ class _ResetSenhaViewtState extends State<ResetSenhaView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey[600],
+        backgroundColor: Colors.transparent,
         elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 12, top: 8),
+          child: IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => LoginView(),
+                ),
+              );
+            },
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              color: Colors.white,
+            ),
+          ),
+        ),
       ),
       backgroundColor: Colors.blueGrey[900],
-      body: Form(
-        key: formKey,
-        child: SafeArea(
-            child: SingleChildScrollView(
+      body: SafeArea(
+        child: SingleChildScrollView(
+            child: Form(
+          key: formKey,
           child: Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment:
+                    MainAxisAlignment.center, // Centraliza verticalmente
+                crossAxisAlignment:
+                    CrossAxisAlignment.center, // Centraliza horizontalmente
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    padding: const EdgeInsets.symmetric(vertical: 280),
                     child: Column(
                       children: [
                         Text(
-                          'Por favor informe o email para redefinição de senha!',
+                          'Esqueceu sua Senha?',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                            fontSize: 32,
                           ),
                         ),
                         SizedBox(
                           height: 12,
                         ),
                         TextFormField(
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
                           /*== Criando o Input e adicionando suas características ==*/
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Email',
-                            labelStyle: TextStyle(color: Colors.blueGrey[800]),
+                            labelStyle: TextStyle(
+                              color: Colors.white,
+                            ),
                             prefix: Icon(
                               Icons.email,
                               color: Color.fromARGB(255, 10, 140, 176),
@@ -60,9 +85,10 @@ class _ResetSenhaViewtState extends State<ResetSenhaView> {
                             ),
                             focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                              color: Color.fromARGB(255, 10, 140, 176),
+                              //color: Color.fromARGB(255, 10, 140, 176),
+                              color: Colors.white,
                             )),
-                            fillColor: Color.fromARGB(255, 255, 255, 255),
+                            fillColor: Colors.transparent,
                             filled: true,
                           ),
                           controller: controller.emailController,

@@ -45,38 +45,77 @@ class _LoginViewState extends State<LoginView> {
                     SizedBox(
                       height: 280,
                     ),
-                    TextFormField(
-                      /*== Criando o Input e adicionando suas características ==*/
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                        labelStyle: TextStyle(color: Colors.blueGrey[800]),
-                        prefix: Icon(
-                          Icons.email,
-                          color: Color.fromARGB(255, 10, 140, 176),
+                    Container(
+                      decoration: BoxDecoration(border: Border.all(),
+                      borderRadius: BorderRadius.circular(12),),
+                      child: Row(
+                        children: [
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Icon(
+                            Icons.email,
+                            color: Color.fromARGB(255, 10, 140, 176),
+                            // size: 32,
+                          ),
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                          color: Colors.white,
-                        )),
-                        fillColor: Color.fromARGB(255, 255, 255, 255),
-                        filled: true,
+                        Expanded(
+                          child:
+                          ),
+                      ],
+                      
                       ),
-                      controller: controller.emailController,
-                      validator: (value) =>
-                          FormularioController.validarEmail(value!),
-                    ),
+                    )
+                    // TextFormField(
+                    //   style: TextStyle(
+                    //     color: Colors.white,
+
+                    //   ),
+                    //   /*== Criando o Input e adicionando suas características ==*/
+                    //   decoration: const InputDecoration(
+
+                    //     labelText: 'Email',
+                    //     labelStyle: TextStyle(
+                    //       color: Colors.white,
+                          
+                    //     ),
+                    //     prefix: Padding(
+                    //       padding: EdgeInsets.only(
+                    //         //left: 12,
+                    //         right: 8,
+                            
+                    //       ),
+                    //       child: Icon(
+                    //         Icons.email,
+                    //         color: Color.fromARGB(255, 10, 140, 176),
+                    //         // size: 32,
+                    //       ),
+                    //     ),
+                    //     enabledBorder: OutlineInputBorder(
+                    //       borderSide: BorderSide(color: Colors.white),
+                    //     ),
+                    //     focusedBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(
+                    //       color: Colors.white,
+                    //     )),
+                    //     fillColor: Colors.transparent,
+                    //     filled: true,
+                    //   ),
+                    //   controller: controller.emailController,
+                    //   validator: (value) =>
+                    //       FormularioController.validarEmail(value!),
+                    // ),
                     SizedBox(
                       height: 10,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                       obscureText: _obscureText,
                       /*== Criando o Input e adicionando suas características ==*/
                       decoration: InputDecoration(
                         labelText: 'Senha',
-                        labelStyle: TextStyle(color: Colors.blueGrey[800]),
+                        labelStyle: TextStyle(color: Colors.white),
                         prefix: Icon(
                           Icons.lock,
                           color: Color.fromARGB(255, 10, 140, 176),
@@ -106,7 +145,7 @@ class _LoginViewState extends State<LoginView> {
                             borderSide: BorderSide(
                           color: Colors.white,
                         )),
-                        fillColor: Color.fromARGB(255, 255, 255, 255),
+                        fillColor: Colors.transparent,
                         filled: true,
                       ),
                       controller: controller.senhaController,
