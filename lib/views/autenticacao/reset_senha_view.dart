@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monews_app/components/alert_dialog_components.dart';
+import 'package:monews_app/components/app_bar_components.dart';
 import 'package:monews_app/controllers/autenticacao_controllers.dart';
 import 'package:monews_app/controllers/formulario_controller.dart';
 import 'package:monews_app/views/autenticacao/login_view.dart';
@@ -17,26 +18,7 @@ class _ResetSenhaViewtState extends State<ResetSenhaView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 12, top: 8),
-          child: IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => LoginView(),
-                ),
-              );
-            },
-            icon: const Icon(
-              Icons.arrow_back_rounded,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
+      appBar: menuVoltar(context),
       backgroundColor: Colors.blueGrey[900],
       body: SafeArea(
         child: SingleChildScrollView(
@@ -75,10 +57,6 @@ class _ResetSenhaViewtState extends State<ResetSenhaView> {
                             labelText: 'Email',
                             labelStyle: TextStyle(
                               color: Colors.white,
-                            ),
-                            prefix: Icon(
-                              Icons.email,
-                              color: Color.fromARGB(255, 10, 140, 176),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.white),

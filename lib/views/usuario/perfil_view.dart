@@ -32,7 +32,7 @@ class _PerfilViewState extends State<PerfilView> {
                         // ),
                         Padding(
                           // Preenchimento a direita do widget
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 32, vertical: 32),
                           // Criando um container
                           child: GestureDetector(
@@ -89,7 +89,7 @@ class _PerfilViewState extends State<PerfilView> {
                             ),
                             // Definindo seu filho e centralizando
                             // Atribuindo um filho ao centro e o componente text
-                            child: Row(
+                            child: const Row(
                               children: [
                                 Icon(
                                   CupertinoIcons.person_alt_circle,
@@ -133,7 +133,7 @@ class _PerfilViewState extends State<PerfilView> {
                             ),
                             // Definindo seu filho e centralizando
                             // Atribuindo um filho ao centro e o componente text
-                            child: Row(
+                            child: const Row(
                               children: [
                                 Icon(
                                   CupertinoIcons.settings,
@@ -179,7 +179,7 @@ class _PerfilViewState extends State<PerfilView> {
                             ),
                             // Definindo seu filho e centralizando
                             // Atribuindo um filho ao centro e o componente text
-                            child: Row(
+                            child: const Row(
                               children: [
                                 Icon(
                                   CupertinoIcons.arrow_right_square_fill,

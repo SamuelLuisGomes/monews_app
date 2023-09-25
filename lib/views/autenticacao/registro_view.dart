@@ -46,21 +46,21 @@ class _RegistroViewState extends State<RegistroView> {
                     ),
                     TextFormField(
                       /*== Criando o Input e adicionando suas características ==*/
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Nome',
-                        labelStyle: TextStyle(color: Colors.blueGrey[800]),
-                        prefix: Icon(
-                          Icons.person,
-                          color: Color.fromARGB(255, 10, 140, 176),
+                        labelStyle: TextStyle(
+                          color: Colors.white,
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
                         ),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                           color: Colors.white,
                         )),
-                        fillColor: Color.fromARGB(255, 255, 255, 255),
+                        fillColor: Colors.transparent,
                         filled: true,
                       ),
                       controller: controller.nomeController,
@@ -72,21 +72,21 @@ class _RegistroViewState extends State<RegistroView> {
                     ),
                     TextFormField(
                       /*== Criando o Input e adicionando suas características ==*/
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Email',
-                        labelStyle: TextStyle(color: Colors.blueGrey[800]),
-                        prefix: Icon(
-                          Icons.email,
-                          color: Color.fromARGB(255, 10, 140, 176),
+                        labelStyle: TextStyle(
+                          color: Colors.white,
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
                         ),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                           color: Colors.white,
                         )),
-                        fillColor: Color.fromARGB(255, 255, 255, 255),
+                        fillColor: Colors.transparent,
                         filled: true,
                       ),
                       controller: controller.emailController,
@@ -101,10 +101,8 @@ class _RegistroViewState extends State<RegistroView> {
                       /*== Criando o Input e adicionando suas características ==*/
                       decoration: InputDecoration(
                         labelText: 'Senha',
-                        labelStyle: TextStyle(color: Colors.blueGrey[800]),
-                        prefix: Icon(
-                          Icons.lock,
-                          color: Color.fromARGB(255, 10, 140, 176),
+                        labelStyle: TextStyle(
+                          color: Colors.white,
                         ),
                         suffixIcon: IconButton(
                           icon: _obscureText
@@ -131,7 +129,7 @@ class _RegistroViewState extends State<RegistroView> {
                             borderSide: BorderSide(
                           color: Colors.white,
                         )),
-                        fillColor: Color.fromARGB(255, 255, 255, 255),
+                        fillColor: Colors.transparent,
                         filled: true,
                       ),
                       controller: controller.senhaController,

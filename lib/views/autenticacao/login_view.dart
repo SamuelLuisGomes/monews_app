@@ -45,65 +45,31 @@ class _LoginViewState extends State<LoginView> {
                     SizedBox(
                       height: 280,
                     ),
-                    Container(
-                      decoration: BoxDecoration(border: Border.all(),
-                      borderRadius: BorderRadius.circular(12),),
-                      child: Row(
-                        children: [
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Icon(
-                            Icons.email,
-                            color: Color.fromARGB(255, 10, 140, 176),
-                            // size: 32,
-                          ),
-                        ),
-                        Expanded(
-                          child:
-                          ),
-                      ],
-                      
+                    TextFormField(
+                      style: TextStyle(
+                        color: Colors.white,
+
                       ),
-                    )
-                    // TextFormField(
-                    //   style: TextStyle(
-                    //     color: Colors.white,
-
-                    //   ),
-                    //   /*== Criando o Input e adicionando suas características ==*/
-                    //   decoration: const InputDecoration(
-
-                    //     labelText: 'Email',
-                    //     labelStyle: TextStyle(
-                    //       color: Colors.white,
-                          
-                    //     ),
-                    //     prefix: Padding(
-                    //       padding: EdgeInsets.only(
-                    //         //left: 12,
-                    //         right: 8,
-                            
-                    //       ),
-                    //       child: Icon(
-                    //         Icons.email,
-                    //         color: Color.fromARGB(255, 10, 140, 176),
-                    //         // size: 32,
-                    //       ),
-                    //     ),
-                    //     enabledBorder: OutlineInputBorder(
-                    //       borderSide: BorderSide(color: Colors.white),
-                    //     ),
-                    //     focusedBorder: OutlineInputBorder(
-                    //         borderSide: BorderSide(
-                    //       color: Colors.white,
-                    //     )),
-                    //     fillColor: Colors.transparent,
-                    //     filled: true,
-                    //   ),
-                    //   controller: controller.emailController,
-                    //   validator: (value) =>
-                    //       FormularioController.validarEmail(value!),
-                    // ),
+                      /*== Criando o Input e adicionando suas características ==*/
+                      decoration: const InputDecoration(
+                        labelText: 'Email',
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Colors.white,
+                        )),
+                        fillColor: Colors.transparent,
+                        filled: true,
+                      ),
+                      controller: controller.emailController,
+                      validator: (value) =>
+                          FormularioController.validarEmail(value!),
+                    ),
                     SizedBox(
                       height: 10,
                     ),
@@ -116,10 +82,6 @@ class _LoginViewState extends State<LoginView> {
                       decoration: InputDecoration(
                         labelText: 'Senha',
                         labelStyle: TextStyle(color: Colors.white),
-                        prefix: Icon(
-                          Icons.lock,
-                          color: Color.fromARGB(255, 10, 140, 176),
-                        ),
                         suffixIcon: IconButton(
                           icon: _obscureText
                               ? Icon(
