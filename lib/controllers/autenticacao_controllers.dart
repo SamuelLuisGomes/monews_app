@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:monews_app/main.dart';
 
 import 'package:monews_app/models/usuario_model.dart';
 import 'package:monews_app/views/home_view.dart';
 import 'package:monews_app/views/autenticacao/login_view.dart';
+import 'package:monews_app/views/usuario/perfil_view.dart';
 
 // Classe responsavel por pegar a resposa de erro Firebase
 class AuthenticationException implements Exception {
@@ -36,8 +36,8 @@ class AutenticacaoController {
     }
     print(usuarioLogado());
     firebase.collection('usuario').doc(usuarioLogado().uid).set({
-      "nome": model.nome,
-      "uid": model.uid,
+      'nome': model.nome,
+      'uid': model.uid,
     });
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
@@ -46,14 +46,19 @@ class AutenticacaoController {
     );
   }
 
-  alterar(BuildContext context, String nome, String senha) async {
+  alterar(BuildContext context, UsuarioModel model) async {
     try {
       final dadosUsuarios =
           firebase.collection('usuario').doc(usuarioLogado().uid);
       await dadosUsuarios.update({
-        nome: nome,
-        senha: senha,
+        'nome': model.nome,
+        //'senha': senha,
       });
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (__) => PerfilView(),
+        ),
+      );
     } on FirebaseAuthException catch (e) {
       throw AuthenticationException(
         e.toString(),

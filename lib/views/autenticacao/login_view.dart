@@ -48,7 +48,6 @@ class _LoginViewState extends State<LoginView> {
                     TextFormField(
                       style: TextStyle(
                         color: Colors.white,
-
                       ),
                       /*== Criando o Input e adicionando suas características ==*/
                       decoration: const InputDecoration(

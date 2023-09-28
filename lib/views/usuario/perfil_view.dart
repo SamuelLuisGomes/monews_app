@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:monews_app/controllers/autenticacao_controllers.dart';
-import 'package:monews_app/views/usuario/conta_usuario_view.dart';
+import 'package:monews_app/views/usuario/edita_usuario_view.dart';
 
 class PerfilView extends StatefulWidget {
   @override
@@ -69,7 +69,7 @@ class _PerfilViewState extends State<PerfilView> {
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => ContaUsuarioView(),
+                                builder: (context) => EditaUsuarioView(),
                               ),
                             );
                           },

@@ -7,6 +7,7 @@ import 'package:monews_app/views/noticias/noticias_view.dart';
 import 'package:monews_app/views/usuario/perfil_view.dart';
 
 class HomeView extends StatefulWidget {
+
   @override
   _HomeViewState createState() => _HomeViewState();
 }
@@ -82,21 +83,21 @@ class _HomeViewState extends State<HomeView> {
 
   List<BottomNavigationBarItem> iconesPaginas() {
     return [
-      BottomNavigationBarItem(
+      const BottomNavigationBarItem(
         icon: Icon(
           CupertinoIcons.home,
         ),
         label: 'Notícias',
         backgroundColor: Colors.white,
       ),
-      BottomNavigationBarItem(
+      const BottomNavigationBarItem(
         icon: Icon(
           CupertinoIcons.money_dollar_circle,
         ),
         label: 'Ações',
         backgroundColor: Colors.white,
       ),
-      BottomNavigationBarItem(
+      const BottomNavigationBarItem(
         icon: Icon(
           CupertinoIcons.person_alt_circle,
         ),
