@@ -1,3 +1,5 @@
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
 
 class AcoesView extends StatefulWidget {
@@ -13,71 +15,67 @@ class _AcoesViewtState extends State<AcoesView> {
         child: Center(
           child: CustomScrollView(
             slivers: [
+              // SliverAppBar(
+              //   pinned: false,
+              //   floating: true,
+              //   snap: true,
+              //   expandedHeight: 320,
+              //   flexibleSpace: FlexibleSpaceBar(
+              //     title: Text('Ações'),
+              //     titlePadding: EdgeInsets.only(left: 24, bottom: 24),
+              //   ),
+              //   centerTitle: false,
+              // ),
               SliverAppBar(
                 centerTitle: false,
-                expandedHeight: 320, // Aumente a altura do SliverAppBar
-                pinned: true,
-                floating: false,
-                backgroundColor: Color.fromARGB(255, 10, 140, 176),
+                pinned: false,
+                floating: true,
+                snap: true,
+                expandedHeight: 320,
                 flexibleSpace: FlexibleSpaceBar(
-                  title: Padding(
-                    padding: const EdgeInsets.only(top: 48),
-                    child: Text(
-                      'Ações',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 32,
-                      ),
-                    ),
-                  ),
                   centerTitle: false,
-                  titlePadding: EdgeInsets.only(left: 0),
+                  titlePadding: EdgeInsets.only(left: 24),
+                  title: Text('Ações'),
                 ),
-              ),
-              SliverPersistentHeader(
-                pinned: true,
-                delegate: _SliverAppBarDelegate(
-                  child: SizedBox(
-                    height: 56, // Altura dos botões
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 71, 203, 239),
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            height: 40, // Altura dos botões
-                            width: 40, // Largura dos botões
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 20, // Tamanho do ícone
-                            ),
+                actions: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 71, 203, 239),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          height: 80, // Reduzi a altura dos botões
+                          width: 80, // Reduzi a largura dos botões
+                          child: Icon(
+                            Icons.add,
+                            color: Colors.white,
+                            size: 32, // Aumentei o tamanho do ícone
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 71, 203, 239),
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            height: 40, // Altura dos botões
-                            width: 40, // Largura dos botões
-                            child: Icon(
-                              Icons.remove,
-                              color: Colors.white,
-                              size: 20, // Tamanho do ícone
-                            ),
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 71, 203, 239),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          height: 80, // Reduzi a altura dos botões
+                          width: 80, // Reduzi a largura dos botões
+                          child: Icon(
+                            Icons.remove,
+                            color: Colors.white,
+                            size: 32, // Aumentei o tamanho do ícone
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ),
+                ],
               ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
@@ -97,31 +95,5 @@ class _AcoesViewtState extends State<AcoesView> {
         ),
       ),
     );
-  }
-}
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  final Widget child;
-
-  _SliverAppBarDelegate({required this.child});
-
-  @override
-  double get minExtent => 56.0;
-
-  @override
-  double get maxExtent => 56.0;
-
-  @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
-    return child;
-  }
-
-  @override
-  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
   }
 }
