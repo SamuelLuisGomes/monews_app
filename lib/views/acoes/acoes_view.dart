@@ -1,4 +1,7 @@
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
+import 'package:monews_app/components/container_acao_components.dart';
 
 class AcoesView extends StatefulWidget {
   @override
@@ -9,36 +12,37 @@ class _AcoesViewtState extends State<AcoesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[900],
       body: SafeArea(
         child: Center(
           child: CustomScrollView(
             slivers: [
               SliverAppBar(
-                centerTitle: false,
-                expandedHeight: 320, // Aumente a altura do SliverAppBar
+                floating: true,
                 pinned: true,
-                floating: false,
+                snap: true,
+                expandedHeight: 120,
+                centerTitle: true,
                 backgroundColor: Color.fromARGB(255, 10, 140, 176),
                 flexibleSpace: FlexibleSpaceBar(
-                  title: Padding(
-                    padding: const EdgeInsets.only(top: 48),
-                    child: Text(
-                      'Ações',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 32,
-                      ),
-                    ),
-                  ),
                   centerTitle: false,
-                  titlePadding: EdgeInsets.only(left: 0),
+                  titlePadding: EdgeInsets.only(left: 38, bottom: 12),
+                  title: Text(
+                    'Ações',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 32),
+                  ),
                 ),
+                elevation: 0,
               ),
-              SliverPersistentHeader(
-                pinned: true,
-                delegate: _SliverAppBarDelegate(
-                  child: SizedBox(
-                    height: 56, // Altura dos botões
+              SliverToBoxAdapter(
+                child: Container(
+                  height: 200,
+                  color: Color.fromARGB(255, 10, 140, 176),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 64),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -46,15 +50,15 @@ class _AcoesViewtState extends State<AcoesView> {
                           onTap: () {},
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 71, 203, 239),
+                              color: Color.fromRGBO(67, 115, 150, 100),
                               borderRadius: BorderRadius.circular(16),
                             ),
-                            height: 40, // Altura dos botões
-                            width: 40, // Largura dos botões
+                            height: 80, // Reduzi a altura dos botões
+                            width: 80, // Reduzi a largura dos botões
                             child: Icon(
                               Icons.add,
                               color: Colors.white,
-                              size: 20, // Tamanho do ícone
+                              size: 32, // Aumentei o tamanho do ícone
                             ),
                           ),
                         ),
@@ -62,16 +66,15 @@ class _AcoesViewtState extends State<AcoesView> {
                           onTap: () {},
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 71, 203, 239),
+                              color: Color.fromRGBO(67, 115, 150, 100),
                               borderRadius: BorderRadius.circular(16),
                             ),
-                            height: 40, // Altura dos botões
-                            width: 40, // Largura dos botões
-                            child: Icon(
-                              Icons.remove,
-                              color: Colors.white,
-                              size: 20, // Tamanho do ícone
-                            ),
+                            height: 80, // Reduzi a altura dos botões
+                            width: 80, // Reduzi a largura dos botões
+                            child: Icon(Icons.remove,
+                                color: Colors.white,
+                                size: 32 // Aumentei o tamanho do ícone
+                                ),
                           ),
                         ),
                       ],
@@ -83,9 +86,14 @@ class _AcoesViewtState extends State<AcoesView> {
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: ListTile(
-                        title: Text('Sigla da ação: $index'),
+                        //title: Text('Sigla da ação: $index'),
+                        title: acaoContainer(
+                          siglaAcao: 'AAPL34',
+                          nomeEmpresa: 'Apple - $index',
+                          imagemAcao: 'lib/images/apple.png',
+                        ),
                       ),
                     );
                   },
@@ -97,31 +105,5 @@ class _AcoesViewtState extends State<AcoesView> {
         ),
       ),
     );
-  }
-}
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  final Widget child;
-
-  _SliverAppBarDelegate({required this.child});
-
-  @override
-  double get minExtent => 56.0;
-
-  @override
-  double get maxExtent => 56.0;
-
-  @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
-    return child;
-  }
-
-  @override
-  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
   }
 }

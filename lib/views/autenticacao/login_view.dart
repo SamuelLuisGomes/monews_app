@@ -21,6 +21,13 @@ class _LoginViewState extends State<LoginView> {
   bool _obscureText = true;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    dadosUsurio();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey[900],
@@ -245,5 +252,11 @@ class _LoginViewState extends State<LoginView> {
       }
     }
     setState(() => carregando = false);
+  }
+
+  void dadosUsurio() {
+    // var controller;
+    controller.emailController.text = 'samuel.gomes1529@gmail.com';
+    controller.senhaController.text = 'samuel1234';
   }
 }

@@ -1,17 +1,17 @@
 class AcoesModel {
-  String? sigla;
-  String? empresaOrigem;
-  double? valor;
+  String? siglaAcao;
+  String? nomeEmpresa;
+  String? imagemAcao;
 
   AcoesModel(
-    this.sigla,
-    this.empresaOrigem,
-    this.valor,
+    this.siglaAcao,
+    this.nomeEmpresa,
+    this.imagemAcao,
   );
 
   AcoesModel.fromMap(Map<String, dynamic> map) {
-    sigla = map['sigla'];
-    empresaOrigem = map['empresa'];
-    valor = map['cotacao'];
+    siglaAcao = map['sigla'];
+    nomeEmpresa = map['empresa'];
+    imagemAcao = map['imagem'];
   }
 }
