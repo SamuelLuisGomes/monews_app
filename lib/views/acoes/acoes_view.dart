@@ -1,5 +1,7 @@
 import 'dart:isolate';
 
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
 import 'package:monews_app/components/container_acao_components.dart';
 
@@ -17,6 +19,17 @@ class _AcoesViewtState extends State<AcoesView> {
         child: Center(
           child: CustomScrollView(
             slivers: [
+              // SliverAppBar(
+              //   pinned: false,
+              //   floating: true,
+              //   snap: true,
+              //   expandedHeight: 320,
+              //   flexibleSpace: FlexibleSpaceBar(
+              //     title: Text('Ações'),
+              //     titlePadding: EdgeInsets.only(left: 24, bottom: 24),
+              //   ),
+              //   centerTitle: false,
+              // ),
               SliverAppBar(
                 floating: true,
                 pinned: true,
