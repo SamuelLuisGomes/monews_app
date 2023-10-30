@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monews_app/components/alert_dialog_components.dart';
 import 'package:monews_app/components/app_bar_components.dart';
-import 'package:monews_app/controllers/autenticacao_controllers.dart';
+import 'package:monews_app/controllers/autenticacao_controller.dart';
 import 'package:monews_app/controllers/formulario_controller.dart';
 import 'package:monews_app/views/autenticacao/login_view.dart';
 

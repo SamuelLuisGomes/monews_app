@@ -38,6 +38,7 @@ class AutenticacaoController {
     firebase.collection('usuario').doc(usuarioLogado().uid).set({
       'nome': model.nome,
       'uid': model.uid,
+      'carteira': [],
     });
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(

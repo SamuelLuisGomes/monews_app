@@ -4,6 +4,7 @@ import 'dart:isolate';
 
 import 'package:flutter/material.dart';
 import 'package:monews_app/components/container_acao_components.dart';
+import 'package:monews_app/views/acoes/pesquisa_acoes_view.dart';
 
 class AcoesView extends StatefulWidget {
   @override
@@ -60,7 +61,15 @@ class _AcoesViewtState extends State<AcoesView> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return PesquisaAcoesView();
+                                },
+                              ),
+                            );
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                               color: Color.fromRGBO(67, 115, 150, 100),
@@ -99,7 +108,7 @@ class _AcoesViewtState extends State<AcoesView> {
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: ListTile(
                         //title: Text('Sigla da ação: $index'),
                         title: acaoContainer(

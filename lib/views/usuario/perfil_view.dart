@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:monews_app/controllers/autenticacao_controllers.dart';
+import 'package:monews_app/controllers/autenticacao_controller.dart';
 import 'package:monews_app/views/usuario/edita_usuario_view.dart';
 
 class PerfilView extends StatefulWidget {

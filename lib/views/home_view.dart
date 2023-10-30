@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:monews_app/components/bottom_nav_components.dart';
-import 'package:monews_app/controllers/autenticacao_controllers.dart';
+import 'package:monews_app/controllers/autenticacao_controller.dart';
 import 'package:monews_app/views/acoes/acoes_view.dart';
 import 'package:monews_app/views/noticias/noticias_view.dart';
 import 'package:monews_app/views/usuario/perfil_view.dart';

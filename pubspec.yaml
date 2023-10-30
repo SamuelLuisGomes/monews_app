@@ -39,6 +39,8 @@ dependencies:
   cloud_firestore: # Extensão para o Firebase
   firebase_storage: # Extensão para armazenar arquivos/fotos
   firebase_auth: # Extensão para a autenticação do Firebase
+  http: ^1.1.0
+  flutter_svg:
 
 
   
