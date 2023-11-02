@@ -4,9 +4,9 @@ import '../models/acoes_model.dart';
 
 class MyListAcoes extends StatelessWidget {
   final AcoesModel acoes;
-  final VoidCallback addCarteira;
-  const MyListAcoes(
-      {super.key, required this.acoes, required this.addCarteira});
+  Function()? addCarteira;
+   MyListAcoes(
+      {super.key, required this.acoes, this.addCarteira});
 
   @override
   Widget build(BuildContext context) {
@@ -43,16 +43,28 @@ class MyListAcoes extends StatelessWidget {
               acoes.nomeEmpresa.toString(),
               style: const TextStyle(color: Colors.white70),
             ),
-            trailing: IconButton(
-              icon: Icon(
+            trailing: addCarteira != null
+            ? IconButton(
+              icon: const Icon(
                 Icons.add,
                 color: Colors.white,
                 size: 32,
               ),
               onPressed: () {
-                addCarteira();
+                addCarteira!();
               },
-            ),
+            )
+            : SizedBox(),
+            // trailing: IconButton(
+            //   icon: Icon(
+            //     Icons.add,
+            //     color: Colors.white,
+            //     size: 32,
+            //   ),
+            //   onPressed: () {
+            //     addCarteira!();
+            //   },
+            // ),
             // Função para página de detalhes da ação selecionada
             //onTap: () {},
           ),

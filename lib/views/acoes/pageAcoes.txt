@@ -1,97 +1,121 @@
-import 'dart:isolate';
-
 import 'package:flutter/material.dart';
+import 'package:monews_app/components/container_acao_components.dart';
+import 'package:monews_app/controllers/autenticacao_controller.dart';
+import 'package:monews_app/models/acoes_model.dart';
+import 'package:monews_app/views/acoes/pesquisa_acoes_view.dart';
 
 class AcoesView extends StatefulWidget {
   @override
   State<AcoesView> createState() => _AcoesViewtState();
 }
 
+AutenticacaoController auth = AutenticacaoController();
+List<String> carteira = [];
+
 class _AcoesViewtState extends State<AcoesView> {
+  @override
+  void initState() {
+    super.initState();
+    pegarCateira().listen((itens) {
+      setState(() {
+        carteira = itens;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[900],
       body: SafeArea(
         child: Center(
           child: CustomScrollView(
             slivers: [
-              SliverAppBar(
-                centerTitle: false,
-                expandedHeight: 320,
+              const SliverAppBar(
+                floating: true,
                 pinned: true,
-                floating: false,
+                snap: true,
+                expandedHeight: 120,
+                centerTitle: true,
                 backgroundColor: Color.fromARGB(255, 10, 140, 176),
-                flexibleSpace: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 24,
-                      ),
-                      child: FlexibleSpaceBar(
-                        title: Padding(
-                          padding: const EdgeInsets.only(top: 48),
-                          child: Text(
-                            'Ações',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 32,
+                flexibleSpace: FlexibleSpaceBar(
+                  centerTitle: false,
+                  titlePadding: EdgeInsets.only(left: 38, bottom: 12),
+                  title: Text(
+                    'Ações',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 32),
+                  ),
+                ),
+                elevation: 0,
+              ),
+              SliverToBoxAdapter(
+                child: Container(
+                  height: 200,
+                  color: Color.fromARGB(255, 10, 140, 176),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 64),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return PesquisaAcoesView();
+                                },
+                              ),
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(67, 115, 150, 100),
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            height: 80, // Reduzi a altura dos botões
+                            width: 80, // Reduzi a largura dos botões
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: 32, // Aumentei o tamanho do ícone
                             ),
                           ),
                         ),
-                        centerTitle: false,
-                        titlePadding: EdgeInsets.only(left: 0),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 120),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 71, 203, 239),
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              height: 80, // Reduzi a altura dos botões
-                              width: 80, // Reduzi a largura dos botões
-                              child: Icon(
-                                Icons.add,
-                                color: Colors.white,
-                                size: 32, // Aumentei o tamanho do ícone
-                              ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(67, 115, 150, 100),
+                              borderRadius: BorderRadius.circular(16),
                             ),
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 71, 203, 239),
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              height: 80, // Reduzi a altura dos botões
-                              width: 80, // Reduzi a largura dos botões
-                              child: Icon(
-                                Icons.remove,
+                            height: 80, // Reduzi a altura dos botões
+                            width: 80, // Reduzi a largura dos botões
+                            child: Icon(Icons.remove,
                                 color: Colors.white,
-                                size: 32, // Aumentei o tamanho do ícone
-                              ),
-                            ),
+                                size: 32 // Aumentei o tamanho do ícone
+                                ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: ListTile(
-                        title: Text('Sigla da ação: $index'),
+                        //title: Text('Sigla da ação: $index'),
+                        title: acaoContainer(
+                          siglaAcao: 'AAPL34',
+                          nomeEmpresa: 'Apple - $index',
+                          imagemAcao: 'lib/images/apple.png',
+                        ),
                       ),
                     );
                   },
@@ -104,29 +128,18 @@ class _AcoesViewtState extends State<AcoesView> {
       ),
     );
   }
-}
 
-class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  final Widget child;
-  SliverAppBarDelegate({required this.child});
-
-  @override
-  double get minExtent => 56;
-
-  @override
-  double get maxExtent => 56;
-
-  @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
-    return child;
-  }
-
-  @override
-  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
+  Stream<List<String>> pegarCateira() {
+    if (auth.usuarioLogado()) {
+      final referenciaUsuario =
+          auth.firebase.collection('usuario').doc(auth.usuarioLogado().uid);
+      return referenciaUsuario.snapshots().map((snapshot) {
+        final dados = snapshot.data();
+        final carteira = dados?['cateira'] ?? [];
+        return List<String>.from(carteira);
+      });
+    } else {
+      return const Stream.empty();
+    }
   }
 }

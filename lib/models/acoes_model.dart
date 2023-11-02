@@ -21,13 +21,4 @@ class AcoesModel {
       setor: map['sector'],
     );
   }
-
-  // Map<String, dynamic> toMap() {
-  //   final Map<String, dynamic> data = <String, dynamic>{};
-  //   data['stock'] = siglaAcao;
-  //   data['name'] = nomeEmpresa;
-  //   data['logo'] = imagemAcao;
-  //   data['sector'] = setor;
-  //   return data;
-  // }
 }
