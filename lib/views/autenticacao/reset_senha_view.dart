@@ -18,7 +18,7 @@ class _ResetSenhaViewtState extends State<ResetSenhaView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: menuVoltar(context),
+      appBar: MenuVoltar(),
       backgroundColor: Colors.blueGrey[900],
       body: SafeArea(
         child: SingleChildScrollView(

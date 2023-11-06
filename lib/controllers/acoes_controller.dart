@@ -69,3 +69,19 @@ addAcoesCarteira(BuildContext context, AcoesModel acao) async {
     );
   }
 }
+
+atualizaCarteira(BuildContext context, List<AcoesModel> carteira) async {
+  try {
+    final referenciaUsuario =
+        auth.firebase.collection('usuario').doc(auth.usuarioLogado().uid);
+    referenciaUsuario.update({'carteira': carteira}).then((_) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return showAlertDialogError(context, 'Carteira Atualizados');
+          });
+    });
+  } on FirebaseAuthException catch (e) {
+    throw AuthenticationException(e.toString());
+  }
+}

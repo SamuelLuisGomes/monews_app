@@ -35,7 +35,7 @@ class _PesquisaAcoesViewState extends State<PesquisaAcoesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey[900],
-      appBar: menuVoltar(context),
+      appBar: MenuVoltar(),
       body: SafeArea(
         child: ListView.builder(
           itemBuilder: (context, index) {

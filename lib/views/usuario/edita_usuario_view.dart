@@ -32,7 +32,7 @@ class _EditaUsuarioViewState extends State<EditaUsuarioView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey[900],
-      appBar: menuVoltar(context),
+      appBar: MenuVoltar(alturaAppBar: 8),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(

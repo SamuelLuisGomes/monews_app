@@ -13,10 +13,10 @@ class AcoesView extends StatefulWidget {
   State<AcoesView> createState() => _AcoesViewState();
 }
 
-AutenticacaoController auth = AutenticacaoController();
-
 class _AcoesViewState extends State<AcoesView> {
-List<AcoesModel> carteira = <AcoesModel>[];
+  
+  AutenticacaoController auth = AutenticacaoController();
+  List<AcoesModel> carteira = <AcoesModel>[];
 
   @override
   void initState() {
@@ -132,7 +132,7 @@ List<AcoesModel> carteira = <AcoesModel>[];
                             print('Acoes Snapshot: ${acoes}');
                             print(
                                 '=================================================');
-                            return MyListAcoes(acoes: acoes![index]);
+                            return MyListAcoes(acoes: acoes[index]);
                           } else {
                             return const SizedBox();
                           }
