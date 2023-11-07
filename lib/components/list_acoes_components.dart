@@ -5,8 +5,9 @@ import '../models/acoes_model.dart';
 class MyListAcoes extends StatelessWidget {
   final AcoesModel acoes;
   Function()? addCarteira;
-   MyListAcoes(
-      {super.key, required this.acoes, this.addCarteira});
+  Function()? removeCarteira;
+  IconData? icone;
+  MyListAcoes({super.key, required this.acoes, this.addCarteira, this.icone,this.removeCarteira});
 
   @override
   Widget build(BuildContext context) {
@@ -43,18 +44,31 @@ class MyListAcoes extends StatelessWidget {
               acoes.nomeEmpresa.toString(),
               style: const TextStyle(color: Colors.white70),
             ),
-            trailing: addCarteira != null
-            ? IconButton(
-              icon: const Icon(
-                Icons.add,
-                color: Colors.white,
-                size: 32,
-              ),
-              onPressed: () {
-                addCarteira!();
-              },
-            )
-            : SizedBox(),
+            trailing: 
+            addCarteira != null
+                ? IconButton(
+                    icon: const Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 32,
+                    ),
+                    onPressed: () {
+                      addCarteira!();
+                    },
+                  )
+                : removeCarteira != null
+                ? IconButton(
+                    icon: const Icon(
+                      Icons.delete_outline,
+                      color: Colors.white,
+                      size: 32,
+                    ),
+                    onPressed: () {
+                      removeCarteira!();
+                    },
+                  )
+                : SizedBox(),
+            
             // trailing: IconButton(
             //   icon: Icon(
             //     Icons.add,

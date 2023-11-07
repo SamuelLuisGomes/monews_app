@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:monews_app/components/exceptions.dart';
+import 'package:monews_app/components/toast_components.dart';
 import 'package:monews_app/main.dart';
 import 'package:monews_app/services/http_client.dart';
 import 'package:monews_app/controllers/autenticacao_controller.dart';
@@ -70,18 +71,40 @@ addAcoesCarteira(BuildContext context, AcoesModel acao) async {
   }
 }
 
-atualizaCarteira(BuildContext context, List<AcoesModel> carteira) async {
+atualizaCarteira(BuildContext context, AcoesModel removerAcoes) async {
   try {
     final referenciaUsuario =
         auth.firebase.collection('usuario').doc(auth.usuarioLogado().uid);
-    referenciaUsuario.update({'carteira': carteira}).then((_) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return showAlertDialogError(context, 'Carteira Atualizados');
-          });
+    final dadosUsuario = await referenciaUsuario.get();
+    final carteira = dadosUsuario.data()?['carteira'] ?? [];
+    print('Carteira atual: ${carteira}');
+    print('================================================================');
+    carteira.removeWhere((acao) => acao['siglaAcao'] == removerAcoes.siglaAcao);
+
+    await referenciaUsuario.update({
+      'carteira': carteira,
     });
+    print('Carteira Atualizada: ${carteira}');
+    MyToast(mensagem: "${removerAcoes.siglaAcao} removida com sucesso");
+    // showDialog(
+    //     context: context,
+    //     builder: (context) {
+    //       return AlertDialog(
+    //         title: const Text('Ações'),
+    //         content: Text('Carteira Atualizada'),
+    //         actions: [
+    //           TextButton(
+    //             onPressed: () {
+    //               Navigator.of(context).pop();
+    //             },
+    //             child: const Text('OK'),
+    //           ),
+    //         ],
+    //       );
+    //     });
   } on FirebaseAuthException catch (e) {
-    throw AuthenticationException(e.toString());
+    throw AuthenticationException(
+      e.toString(),
+    );
   }
 }

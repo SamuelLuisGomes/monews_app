@@ -45,6 +45,9 @@ class _RegistroViewState extends State<RegistroView> {
                       height: 280,
                     ),
                     TextFormField(
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
                       /*== Criando o Input e adicionando suas características ==*/
                       decoration: const InputDecoration(
                         labelText: 'Nome',
@@ -71,6 +74,9 @@ class _RegistroViewState extends State<RegistroView> {
                       height: 10,
                     ),
                     TextFormField(
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
                       /*== Criando o Input e adicionando suas características ==*/
                       decoration: const InputDecoration(
                         labelText: 'Email',
@@ -97,6 +103,9 @@ class _RegistroViewState extends State<RegistroView> {
                       height: 10,
                     ),
                     TextFormField(
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
                       obscureText: _obscureText,
                       /*== Criando o Input e adicionando suas características ==*/
                       decoration: InputDecoration(

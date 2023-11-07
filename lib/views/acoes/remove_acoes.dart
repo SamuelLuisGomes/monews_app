@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monews_app/components/app_bar_components.dart';
 import 'package:monews_app/components/search_components.dart';
+import 'package:monews_app/controllers/acoes_controller.dart';
 
 import '../../components/list_acoes_components.dart';
 import '../../components/loading_components.dart';
@@ -61,7 +62,12 @@ class _RemoveAcoesState extends State<RemoveAcoes> {
                     )
                   : MyListAcoes(
                       acoes: carteiraDisplay[index - 1],
-                      
+                      removeCarteira: () {
+                        atualizaCarteira(
+                          context,
+                          carteiraDisplay[index - 1],
+                        );
+                      },
                     );
             } else {
               return const MyLoading();
