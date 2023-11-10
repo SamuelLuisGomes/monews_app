@@ -81,19 +81,17 @@ atualizaCarteira(BuildContext context, AcoesModel removerAcoes) async {
     print('Carteira atual: ${carteira}');
     print('================================================================');
 
-    final confirmacao = showAlertDialogaAcoes(
-        context, 'Realmente deseja excluir a ação: ${removerAcoes.siglaAcao}');
+    // final confirmacao = showAlertDialogaAcoes(
+    //     context, 'Realmente deseja excluir a ação: ${removerAcoes.siglaAcao}');
+    carteira.removeWhere((acao) => acao['siglaAcao'] == removerAcoes.siglaAcao);
+    await referenciaUsuario.update({
+      'carteira': carteira,
+    });
+    print('Carteira Atualizada: ${carteira}');
+    snackBarCustom(context, '${removerAcoes.siglaAcao} removida com sucesso');
 
-    if (confirmacao == true) {
-      carteira
-          .removeWhere((acao) => acao['siglaAcao'] == removerAcoes.siglaAcao);
-
-      await referenciaUsuario.update({
-        'carteira': carteira,
-      });
-      print('Carteira Atualizada: ${carteira}');
-      snackBarCustom(context, '${removerAcoes.siglaAcao} removida com sucesso');
-    }
+    // if (confirmacao == true) {
+    // }
   } on FirebaseAuthException catch (e) {
     throw AuthenticationException(
       e.toString(),

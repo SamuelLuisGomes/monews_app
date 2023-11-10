@@ -69,12 +69,38 @@ class MyListAcoes extends StatelessWidget {
                           size: 32,
                         ),
                         onPressed: () {
-                          // showAlertDialogaAcoes(
-                          //   context,
-                          //   'Realmente Deseja excluir a ação: ${acoes.siglaAcao}',
-                          //   // removeCarteira!(),
-                          // );
-                          removeCarteira!();
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text(
+                                    'Atenção',
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                  content: Text(
+                                    'Realmente deseja excluir: ${acoes.siglaAcao}',
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: const Text('Não'),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                    TextButton(
+                                      child: const Text('Sim'),
+                                      onPressed: () {
+                                        removeCarteira!();
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              });
                         },
                       )
                     : SizedBox(),

@@ -64,8 +64,6 @@ class _RemoveAcoesState extends State<RemoveAcoes> {
                   : MyListAcoes(
                       acoes: carteiraDisplay[index - 1],
                       removeCarteira: () {
-                        // showAlertDialogaAcoes(context,
-                        //     'Tem certeza que deseja excluir a ação: ${carteiraDisplay[index - 1].siglaAcao}');
                         atualizaCarteira(
                           context,
                           carteiraDisplay[index - 1],
