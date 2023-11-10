@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monews_app/components/alert_dialog_components.dart';
 import 'package:monews_app/components/app_bar_components.dart';
 import 'package:monews_app/components/search_components.dart';
 import 'package:monews_app/controllers/acoes_controller.dart';
@@ -38,7 +39,7 @@ class _RemoveAcoesState extends State<RemoveAcoes> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey[900],
-      appBar: MenuVoltar(icone: Icons.delete_outline),
+      appBar: MenuVoltar(),
       body: SafeArea(
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -63,6 +64,8 @@ class _RemoveAcoesState extends State<RemoveAcoes> {
                   : MyListAcoes(
                       acoes: carteiraDisplay[index - 1],
                       removeCarteira: () {
+                        // showAlertDialogaAcoes(context,
+                        //     'Tem certeza que deseja excluir a ação: ${carteiraDisplay[index - 1].siglaAcao}');
                         atualizaCarteira(
                           context,
                           carteiraDisplay[index - 1],

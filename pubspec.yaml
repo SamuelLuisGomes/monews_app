@@ -41,8 +41,8 @@ dependencies:
   firebase_auth: # Extensão para a autenticação do Firebase
   http:
   flutter_svg:
-  flutter_styled_toast:
- # fluttertoast:
+  #flutter_styled_toast:
+  #fluttertoast:
 
 
   

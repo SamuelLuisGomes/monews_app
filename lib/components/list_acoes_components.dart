@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:monews_app/components/alert_dialog_components.dart';
 import '../models/acoes_model.dart';
 
 class MyListAcoes extends StatelessWidget {
@@ -7,7 +8,12 @@ class MyListAcoes extends StatelessWidget {
   Function()? addCarteira;
   Function()? removeCarteira;
   IconData? icone;
-  MyListAcoes({super.key, required this.acoes, this.addCarteira, this.icone,this.removeCarteira});
+  MyListAcoes(
+      {super.key,
+      required this.acoes,
+      this.addCarteira,
+      this.icone,
+      this.removeCarteira});
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +50,7 @@ class MyListAcoes extends StatelessWidget {
               acoes.nomeEmpresa.toString(),
               style: const TextStyle(color: Colors.white70),
             ),
-            trailing: 
-            addCarteira != null
+            trailing: addCarteira != null
                 ? IconButton(
                     icon: const Icon(
                       Icons.add,
@@ -57,30 +62,22 @@ class MyListAcoes extends StatelessWidget {
                     },
                   )
                 : removeCarteira != null
-                ? IconButton(
-                    icon: const Icon(
-                      Icons.delete_outline,
-                      color: Colors.white,
-                      size: 32,
-                    ),
-                    onPressed: () {
-                      removeCarteira!();
-                    },
-                  )
-                : SizedBox(),
-            
-            // trailing: IconButton(
-            //   icon: Icon(
-            //     Icons.add,
-            //     color: Colors.white,
-            //     size: 32,
-            //   ),
-            //   onPressed: () {
-            //     addCarteira!();
-            //   },
-            // ),
-            // Função para página de detalhes da ação selecionada
-            //onTap: () {},
+                    ? IconButton(
+                        icon: const Icon(
+                          Icons.delete_outline,
+                          color: Colors.white,
+                          size: 32,
+                        ),
+                        onPressed: () {
+                          // showAlertDialogaAcoes(
+                          //   context,
+                          //   'Realmente Deseja excluir a ação: ${acoes.siglaAcao}',
+                          //   // removeCarteira!(),
+                          // );
+                          removeCarteira!();
+                        },
+                      )
+                    : SizedBox(),
           ),
         ),
       ]),

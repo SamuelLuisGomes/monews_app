@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:monews_app/components/exceptions.dart';
-import 'package:monews_app/components/toast_components.dart';
+import 'package:monews_app/components/snackbar_components.dart';
 import 'package:monews_app/main.dart';
 import 'package:monews_app/services/http_client.dart';
 import 'package:monews_app/controllers/autenticacao_controller.dart';
@@ -63,6 +63,7 @@ addAcoesCarteira(BuildContext context, AcoesModel acao) async {
         'setor': acao.setor,
       });
       referenciaUsuario.update({'carteira': carteira});
+      snackBarCustom(context, '${acao.siglaAcao} adicionada a carteira!');
     }
   } on FirebaseAuthException catch (e) {
     throw AuthenticationException(
@@ -79,29 +80,20 @@ atualizaCarteira(BuildContext context, AcoesModel removerAcoes) async {
     final carteira = dadosUsuario.data()?['carteira'] ?? [];
     print('Carteira atual: ${carteira}');
     print('================================================================');
-    carteira.removeWhere((acao) => acao['siglaAcao'] == removerAcoes.siglaAcao);
 
-    await referenciaUsuario.update({
-      'carteira': carteira,
-    });
-    print('Carteira Atualizada: ${carteira}');
-    MyToast(mensagem: "${removerAcoes.siglaAcao} removida com sucesso");
-    // showDialog(
-    //     context: context,
-    //     builder: (context) {
-    //       return AlertDialog(
-    //         title: const Text('Ações'),
-    //         content: Text('Carteira Atualizada'),
-    //         actions: [
-    //           TextButton(
-    //             onPressed: () {
-    //               Navigator.of(context).pop();
-    //             },
-    //             child: const Text('OK'),
-    //           ),
-    //         ],
-    //       );
-    //     });
+    final confirmacao = showAlertDialogaAcoes(
+        context, 'Realmente deseja excluir a ação: ${removerAcoes.siglaAcao}');
+
+    if (confirmacao == true) {
+      carteira
+          .removeWhere((acao) => acao['siglaAcao'] == removerAcoes.siglaAcao);
+
+      await referenciaUsuario.update({
+        'carteira': carteira,
+      });
+      print('Carteira Atualizada: ${carteira}');
+      snackBarCustom(context, '${removerAcoes.siglaAcao} removida com sucesso');
+    }
   } on FirebaseAuthException catch (e) {
     throw AuthenticationException(
       e.toString(),
