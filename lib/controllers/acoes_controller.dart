@@ -3,10 +3,7 @@ import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:monews_app/components/exceptions.dart';
 import 'package:monews_app/components/snackbar_components.dart';
-import 'package:monews_app/main.dart';
-import 'package:monews_app/services/http_client.dart';
 import 'package:monews_app/controllers/autenticacao_controller.dart';
 import 'package:monews_app/components/alert_dialog_components.dart';
 

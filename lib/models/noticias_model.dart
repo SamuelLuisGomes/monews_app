@@ -1,23 +1,30 @@
-class Noticias {
+import 'package:flutter/foundation.dart';
+
+class NoticiasModel {
+  String? autor;
   String? titulo;
-  String? materia;
-  String? portalOrigem;
-  DateTime? data;
+  String? descricao;
+  String? data;
+  String? urlMateria;
   String? imagemUrl;
 
-  Noticias(
-    this.titulo,
-    this.materia,
-    this.portalOrigem,
-    this.data,
-    this.imagemUrl,
-  );
+  NoticiasModel({
+    required this.autor,
+    required this.titulo,
+    required this.descricao,
+    required this.data,
+    required this.urlMateria,
+    required this.imagemUrl,
+  });
 
-  Noticias.fromMap(Map<String, dynamic> map) {
-    titulo = map['titulo'];
-    materia = map['materia'];
-    portalOrigem = map['origem'];
-    data = map['data'];
-    imagemUrl = map['imagem'];
+  factory NoticiasModel.fromMap(Map<String, dynamic> map) {
+    return NoticiasModel(
+      autor: map['author'],
+      titulo: map['title'],
+      descricao: map['materia'],
+      data: map['publishedAt'],
+      urlMateria: map['url'],
+      imagemUrl: map['urlToImage'],
+    );
   }
 }
