@@ -35,28 +35,44 @@ class _NoticiasViewtState extends State<NoticiasView> {
       backgroundColor: Colors.blueGrey[900],
       appBar: AppBar(
         backgroundColor: Colors.blueGrey[900],
-        title: const Text(
-          "Notícias",
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+        title: const Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "MO",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                "NEWS",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
         ),
       ),
       body: SafeArea(
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            if (!_isLoading) {
-              MyListNoticias(
-                noticias: _noticiasDisplay[index],
-              );
-            } else {
-              return const MyLoading();
-            }
-          },
-          itemCount: _noticiasDisplay.length + 1,
-        ),
-      ),
+          child: ListView.builder(
+        itemBuilder: (context, index) {
+          if (!_isLoading) {
+            return MyListNoticias(
+              noticias: _noticiasDisplay[index],
+            );
+          } else {
+            return const MyLoading();
+          }
+        },
+        itemCount: _noticiasDisplay.length,
+        shrinkWrap: true,
+      )),
     );
   }
 }

@@ -95,3 +95,34 @@ atualizaCarteira(BuildContext context, AcoesModel removerAcoes) async {
     );
   }
 }
+
+Stream<List<AcoesModel>> pegarCarteira() {
+  if (auth.usuarioLogado() != null) {
+    final refUsuario =
+        auth.firebase.collection('usuario').doc(auth.usuarioLogado().uid);
+    return refUsuario.snapshots().map((snapshot) {
+      final dados = snapshot.data();
+      var carteiraAcoes = dados?['carteira'] ?? <dynamic>[];
+      print("Carteira na Função: ${carteiraAcoes}");
+      final carteira = converterSnapshot(carteiraAcoes);
+      return carteira;
+    });
+  } else {
+    return const Stream.empty();
+  }
+}
+  List<AcoesModel> converterSnapshot(List<dynamic> acoes) {
+    if (acoes != null) {
+      final listaFinal = acoes
+          .map((item) => AcoesModel(
+              siglaAcao: item['siglaAcao'],
+              nomeEmpresa: item['nomeEmpresa'],
+              imagemAcao: item['imagemAcao'],
+              setor: item['setor']))
+          .toList();
+      return listaFinal;
+    } else {
+      return [];
+    }
+  }
+
