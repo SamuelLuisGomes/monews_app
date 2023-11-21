@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:monews_app/controllers/acoes_controller.dart';
-
 class MenuVoltar extends StatelessWidget implements PreferredSizeWidget {
   IconData? icone;
   final double alturaAppBar;
   Function()? removeCarteira;
-  MenuVoltar(
-      {super.key,
-      this.icone,
-      this.alturaAppBar = kToolbarHeight,
-      this.removeCarteira});
+  MenuVoltar({
+    super.key,
+    this.icone,
+    this.alturaAppBar = kToolbarHeight,
+    this.removeCarteira,
+  });
 
   @override
   Size get preferredSize => Size.fromHeight(alturaAppBar);

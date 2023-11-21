@@ -199,7 +199,7 @@ class _LoginViewState extends State<LoginView> {
                       children: [
                         // Adicionando texto
                         Text(
-                          'Não Possui conta?',
+                          'Não possui conta?',
                           style: TextStyle(color: Colors.white),
                         ),
                         TextButton(

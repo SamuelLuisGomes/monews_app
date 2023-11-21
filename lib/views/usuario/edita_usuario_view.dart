@@ -32,136 +32,134 @@ class _EditaUsuarioViewState extends State<EditaUsuarioView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey[900],
-      appBar: MenuVoltar(alturaAppBar: 8),
+      appBar: MenuVoltar(),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Form(
-            key: formKey,
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    /*== Logo ==*/
-                    // Image.asset(
-                    //   'lib/images/logoMonews.png',
-                    //   width: 320,
-                    //   height: 280,
-                    // ),
-                    /*== Campos Usuário e Senha ==*/
-                    SizedBox(
-                      height: 280,
+        child: Form(
+          key: formKey,
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  /*== Logo ==*/
+                  // Image.asset(
+                  //   'lib/images/logoMonews.png',
+                  //   width: 320,
+                  //   height: 280,
+                  // ),
+                  /*== Campos Usuário e Senha ==*/
+                  SizedBox(
+                    height: 280,
+                  ),
+                  TextFormField(
+                    style: TextStyle(
+                      color: Colors.white,
                     ),
-                    TextFormField(
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                      /*== Criando o Input e adicionando suas características ==*/
-                      decoration: const InputDecoration(
-                        hintText: 'Nome',
-                        hintStyle: TextStyle(color: Colors.white),
-                        //labelText: 'Nome',
-                        // labelStyle: TextStyle(
-                        //   color: Colors.white,
-                        // ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                    /*== Criando o Input e adicionando suas características ==*/
+                    decoration: const InputDecoration(
+                      hintText: 'Nome',
+                      hintStyle: TextStyle(color: Colors.white),
+                      //labelText: 'Nome',
+                      // labelStyle: TextStyle(
+                      //   color: Colors.white,
+                      // ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
                           color: Colors.white,
-                        )),
-                        fillColor: Colors.transparent,
-                        filled: true,
+                        ),
                       ),
-                      controller: controller.nomeController,
-                      validator: (value) =>
-                          FormularioController.validarNome(value!),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      enabled: false,
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                      /*== Criando o Input e adicionando suas características ==*/
-                      decoration: const InputDecoration(
-                        hintText: 'email',
-                        hintStyle: TextStyle(color: Colors.white),
-                        //labelText: 'Nome',
-                        // labelStyle: TextStyle(
-                        //   color: Colors.white,
-                        // ),
-                        // labelText: 'Email',
-                        // labelStyle: TextStyle(
-                        //   color: Colors.white,
-                        // ),
-                        enabledBorder: OutlineInputBorder(
+                      focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Colors.white,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                        color: Colors.white,
+                      )),
+                      fillColor: Colors.transparent,
+                      filled: true,
+                    ),
+                    controller: controller.nomeController,
+                    validator: (value) =>
+                        FormularioController.validarNome(value!),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextFormField(
+                    enabled: false,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                    /*== Criando o Input e adicionando suas características ==*/
+                    decoration: const InputDecoration(
+                      hintText: 'email',
+                      hintStyle: TextStyle(color: Colors.white),
+                      //labelText: 'Nome',
+                      // labelStyle: TextStyle(
+                      //   color: Colors.white,
+                      // ),
+                      // labelText: 'Email',
+                      // labelStyle: TextStyle(
+                      //   color: Colors.white,
+                      // ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
                           color: Colors.white,
-                        )),
-                        fillColor: Colors.transparent,
-                        filled: true,
-                      ),
-                      controller: controller.emailController,
-                      validator: (value) =>
-                          FormularioController.validarEmail(value!),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      height: 18,
-                    ),
-                    GestureDetector(
-                      onTap: () => editar(context),
-                      // Criando um container
-                      child: Container(
-                        // Adicionando altura a ele
-                        padding: const EdgeInsets.all(25),
-                        // Definindo a margem dele
-                        // margin:
-                        //     const EdgeInsets.symmetric(horizontal: 25.0),
-                        // Estilizando o container
-                        decoration: BoxDecoration(
-                          // Adicionando preenchimento a ele
-                          color: Color.fromARGB(255, 10, 140, 176),
-                          // Definindo a sua borda
-                          borderRadius: BorderRadius.circular(8),
                         ),
-                        // Definindo seu filho e centralizando
-                        child: Center(
-                          // Atribuindo um filho ao centro e o componente text
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                        color: Colors.white,
+                      )),
+                      fillColor: Colors.transparent,
+                      filled: true,
+                    ),
+                    controller: controller.emailController,
+                    validator: (value) =>
+                        FormularioController.validarEmail(value!),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    height: 18,
+                  ),
+                  GestureDetector(
+                    onTap: () => editar(context),
+                    // Criando um container
+                    child: Container(
+                      // Adicionando altura a ele
+                      padding: const EdgeInsets.all(25),
+                      // Definindo a margem dele
+                      // margin:
+                      //     const EdgeInsets.symmetric(horizontal: 25.0),
+                      // Estilizando o container
+                      decoration: BoxDecoration(
+                        // Adicionando preenchimento a ele
+                        color: Color.fromARGB(255, 10, 140, 176),
+                        // Definindo a sua borda
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      // Definindo seu filho e centralizando
+                      child: Center(
+                        // Atribuindo um filho ao centro e o componente text
 
-                          child: Text(
-                            // Adicionando o texto
-                            "Editar Dados",
-                            //'Inscrever-se',
-                            // Estilizando o texto
-                            style: TextStyle(
-                              // Adicionando cor
-                              color: Colors.white,
-                              // Adicionando espessura da fonte
-                              fontWeight: FontWeight.bold,
-                              // Adicionando o tamanho da fonte
-                              fontSize: 16,
-                            ),
+                        child: Text(
+                          // Adicionando o texto
+                          "Editar Dados",
+                          //'Inscrever-se',
+                          // Estilizando o texto
+                          style: TextStyle(
+                            // Adicionando cor
+                            color: Colors.white,
+                            // Adicionando espessura da fonte
+                            fontWeight: FontWeight.bold,
+                            // Adicionando o tamanho da fonte
+                            fontSize: 16,
                           ),
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

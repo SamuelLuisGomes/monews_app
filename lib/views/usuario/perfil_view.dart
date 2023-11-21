@@ -18,196 +18,234 @@ class _PerfilViewState extends State<PerfilView> {
     return Scaffold(
         backgroundColor: Colors.blueGrey[900],
         body: SafeArea(
-          child: SingleChildScrollView(
-            child: Form(
-                key: formKey,
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 42),
+              child: Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      color: Colors.blueGrey,
+                    ),
+                    width: 380,
+                    height: 240,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // SizedBox(
-                        //   height: 480,
-                        // ),
                         Padding(
-                          // Preenchimento a direita do widget
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 32, vertical: 32),
-                          // Criando um container
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              // Definindo a altura de 40.0
-                              height: 180,
-                              // Definindo a largura de de 40.0
-                              width: 180,
-                              // Decorando o container
-                              decoration: BoxDecoration(
-                                // Arredondando a borda do conteiner
-                                borderRadius: BorderRadius.circular(140),
-                                color: Colors.grey,
-
-                                // Passando imagem por url
-                                // image: DecorationImage(
-                                //   image: NetworkImage(
-                                //     'https://firebasestorage.googleapis.com/v0/b/fast-app-72ca2.appspot.com/o/imagesUsers%2Fuser.png?alt=media&token=5364d85c-5748-4736-a563-44b909f9dae5&_gl=1*chhtuc*_ga*MTU2MTIzODEwNi4xNjgyNzM1MjE1*_ga_CW55HF8NVT*MTY4NjYxMDM1NS40NC4xLjE2ODY2MTA0MTAuMC4wLjA',
-                                //   ),
-                                //   fit: BoxFit.cover,
-                                // ),
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: AssetImage(
-                                    'lib/images/loboWallStreet.png',
-                                  ),
-                                ),
-                              ),
+                          padding: const EdgeInsets.only(top: 24),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(24),
+                            child: Image.asset(
+                              'lib/images/person.jpg',
+                              width: 160,
+                              height: 140,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => EditaUsuarioView(),
-                              ),
-                            );
-                          },
-                          // Criando um container
-                          child: Container(
-                            // Adicionando altura a ele
-                            padding: const EdgeInsets.all(12),
-                            // Definindo a margem dele
-                            margin: const EdgeInsets.symmetric(horizontal: 24),
-                            // // Estilizando o container
-                            decoration: BoxDecoration(
-                              // Adicionando preenchimento a ele
-                              color: Color.fromARGB(255, 10, 140, 176),
-
-                              // Definindo a sua borda
-                              borderRadius: BorderRadius.circular(32),
-                            ),
-                            // Definindo seu filho e centralizando
-                            // Atribuindo um filho ao centro e o componente text
-                            child: const Row(
-                              children: [
-                                Icon(
-                                  CupertinoIcons.person_alt_circle,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(width: 12),
-                                Text(
-                                  // Adicionando o texto
-                                  "Conta",
-                                  //'Inscrever-se',
-                                  // Estilizando o texto
-                                  style: TextStyle(
-                                    // Adicionando cor
-                                    color: Colors.white,
-                                    // Adicionando espessura da fonte
-                                    fontWeight: FontWeight.bold,
-                                    // Adicionando o tamanho da fonte
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ],
-                            ),
+                        const Text(
+                          'Samuel Gomes',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 24),
-                        GestureDetector(
-                          onTap: () {},
-                          // Criando um container
-                          child: Container(
-                            // Adicionando altura a ele
-                            padding: const EdgeInsets.all(12),
-                            // Definindo a margem dele
-                            margin: const EdgeInsets.symmetric(horizontal: 24),
-                            // // Estilizando o container
-                            decoration: BoxDecoration(
-                              // Adicionando preenchimento a ele
-                              color: Color.fromARGB(255, 10, 140, 176),
-
-                              // Definindo a sua borda
-                              borderRadius: BorderRadius.circular(32),
-                            ),
-                            // Definindo seu filho e centralizando
-                            // Atribuindo um filho ao centro e o componente text
-                            child: const Row(
-                              children: [
-                                Icon(
-                                  CupertinoIcons.settings,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(width: 12),
-                                Text(
-                                  // Adicionando o texto
-                                  "Configurações",
-                                  //'Inscrever-se',
-                                  // Estilizando o texto
-                                  style: TextStyle(
-                                    // Adicionando cor
-                                    color: Colors.white,
-                                    // Adicionando espessura da fonte
-                                    fontWeight: FontWeight.bold,
-                                    // Adicionando o tamanho da fonte
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 24),
-                        GestureDetector(
-                          onTap: () {
-                            _logout(context);
-                          },
-                          // Criando um container
-                          child: Container(
-                            // Adicionando altura a ele
-                            padding: const EdgeInsets.all(12),
-                            // Definindo a margem dele
-                            margin: const EdgeInsets.symmetric(horizontal: 24),
-                            // // Estilizando o container
-                            decoration: BoxDecoration(
-                              // Adicionando preenchimento a ele
-                              color: Color.fromARGB(255, 10, 140, 176),
-
-                              // Definindo a sua borda
-                              borderRadius: BorderRadius.circular(32),
-                            ),
-                            // Definindo seu filho e centralizando
-                            // Atribuindo um filho ao centro e o componente text
-                            child: const Row(
-                              children: [
-                                Icon(
-                                  CupertinoIcons.arrow_right_square_fill,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(width: 12),
-                                Text(
-                                  // Adicionando o texto
-                                  "Logout",
-                                  //'Inscrever-se',
-                                  // Estilizando o texto
-                                  style: TextStyle(
-                                    // Adicionando cor
-                                    color: Colors.white,
-                                    // Adicionando espessura da fonte
-                                    fontWeight: FontWeight.bold,
-                                    // Adicionando o tamanho da fonte
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ],
-                            ),
+                        const Text(
+                          'samuelluisgomestech@gmail.com',
+                          style: TextStyle(
+                            color: Colors.white54,
+                            fontSize: 18,
+                            //fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
                   ),
-                )),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 22),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => EditaUsuarioView(),
+                          ),
+                        );
+                      },
+                      // Criando um container
+                      child: Container(
+                        // Adicionando altura a ele
+                        padding: const EdgeInsets.all(16),
+                        // Definindo a margem dele
+                        //margin: const EdgeInsets.symmetric(horizontal: 24),
+                        // // Estilizando o container
+                        decoration: BoxDecoration(
+                          // Adicionando preenchimento a ele
+                          color: Colors.blueGrey,
+
+                          // Definindo a sua borda
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        // Definindo seu filho e centralizando
+                        // Atribuindo um filho ao centro e o componente text
+                        child: const Row(
+                          children: [
+                            Icon(
+                              CupertinoIcons.person_alt_circle,
+                              color: Colors.white,
+                              size: 48,
+                            ),
+                            //SizedBox(width: 18),
+                            Padding(
+                              padding: EdgeInsets.only(left: 22),
+                              child: Text(
+                                // Adicionando o texto
+                                "Perfil",
+                                //'Inscrever-se',
+                                // Estilizando o texto
+                                style: TextStyle(
+                                  // Adicionando cor
+                                  color: Colors.white,
+                                  // Adicionando espessura da fonte
+                                  fontWeight: FontWeight.bold,
+                                  // Adicionando o tamanho da fonte
+                                  fontSize: 24,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 150),
+                              child: Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                color: Colors.white,
+                                size: 24,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 22),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => EditaUsuarioView(),
+                          ),
+                        );
+                      },
+                      // Criando um container
+                      child: Container(
+                        // Adicionando altura a ele
+                        padding: const EdgeInsets.all(16),
+                        // Definindo a margem dele
+                        //margin: const EdgeInsets.symmetric(horizontal: 24),
+                        // // Estilizando o container
+                        decoration: BoxDecoration(
+                          // Adicionando preenchimento a ele
+                         color: Colors.blueGrey,
+
+                          // Definindo a sua borda
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        // Definindo seu filho e centralizando
+                        // Atribuindo um filho ao centro e o componente text
+                        child: const Row(
+                          children: [
+                            Icon(
+                              Icons.settings_applications_sharp,
+                              color: Colors.white,
+                              size: 48,
+                            ),
+                            //SizedBox(width: 18),
+                            Padding(
+                              padding: EdgeInsets.only(left: 22),
+                              child: Text(
+                                // Adicionando o texto
+                                "Configurações",
+                                //'Inscrever-se',
+                                // Estilizando o texto
+                                style: TextStyle(
+                                  // Adicionando cor
+                                  color: Colors.white,
+                                  // Adicionando espessura da fonte
+                                  fontWeight: FontWeight.bold,
+                                  // Adicionando o tamanho da fonte
+                                  fontSize: 22,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 62),
+                              child: Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                color: Colors.white,
+                                size: 24,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 22),
+                    child: GestureDetector(
+                      onTap: () {
+                        _logout(context);
+                      },
+                      // Criando um container
+                      child: Container(
+                        // Adicionando altura a ele
+                        padding: const EdgeInsets.all(16),
+                        // Definindo a margem dele
+                        //margin: const EdgeInsets.symmetric(horizontal: 24),
+                        // // Estilizando o container
+                        decoration: BoxDecoration(
+                          // Adicionando preenchimento a ele
+                         color: Colors.blueGrey,
+
+                          // Definindo a sua borda
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        // Definindo seu filho e centralizando
+                        // Atribuindo um filho ao centro e o componente text
+                        child: const Row(
+                          children: [
+                            Icon(
+                              Icons.login_rounded,
+                              color: Colors.white,
+                              size: 48,
+                            ),
+                            //SizedBox(width: 18),
+                            Padding(
+                              padding: EdgeInsets.only(left: 22),
+                              child: Text(
+                                // Adicionando o texto
+                                "Logout",
+                                //'Inscrever-se',
+                                // Estilizando o texto
+                                style: TextStyle(
+                                  // Adicionando cor
+                                  color: Colors.white,
+                                  // Adicionando espessura da fonte
+                                  fontWeight: FontWeight.bold,
+                                  // Adicionando o tamanho da fonte
+                                  fontSize: 22,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ));
   }

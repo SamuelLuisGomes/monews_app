@@ -47,21 +47,18 @@ class _HomeViewState extends State<HomeView> {
             left: 20,
             right: 20,
             bottom: 16,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(28),
-                child: BottomNavigationBar(
-                  selectedItemColor: corSelecionada,
-                  currentIndex: paginaAtual,
-                  items: iconesPaginas(),
-                  onTap: (pagina) {
-                    pc.animateToPage(pagina,
-                        duration: const Duration(milliseconds: 400),
-                        curve: Curves.ease);
-                  },
-                  backgroundColor: const Color.fromARGB(255, 10, 140, 176),
-                ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(28),
+              child: BottomNavigationBar(
+                selectedItemColor: corSelecionada,
+                currentIndex: paginaAtual,
+                items: iconesPaginas(),
+                onTap: (pagina) {
+                  pc.animateToPage(pagina,
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.ease);
+                },
+                backgroundColor: const Color.fromARGB(255, 10, 140, 176),
               ),
             ),
           ),

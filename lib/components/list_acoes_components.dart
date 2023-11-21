@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:monews_app/components/alert_dialog_components.dart';
 import '../models/acoes_model.dart';
 
 class MyListAcoes extends StatelessWidget {
@@ -18,7 +17,7 @@ class MyListAcoes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Column(
         children: [
           Container(
@@ -104,7 +103,7 @@ class MyListAcoes extends StatelessWidget {
                                 });
                           },
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
             ),
           ),
         ],

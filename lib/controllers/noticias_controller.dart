@@ -27,28 +27,20 @@ Future<List<AcoesModel>> pegarCarteiraLista() async {
   return carteiraLista;
 }
 
-Future<String> formandoUrl() async {
-  List<AcoesModel> carteira = await pegarCarteiraLista();
-  String url;
-  if (carteira.isNotEmpty) {
-    List<String?> empresas = carteira.map((acao) => acao.nomeEmpresa).toList();
-    print(empresas);
-    url = "$base${endEverything}q=${empresas.join(",")}&apiKey=${apiKey}";
-  } else {
-    url =
-        "https://newsapi.org/v2/everything?language=pt&q=agua&apiKey=${apiKey}";
-  }
-  print(url);
-  return url;
-}
-
 Future<List<NoticiasModel>> fetchNoticiasModel() async {
   List<AcoesModel> carteira = await pegarCarteiraLista();
   List<NoticiasModel> noticias = [];
 
   for (AcoesModel acao in carteira) {
-    String url = "$base${endEverything}q=${acao.nomeEmpresa}&apiKey=$apiKey";
-    final http.Response response = await http.get(Uri.parse(url));
+    // Formato das URLs \\
+    // https://newsapi.org/v2/everything?language=pt&q=Americanas&sortBy=popularity&apiKey=fc0ae4d053a8431eac1deeb7d667cc27
+    String urlTodos =
+        "$base${endEverything}q=${acao.nomeEmpresa}&sortBy=popularity&apiKey=$apiKey";
+
+    //https: newsapi.org/v2/top-headlines?q=Americanas&category=business&apiKey=fc0ae4d053a8431eac1deeb7d667cc27:
+    String urlTop =
+        "$base${endTop}q=${acao.nomeEmpresa}&category=business&apiKey=$apiKey";
+    final http.Response response = await http.get(Uri.parse(urlTodos));
 
     if (response.statusCode == 200) {
       noticias += await compute(parseNoticiasModel, response.body);
@@ -56,17 +48,38 @@ Future<List<NoticiasModel>> fetchNoticiasModel() async {
   }
   return noticias;
 }
-// Future<List<NoticiasModel>> fetchNoticiasModel() async {
-//   String urlFinal = await formandoUrl();
-//   print("URL FINAL: ${urlFinal}");
-//   final http.Response response = await http.get(Uri.parse(urlFinal));
-//   print("fetchNoticiasModel - Response ${response.body}");
-//   if (response.statusCode == 200) {
-//     return compute(parseNoticiasModel, response.body);
-//   } else {
-//     throw Exception(response.statusCode);
-//   }
-// }
+
+Future<List<NoticiasModel>> fetchNoticiasCategorias(String categoria) async {
+  //String urlTop = "$base${endTop}country=br&category=${categoria}&apiKey=$apiKey";
+  String urlTop = "$base${endTop}country=br&category=${categoria}&apiKey=$apiKey";
+  final http.Response response = await http.get(Uri.parse(urlTop));
+  if (response.statusCode == 200) {
+    return compute(parseNoticiasModel, response.body);
+  } else {
+    throw Exception(response.statusCode);
+  }
+}
+
+Future<List<NoticiasModel>> fetchNoticiasPesquisa(String texto) async {
+  List<NoticiasModel> noticias = [];
+  // Formato das URLs \\
+  // https://newsapi.org/v2/everything?language=pt&q=Americanas&sortBy=popularity&apiKey=fc0ae4d053a8431eac1deeb7d667cc27
+  if (texto.isNotEmpty) {
+    String urlTodos =
+        "$base${endEverything}q=${texto}&sortBy=popularity&apiKey=$apiKey";
+
+    https: //newsapi.org/v2/top-headlines?q=Americanas&category=business&apiKey=fc0ae4d053a8431eac1deeb7d667cc27:
+    String urlTop = "$base${endTop}q=${texto}&category=business&apiKey=$apiKey";
+    final http.Response response = await http.get(Uri.parse(urlTodos));
+
+    if (response.statusCode == 200) {
+      noticias += await compute(parseNoticiasModel, response.body);
+    }
+  } else {
+    noticias = [];
+  }
+  return noticias;
+}
 
 List<NoticiasModel> parseNoticiasModel(String responceBody) {
   var data = json.decode(responceBody) as Map<String, dynamic>;
@@ -75,3 +88,18 @@ List<NoticiasModel> parseNoticiasModel(String responceBody) {
   print(noticias);
   return noticias;
 }
+
+// Future<String> formandoUrl() async {
+//   List<AcoesModel> carteira = await pegarCarteiraLista();
+//   String url;
+//   if (carteira.isNotEmpty) {
+//     List<String?> empresas = carteira.map((acao) => acao.nomeEmpresa).toList();
+//     print(empresas);
+//     url = "$base${endEverything}q=${empresas.join(",")}&apiKey=${apiKey}";
+//   } else {
+//     url =
+//         "https://newsapi.org/v2/everything?language=pt&q=agua&apiKey=${apiKey}";
+//   }
+//   print(url);
+//   return url;
+// }

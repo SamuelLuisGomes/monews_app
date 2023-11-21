@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 void snackBarCustom(BuildContext context, String mensagem) {
   final snack = SnackBar(
-    content: Text(mensagem!,
+    content: Text(mensagem,
         style: const TextStyle(
           color: Colors.white,
           fontSize: 16,
