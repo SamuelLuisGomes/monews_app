@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monews_app/components/app_bar_static_components.dart';
 import 'package:monews_app/components/list_noticias_components.dart';
 import 'package:monews_app/components/loading_components.dart';
 import 'package:monews_app/controllers/noticias_controller.dart';
@@ -34,53 +35,7 @@ class _NoticiasCategoriaState extends State<NoticiasCategoria> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(38, 50, 56, 1),
-      appBar: AppBar(
-        backgroundColor: Colors.blueGrey[900],
-        title: Padding(
-          padding: const EdgeInsets.only(left: 84),
-          child: Row(
-           // mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        "MO",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        "NEWS",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              // IconButton(
-              //   icon: Icon(
-              //     Icons.search,
-              //     color: Colors.white,
-              //   ),
-              //   onPressed: () {
-              //     Navigator.push(context,
-              //         MaterialPageRoute(builder: (context) {
-              //       return PesquisaNoticias();
-              //     }));
-              //   },
-              // ),
-            ],
-          ),
-        ),
-      ),
+      appBar: AppBarStatic(telaNome: widget.categoria),
       body: SafeArea(
           child: _isLoading
               ? const Center(child: MyLoading())

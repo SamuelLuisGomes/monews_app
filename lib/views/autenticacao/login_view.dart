@@ -30,7 +30,6 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[900],
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(
@@ -41,29 +40,23 @@ class _LoginViewState extends State<LoginView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    /*== Logo ==*/
-                    // Image.asset(
-                    //   'lib/images/logoMonews.png',
-                    //   width: 100,
-                    //   height: 100,
-                    // ),
-                    /*== Campos Usuário e Senha ==*/
-
                     SizedBox(
                       height: 280,
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: Colors.white,
+                       //color: Colors.white,
                       ),
                       /*== Criando o Input e adicionando suas características ==*/
                       decoration: const InputDecoration(
                         labelText: 'Email',
                         labelStyle: TextStyle(
-                          color: Colors.white,
+                        //  color: Colors.white,
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(
+                          //  color: Colors.white,
+                          ),
                         ),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -81,13 +74,15 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: Colors.white,
-                      ),
+                          //color: Colors.white,
+                          ),
                       obscureText: _obscureText,
                       /*== Criando o Input e adicionando suas características ==*/
                       decoration: InputDecoration(
                         labelText: 'Senha',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: TextStyle(
+                            //  color: Colors.white,
+                            ),
                         suffixIcon: IconButton(
                           icon: _obscureText
                               ? Icon(
@@ -106,13 +101,13 @@ class _LoginViewState extends State<LoginView> {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Colors.white,
-                          ),
+                              // color: Colors.white,
+                              ),
                         ),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                          color: Colors.white,
-                        )),
+                                //color: Colors.white,
+                                )),
                         fillColor: Colors.transparent,
                         filled: true,
                       ),
@@ -142,7 +137,7 @@ class _LoginViewState extends State<LoginView> {
                             Text(
                               'Esqueceu sua senha?',
                               style: TextStyle(
-                                color: Colors.white,
+                                // color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -165,7 +160,8 @@ class _LoginViewState extends State<LoginView> {
                         // Estilizando o container
                         decoration: BoxDecoration(
                           // Adicionando preenchimento a ele
-                          color: Color.fromARGB(255, 10, 140, 176),
+                          color: Theme.of(context).colorScheme.primary,
+                          // color: Color.fromARGB(255, 10, 140, 176),
                           // Definindo a sua borda
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -180,7 +176,7 @@ class _LoginViewState extends State<LoginView> {
                             // Estilizando o texto
                             style: TextStyle(
                               // Adicionando cor
-                              color: Colors.white,
+                              //color: Colors.white,
                               // Adicionando espessura da fonte
                               fontWeight: FontWeight.bold,
                               // Adicionando o tamanho da fonte
@@ -200,7 +196,8 @@ class _LoginViewState extends State<LoginView> {
                         // Adicionando texto
                         Text(
                           'Não possui conta?',
-                          style: TextStyle(color: Colors.white),
+                          style: Theme.of(context).textTheme.bodyText1,
+                          // style: TextStyle(color: Colors.white),
                         ),
                         TextButton(
                           onPressed: () {
@@ -216,7 +213,7 @@ class _LoginViewState extends State<LoginView> {
                             // Estilizando ele
                             style: TextStyle(
                               // Adicionando cor
-                              color: Color.fromARGB(255, 10, 140, 176),
+                              //color: Color.fromARGB(255, 10, 140, 176),
                               // Adicionando espesura da letra
                               fontWeight: FontWeight.bold,
                             ),

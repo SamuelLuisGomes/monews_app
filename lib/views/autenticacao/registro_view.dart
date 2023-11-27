@@ -1,4 +1,10 @@
+import 'dart:io';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:monews_app/controllers/acoes_controller.dart';
 import 'package:monews_app/controllers/autenticacao_controller.dart';
 import 'package:monews_app/controllers/formulario_controller.dart';
 import 'package:monews_app/models/usuario_model.dart';
@@ -11,6 +17,10 @@ class RegistroView extends StatefulWidget {
 
 class _RegistroViewState extends State<RegistroView> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final imagemBase =
+      'https://firebasestorage.googleapis.com/v0/b/monews-9db1b.appspot.com/o/imagens%2Fperfil%2Fperfil%2Fperfil.jpg?alt=media&token=6ba0f70f-10ba-4fcd-abec-91da044a641c';
+
+  XFile? imagem;
 
   FormularioController controller = FormularioController();
 
@@ -23,7 +33,7 @@ class _RegistroViewState extends State<RegistroView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[900],
+      //backgroundColor: Colors.blueGrey[900],
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(
@@ -34,16 +44,55 @@ class _RegistroViewState extends State<RegistroView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    /*== Logo ==*/
-                    // Image.asset(
-                    //   'lib/images/logoMonews.png',
-                    //   width: 320,
-                    //   height: 280,
-                    // ),
-                    /*== Campos Usuário e Senha ==*/
-                    SizedBox(
-                      height: 280,
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 42),
+                      child: GestureDetector(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(24),
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                          width: 320,
+                          height: 180,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 24),
+                                child: imagem != null
+                                    ? ClipRRect(
+                                        borderRadius: BorderRadius.circular(24),
+                                        child: Image.file(
+                                          File(imagem!.path),
+                                          width: 140,
+                                          height: 80,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      )
+                                    : ClipRRect(
+                                        borderRadius: BorderRadius.circular(24),
+                                        child: Image.network(
+                                          imagemBase,
+                                          width: 180,
+                                          height: 120,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        // Image.asset(
+                                        //   'lib/images/person.jpg',
+                                        //   width: 160,
+                                        //   height: 140,
+                                        //   fit: BoxFit.cover,
+                                        // ),
+                                      ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        onTap: () {
+                          pegarFoto();
+                        },
+                      ),
                     ),
+                    /*== Campos Usuário e Senha ==*/
                     TextFormField(
                       style: const TextStyle(
                         color: Colors.white,
@@ -160,7 +209,7 @@ class _RegistroViewState extends State<RegistroView> {
                         // Estilizando o container
                         decoration: BoxDecoration(
                           // Adicionando preenchimento a ele
-                          color: Color.fromARGB(255, 10, 140, 176),
+                          color: Theme.of(context).colorScheme.secondary,
                           // Definindo a sua borda
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -229,23 +278,80 @@ class _RegistroViewState extends State<RegistroView> {
     );
   }
 
+  void pegarFoto() async {
+    final ImagePicker picker = ImagePicker();
+
+    XFile? imagemTemp = await picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      imagem = imagemTemp;
+    });
+  }
+
+  Future<String?> upload(String caminho) async {
+    File arquivo = File(caminho);
+    try {
+      String imgNome = 'img-${DateTime.now().toString()}.jpg';
+      String refImagem = 'imagens/perfil/$imgNome';
+      Reference ref = auth.storage.ref(refImagem);
+      await ref.putFile(arquivo);
+
+      return ref.getDownloadURL();
+    } on FirebaseAuthException catch (e) {
+      print('Erro ao fazer o upload: $e');
+      return null;
+    }
+  }
+  // Future<UploadTask> upload(String caminho) async {
+  //   File arquivo = File(caminho);
+  //   try {
+  //     String imgNome = 'img-${DateTime.now().toString()}.jpg';
+  //     String refImagem = 'imagens/perfil/$imgNome';
+  //     return auth.storage.ref(refImagem).putFile(arquivo);
+  //   } on FirebaseAuthException catch (e) {
+  //     throw AuthenticationException(
+  //       e.toString(),
+  //     );
+  //   }
+  // }
+
   void registro(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       setState(() => carregando = true);
 
       formKey.currentState!.save();
       try {
-        UsuarioModel model = UsuarioModel(
-          nome: controller.nomeController.text.trim(),
-          uid: null,
-        );
+        //XFile? arquivo = await pegarFoto();
+        String? urlImagem;
 
-        await auth.cadastro(
-          controller.emailController!.text.trim(),
-          controller.senhaController!.text.trim(),
-          model,
-          context,
-        );
+        if (imagem != null) {
+          urlImagem = await upload(imagem!.path);
+          if (urlImagem != null) {
+            UsuarioModel model = UsuarioModel(
+              nome: controller.nomeController.text.trim(),
+              uid: null,
+              img: urlImagem,
+            );
+            await auth.cadastro(
+              controller.emailController.text.trim(),
+              controller.senhaController.text.trim(),
+              model,
+              context,
+            );
+          }
+        } else {
+          UsuarioModel model = UsuarioModel(
+            nome: controller.nomeController.text.trim(),
+            uid: null,
+            img: imagemBase,
+          );
+          await auth.cadastro(
+            controller.emailController.text.trim(),
+            controller.senhaController.text.trim(),
+            model,
+            context,
+          );
+        }
       } on AuthenticationException catch (e) {
         setState(() => carregando = false);
         ScaffoldMessenger.of(context).showSnackBar(
@@ -256,4 +362,31 @@ class _RegistroViewState extends State<RegistroView> {
       setState(() => carregando = false);
     }
   }
+  // void registro(BuildContext context) async {
+  //   if (formKey.currentState!.validate()) {
+  //     setState(() => carregando = true);
+
+  //     formKey.currentState!.save();
+  //     try {
+  //       UsuarioModel model = UsuarioModel(
+  //         nome: controller.nomeController.text.trim(),
+  //         uid: null,
+  //         img: pegarFoto().toString(),
+  //       );
+  //       await auth.cadastro(
+  //         controller.emailController!.text.trim(),
+  //         controller.senhaController!.text.trim(),
+  //         model,
+  //         context,
+  //       );
+  //     } on AuthenticationException catch (e) {
+  //       setState(() => carregando = false);
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         SnackBar(content: Text(e.mensagem)),
+  //       );
+  //     }
+  //   } else {
+  //     setState(() => carregando = false);
+  //   }
+  // }
 }

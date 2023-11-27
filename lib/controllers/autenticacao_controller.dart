@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,6 +19,7 @@ class AutenticacaoController {
   /* ==Criando variáveis para acessar o Firebase ==*/
   final auth = FirebaseAuth.instance;
   final firebase = FirebaseFirestore.instance;
+  final storage = FirebaseStorage.instance;
 
   usuarioLogado() {
     return auth.currentUser;
@@ -38,6 +40,7 @@ class AutenticacaoController {
     firebase.collection('usuario').doc(usuarioLogado().uid).set({
       'nome': model.nome,
       'uid': model.uid,
+      'img': model.img,
       'carteira': [],
     });
     Navigator.of(context).pushReplacement(
@@ -53,6 +56,7 @@ class AutenticacaoController {
           firebase.collection('usuario').doc(usuarioLogado().uid);
       await dadosUsuarios.update({
         'nome': model.nome,
+        'img': model.img,
         //'senha': senha,
       });
       Navigator.of(context).pushReplacement(
