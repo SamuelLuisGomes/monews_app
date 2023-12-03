@@ -248,9 +248,17 @@ class _RegistroViewState extends State<RegistroView> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.of(context).push(
+                            // Navigator.of(context).push(
+                            //   MaterialPageRoute(
+                            //     builder: (context) => LoginView(),
+                            //   ),
+                            // );
+                            Navigator.pushReplacement(
+                              context,
                               MaterialPageRoute(
-                                builder: (context) => LoginView(),
+                                builder: (BuildContext context) {
+                                  return LoginView();
+                                },
                               ),
                             );
                           },

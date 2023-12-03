@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monews_app/components/alert_dialog_components.dart';
 import 'package:monews_app/components/app_bar_components.dart';
+import 'package:monews_app/components/app_bar_static_components.dart';
 import 'package:monews_app/controllers/autenticacao_controller.dart';
 import 'package:monews_app/controllers/formulario_controller.dart';
 import 'package:monews_app/views/autenticacao/login_view.dart';
@@ -18,7 +19,7 @@ class _ResetSenhaViewtState extends State<ResetSenhaView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MenuVoltar(),
+      appBar: AppBarStatic(),
       backgroundColor: Colors.blueGrey[900],
       body: SafeArea(
         child: SingleChildScrollView(

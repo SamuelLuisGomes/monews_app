@@ -43,7 +43,13 @@ class AutenticacaoController {
       'img': model.img,
       'carteira': [],
     });
-    Navigator.of(context).pushReplacement(
+    // Navigator.of(context).pushReplacement(
+    //   MaterialPageRoute(
+    //     builder: (context) => LoginView(),
+    //   ),
+    // );
+        Navigator.pushReplacement(
+      context,
       MaterialPageRoute(
         builder: (context) => LoginView(),
       ),
@@ -59,9 +65,15 @@ class AutenticacaoController {
         'img': model.img,
         //'senha': senha,
       });
-      Navigator.of(context).pushReplacement(
+      // Navigator.of(context).pushReplacement(
+      //   MaterialPageRoute(
+      //     builder: (context) => PerfilView(),
+      //   ),
+      // );
+      Navigator.pushReplacement(
+        context,
         MaterialPageRoute(
-          builder: (__) => PerfilView(),
+          builder: (context) => PerfilView(),
         ),
       );
     } on FirebaseAuthException catch (e) {
@@ -89,18 +101,30 @@ class AutenticacaoController {
         );
       }
     }
-    Navigator.of(context).pushReplacement(
+    // Navigator.of(context).pushReplacement(
+    //   MaterialPageRoute(
+    //     builder: (__) => HomeView(),
+    //   ),
+    // );
+    Navigator.pushReplacement(
+      context,
       MaterialPageRoute(
-        builder: (__) => HomeView(),
+        builder: (context) => HomeView(),
       ),
     );
   }
 
   logout(BuildContext context) async {
     await auth.signOut();
-    Navigator.of(context).pushReplacement(
+    // Navigator.of(context).pushReplacement(
+    //   MaterialPageRoute(
+    //     builder: (__) => LoginView(),
+    //   ),
+    // );
+    Navigator.pushReplacement(
+      context,
       MaterialPageRoute(
-        builder: (__) => LoginView(),
+        builder: (context) => LoginView(),
       ),
     );
   }

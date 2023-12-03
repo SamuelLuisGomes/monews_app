@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monews_app/components/alert_dialog_components.dart';
 import 'package:monews_app/components/app_bar_components.dart';
+import 'package:monews_app/components/app_bar_static_components.dart';
 import 'package:monews_app/components/search_components.dart';
 import 'package:monews_app/controllers/acoes_controller.dart';
 
@@ -38,8 +39,7 @@ class _RemoveAcoesState extends State<RemoveAcoes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[900],
-      appBar: MenuVoltar(),
+      appBar: AppBarStatic(telaNome: 'Remover Ações'),
       body: SafeArea(
         child: ListView.builder(
           itemBuilder: (context, index) {

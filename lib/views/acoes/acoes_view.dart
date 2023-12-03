@@ -31,18 +31,19 @@ class _AcoesViewState extends State<AcoesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[900],
+      //backgroundColor: Colors.blueGrey[900],
       body: SafeArea(
         child: Center(
           child: CustomScrollView(
             slivers: [
-              const SliverAppBar(
+              SliverAppBar(
+                automaticallyImplyLeading: false,
                 floating: true,
                 pinned: true,
                 snap: true,
                 expandedHeight: 120,
                 centerTitle: true,
-                backgroundColor: Color.fromARGB(255, 10, 140, 176),
+                backgroundColor: Theme.of(context).primaryColor,
                 flexibleSpace: FlexibleSpaceBar(
                   centerTitle: false,
                   titlePadding: EdgeInsets.only(left: 38, bottom: 12),
@@ -59,7 +60,7 @@ class _AcoesViewState extends State<AcoesView> {
               SliverToBoxAdapter(
                 child: Container(
                   height: 200,
-                  color: Color.fromARGB(255, 10, 140, 176),
+                  color: Theme.of(context).primaryColor,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 64),
                     child: Row(
@@ -77,8 +78,11 @@ class _AcoesViewState extends State<AcoesView> {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Color.fromRGBO(67, 115, 150, 100),
+                              color: Theme.of(context).colorScheme.secondary,
                               borderRadius: BorderRadius.circular(16),
+                              border: Border.all(
+                                  color: const Color.fromRGBO(8, 130, 178, 1),
+                                  width: 1),
                             ),
                             height: 80, // Reduzi a altura dos botões
                             width: 80, // Reduzi a largura dos botões
@@ -98,8 +102,11 @@ class _AcoesViewState extends State<AcoesView> {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Color.fromRGBO(67, 115, 150, 100),
+                              color: Theme.of(context).colorScheme.secondary,
                               borderRadius: BorderRadius.circular(16),
+                              border: Border.all(
+                                  color: const Color.fromRGBO(8, 130, 178, 1),
+                                  width: 1),
                             ),
                             height: 80, // Reduzi a altura dos botões
                             width: 80, // Reduzi a largura dos botões

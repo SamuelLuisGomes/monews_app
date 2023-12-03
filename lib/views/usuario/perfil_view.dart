@@ -41,7 +41,7 @@ class _PerfilViewState extends State<PerfilView> {
           }
 
           return Scaffold(
-            backgroundColor: Theme.of(context).colorScheme.background,
+            //backgroundColor: Theme.of(context).colorScheme.background,
             body: SafeArea(
               child: Center(
                 child: Padding(
@@ -59,7 +59,8 @@ class _PerfilViewState extends State<PerfilView> {
                         child: Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 24),
+                              //padding: const EdgeInsets.only(top: 24, bottom: ),
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(24),
                                 child: Image.network(
@@ -116,8 +117,10 @@ class _PerfilViewState extends State<PerfilView> {
                             // // Estilizando o container
                             decoration: BoxDecoration(
                               // Adicionando preenchimento a ele
-                              color: Colors.blueGrey,
-
+                              color: Theme.of(context).colorScheme.secondary,
+                              border: Border.all(
+                                  color: const Color.fromRGBO(8, 130, 178, 1),
+                                  width: 1.5),
                               // Definindo a sua borda
                               borderRadius: BorderRadius.circular(18),
                             ),
@@ -164,13 +167,7 @@ class _PerfilViewState extends State<PerfilView> {
                       Padding(
                         padding: const EdgeInsets.only(top: 22),
                         child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => EditaUsuarioView(),
-                              ),
-                            );
-                          },
+                          onTap: () {},
                           // Criando um container
                           child: Container(
                             // Adicionando altura a ele
@@ -180,8 +177,10 @@ class _PerfilViewState extends State<PerfilView> {
                             // // Estilizando o container
                             decoration: BoxDecoration(
                               // Adicionando preenchimento a ele
-                              color: Colors.blueGrey,
-
+                              color: Theme.of(context).colorScheme.secondary,
+                              border: Border.all(
+                                  color: const Color.fromRGBO(8, 130, 178, 1),
+                                  width: 1.5),
                               // Definindo a sua borda
                               borderRadius: BorderRadius.circular(18),
                             ),
@@ -240,8 +239,10 @@ class _PerfilViewState extends State<PerfilView> {
                             // // Estilizando o container
                             decoration: BoxDecoration(
                               // Adicionando preenchimento a ele
-                              color: Theme.of(context).colorScheme.primary,
-
+                              color: Theme.of(context).colorScheme.secondary,
+                              border: Border.all(
+                                  color: const Color.fromRGBO(8, 130, 178, 1),
+                                  width: 1.5),
                               // Definindo a sua borda
                               borderRadius: BorderRadius.circular(18),
                             ),

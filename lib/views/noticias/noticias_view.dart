@@ -39,9 +39,10 @@ class _NoticiasViewtState extends State<NoticiasView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(38, 50, 56, 1),
+      //backgroundColor: const Color.fromRGBO(38, 50, 56, 1),
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey[900],
+        backgroundColor: Theme.of(context).primaryColor,
+        automaticallyImplyLeading: false,
         title: Center(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 12),
@@ -64,7 +65,7 @@ class _NoticiasViewtState extends State<NoticiasView> {
                           "NEWS",
                           style: TextStyle(
                             fontSize: 24,
-                            color: Colors.blue,
+                            color: Color.fromRGBO(34, 211, 238, 1),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -72,18 +73,6 @@ class _NoticiasViewtState extends State<NoticiasView> {
                     )
                   ],
                 ),
-                // IconButton(
-                //   icon: Icon(
-                //     Icons.search,
-                //     color: Colors.white,
-                //   ),
-                //   onPressed: () {
-                //     Navigator.push(context,
-                //         MaterialPageRoute(builder: (context) {
-                //       return PesquisaNoticias();
-                //     }));
-                //   },
-                // ),
               ],
             ),
           ),

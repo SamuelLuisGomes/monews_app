@@ -45,18 +45,18 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                       //color: Colors.white,
-                      ),
+                          //color: Colors.white,
+                          ),
                       /*== Criando o Input e adicionando suas características ==*/
                       decoration: const InputDecoration(
                         labelText: 'Email',
                         labelStyle: TextStyle(
-                        //  color: Colors.white,
-                        ),
+                            //  color: Colors.white,
+                            ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                          //  color: Colors.white,
-                          ),
+                              //  color: Colors.white,
+                              ),
                         ),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -122,10 +122,18 @@ class _LoginViewState extends State<LoginView> {
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.push(
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) {
+                          //       return ResetSenhaView();
+                          //     },
+                          //   ),
+                          // );
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) {
+                              builder: (BuildContext context) {
                                 return ResetSenhaView();
                               },
                             ),

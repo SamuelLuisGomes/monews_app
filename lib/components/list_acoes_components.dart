@@ -24,12 +24,16 @@ class MyListAcoes extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(24),
-              color: const Color.fromRGBO(67, 115, 150, 100),
+              border: Border.all(color: const Color.fromRGBO(8, 130, 178, 1), width: 1.5),
+              color: Theme.of(context).colorScheme.secondary,
+              // color: const Color.fromRGBO(67, 115, 150, 100),
             ),
             child: ListTile(
               leading: Hero(
                 tag: acoes.siglaAcao.toString(),
                 child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  //foregroundColor: Colors.white,
                   radius: 32,
                   child: ClipOval(
                     child: SvgPicture.network(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monews_app/components/app_bar_components.dart';
+import 'package:monews_app/components/app_bar_static_components.dart';
 import '../../models/acoes_model.dart';
 import '../../controllers/acoes_controller.dart';
 import '../../components/search_components.dart';
@@ -34,8 +35,8 @@ class _PesquisaAcoesViewState extends State<PesquisaAcoesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[900],
-      appBar: MenuVoltar(),
+      //backgroundColor: Colors.blueGrey[900],
+      appBar: AppBarStatic(telaNome: 'Ações'),
       body: SafeArea(
         child: ListView.builder(
           itemBuilder: (context, index) {

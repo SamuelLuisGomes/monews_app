@@ -7,6 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:monews_app/components/app_bar_components.dart';
+import 'package:monews_app/components/app_bar_static_components.dart';
 import 'package:monews_app/controllers/autenticacao_controller.dart';
 import 'package:monews_app/controllers/formulario_controller.dart';
 import 'package:monews_app/models/usuario_model.dart';
@@ -39,7 +40,7 @@ class _EditaUsuarioViewState extends State<EditaUsuarioView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey[900],
-      //appBar: MenuVoltar(),
+      appBar: AppBarStatic(telaNome: 'Editar Dados'),
       body: SafeArea(
         child: Form(
           key: formKey,

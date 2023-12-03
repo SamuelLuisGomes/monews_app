@@ -47,7 +47,10 @@ class CategoriasTitulo extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: ((context) {
-              return NoticiasCategoria(categoria: nomeCategoria);
+              return NoticiasCategoria(
+                categoria: nomeCategoria,
+                categoriaNome: nomePtbr,
+              );
             }),
           ),
         );

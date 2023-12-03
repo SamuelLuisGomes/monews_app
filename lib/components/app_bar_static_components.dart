@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class AppBarStatic extends StatelessWidget implements PreferredSizeWidget {
   final double alturaAppBar;
   //IconData? icone;
-  String telaNome;
+  String? telaNome;
   AppBarStatic({
     super.key,
-    required this.telaNome,
+    this.telaNome,
     this.alturaAppBar = kToolbarHeight,
   });
 
@@ -16,12 +16,13 @@ class AppBarStatic extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: Theme.of(context).primaryColor,
       title: Expanded(
         child: Center(
           child: Container(
             width: MediaQuery.of(context).size.width * 0.38,
             child: Text(
-              telaNome,
+              telaNome!,
               style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
