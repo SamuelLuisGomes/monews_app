@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:monews_app/components/app_bar_components.dart';
 import 'package:monews_app/components/app_bar_static_components.dart';
+import 'package:monews_app/components/container_resposta_components.dart';
 import '../../models/acoes_model.dart';
 import '../../controllers/acoes_controller.dart';
 import '../../components/search_components.dart';
@@ -35,43 +37,53 @@ class _PesquisaAcoesViewState extends State<PesquisaAcoesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.blueGrey[900],
-      appBar: AppBarStatic(telaNome: 'Ações'),
+      appBar: AppBarStatic(),
       body: SafeArea(
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            if (!_isLoading) {
-              return index == 0
-                  ? MySearch(
+        child: Center(
+          child: _isLoading
+              ? const MyLoading()
+              : Column(
+                  children: [
+                    MySearch(
                       hintText: 'Ex: sigla ou nome da empresa',
                       onChanged: (searchText) {
                         searchText = searchText.toLowerCase();
-                        setState(() {
-                          _acoesDisplay = _acoes.where((u) {
-                            var siglaAcaoLowerCase =
-                                u.siglaAcao.toString().toLowerCase();
-                            var nomeEmpresaLowerCase =
-                                u.nomeEmpresa.toString().toLowerCase();
-                            return siglaAcaoLowerCase.contains(searchText) ||
-                                nomeEmpresaLowerCase.contains(searchText);
-                          }).toList();
-                        });
-                      },
-                    )
-                  : MyListAcoes(
-                      acoes: _acoesDisplay[index - 1],
-                      addCarteira: () {
-                        addAcoesCarteira(
-                          context,
-                          _acoesDisplay[index - 1],
+                        setState(
+                          () {
+                            _acoesDisplay = _acoes.where((u) {
+                              var siglaAcaoLowerCase =
+                                  u.siglaAcao.toString().toLowerCase();
+                              var nomeEmpresaLowerCase =
+                                  u.nomeEmpresa.toString().toLowerCase();
+                              return siglaAcaoLowerCase.contains(searchText) ||
+                                  nomeEmpresaLowerCase.contains(searchText);
+                            }).toList();
+                          },
                         );
                       },
-                    );
-            } else {
-              return const MyLoading();
-            }
-          },
-          itemCount: _acoesDisplay.length + 1,
+                    ),
+                    if (_acoesDisplay.isEmpty)
+                      ContainerPadrao(
+                        texto: 'Não encontramos a ação',
+                      ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemBuilder: (context, index) {
+                          return MyListAcoes(
+                            acoes: _acoesDisplay[index],
+                            addCarteira: () {
+                              addAcoesCarteira(
+                                context,
+                                _acoesDisplay[index],
+                              );
+                            },
+                          );
+                        },
+                        itemCount: _acoesDisplay.length,
+                      ),
+                    ),
+                  ],
+                ),
         ),
       ),
     );

@@ -20,21 +20,28 @@ class _MySearchState extends State<MySearch> {
         bottom: 16,
       ),
       child: TextField(
-        style: const TextStyle(color: Colors.white),
+        style: const TextStyle(
+            //color: Colors.white,
+            ),
         autofocus: false,
         onChanged: widget.onChanged,
         decoration: InputDecoration(
           enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(
-            color: Colors.white,
-          )),
+                  //color: Colors.white,
+                  )),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
-            color: Colors.white,
-          )),
-          prefixIcon: const Icon(Icons.search, color: Colors.white),
+                  //color: Colors.white,
+                  )),
+          prefixIcon: const Icon(
+            Icons.search,
+            //color: Colors.white,
+          ),
           hintText: widget.hintText,
-          hintStyle: const TextStyle(color: Colors.white),
+          hintStyle: const TextStyle(
+            //color: Colors.white,
+          ),
         ),
       ),
     );

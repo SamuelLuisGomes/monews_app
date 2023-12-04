@@ -5,14 +5,14 @@ ThemeData lightMode = ThemeData(
   primaryColor: Colors.grey,
   colorScheme: const ColorScheme.light(
     background: Color.fromRGBO(236, 254, 255, 1),
-    primary: Color.fromRGBO(0, 0, 0, 0),
-    secondary: Color.fromRGBO(52, 53, 53, 0),
+    primary: Colors.grey,
+    secondary: Color.fromRGBO(52, 53, 53, 1),
   ),
-  scaffoldBackgroundColor: const Color.fromRGBO(236, 254, 255, 1),
+  scaffoldBackgroundColor: Color.fromRGBO(236, 254, 255, 1),
   useMaterial3: true,
   textTheme: const TextTheme(
     displaySmall: TextStyle(
-      color: Colors.white,
+      color: Colors.black,
       fontSize: 24,
       fontWeight: FontWeight.bold,
     ),

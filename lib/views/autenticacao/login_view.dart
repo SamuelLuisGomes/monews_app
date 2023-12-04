@@ -87,11 +87,11 @@ class _LoginViewState extends State<LoginView> {
                           icon: _obscureText
                               ? Icon(
                                   Icons.visibility_off,
-                                  color: Color.fromARGB(255, 10, 140, 176),
+                                  //color: Color.fromARGB(255, 10, 140, 176),
                                 )
                               : Icon(
                                   Icons.visibility,
-                                  color: Color.fromARGB(255, 10, 140, 176),
+                                  //color: Color.fromARGB(255, 10, 140, 176),
                                 ),
                           onPressed: () {
                             setState(() {
@@ -130,7 +130,7 @@ class _LoginViewState extends State<LoginView> {
                           //     },
                           //   ),
                           // );
-                          Navigator.pushReplacement(
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (BuildContext context) {
@@ -174,7 +174,7 @@ class _LoginViewState extends State<LoginView> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                         // Definindo seu filho e centralizando
-                        child: Center(
+                        child: const Center(
                           // Atribuindo um filho ao centro e o componente text
 
                           child: Text(
@@ -204,7 +204,7 @@ class _LoginViewState extends State<LoginView> {
                         // Adicionando texto
                         Text(
                           'Não possui conta?',
-                          style: Theme.of(context).textTheme.bodyText1,
+                          //style: Theme.of(context).textTheme.bodyText1,
                           // style: TextStyle(color: Colors.white),
                         ),
                         TextButton(
@@ -216,12 +216,12 @@ class _LoginViewState extends State<LoginView> {
                             );
                           },
                           child: // Adicionando texto
-                              const Text(
+                              Text(
                             'Faça seu Cadastro',
                             // Estilizando ele
                             style: TextStyle(
                               // Adicionando cor
-                              //color: Color.fromARGB(255, 10, 140, 176),
+                              color: Theme.of(context).colorScheme.secondary,
                               // Adicionando espesura da letra
                               fontWeight: FontWeight.bold,
                             ),

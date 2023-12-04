@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monews_app/components/app_bar_static_components.dart';
+import 'package:monews_app/components/container_resposta_components.dart';
 import 'package:monews_app/components/list_noticias_components.dart';
 import 'package:monews_app/components/loading_components.dart';
 import 'package:monews_app/controllers/noticias_controller.dart';
@@ -9,7 +10,8 @@ import 'package:monews_app/themes/theme.dart';
 class NoticiasCategoria extends StatefulWidget {
   final String categoria;
   final String categoriaNome;
-  NoticiasCategoria({super.key, required this.categoria, required this.categoriaNome});
+  NoticiasCategoria(
+      {super.key, required this.categoria, required this.categoriaNome});
 
   @override
   State<NoticiasCategoria> createState() => _NoticiasCategoriaState();
@@ -36,8 +38,8 @@ class _NoticiasCategoriaState extends State<NoticiasCategoria> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
-      appBar: AppBarStatic(telaNome: widget.categoriaNome),
+      //backgroundColor: Theme.of(context).primaryColor,
+      appBar: AppBarStatic(),
       body: SafeArea(
           child: _isLoading
               ? const Center(child: MyLoading())
@@ -46,11 +48,20 @@ class _NoticiasCategoriaState extends State<NoticiasCategoria> {
                     SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
-                          return MyListNoticias(
-                            noticias: _noticiasDisplay[index],
-                          );
+                          if (_noticiasDisplay.isEmpty) {
+                            return ContainerPadrao(
+                              texto:
+                                  'Não encontramos as notícias dessa categoria',
+                            );
+                          } else {
+                            return MyListNoticias(
+                              noticias: _noticiasDisplay[index],
+                            );
+                          }
                         },
-                        childCount: _noticiasDisplay.length,
+                        childCount: _noticiasDisplay.isEmpty
+                            ? 1
+                            : _noticiasDisplay.length,
                       ),
                     ),
                   ],

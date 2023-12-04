@@ -24,7 +24,10 @@ class MyListAcoes extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: const Color.fromRGBO(8, 130, 178, 1), width: 1.5),
+              border: Border.all(
+                color: Theme.of(context).primaryColor,
+                width: 1.5,
+              ),
               color: Theme.of(context).colorScheme.secondary,
               // color: const Color.fromRGBO(67, 115, 150, 100),
             ),

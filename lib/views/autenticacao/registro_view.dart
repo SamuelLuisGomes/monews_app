@@ -40,7 +40,7 @@ class _RegistroViewState extends State<RegistroView> {
             key: formKey,
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -50,7 +50,7 @@ class _RegistroViewState extends State<RegistroView> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(24),
-                            color: Theme.of(context).colorScheme.secondary,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                           width: 320,
                           height: 180,
@@ -76,12 +76,6 @@ class _RegistroViewState extends State<RegistroView> {
                                           height: 120,
                                           fit: BoxFit.cover,
                                         ),
-                                        // Image.asset(
-                                        //   'lib/images/person.jpg',
-                                        //   width: 160,
-                                        //   height: 140,
-                                        //   fit: BoxFit.cover,
-                                        // ),
                                       ),
                               ),
                             ],
@@ -95,22 +89,22 @@ class _RegistroViewState extends State<RegistroView> {
                     /*== Campos Usuário e Senha ==*/
                     TextFormField(
                       style: const TextStyle(
-                        color: Colors.white,
+                        //color: Colors.white,
                       ),
                       /*== Criando o Input e adicionando suas características ==*/
                       decoration: const InputDecoration(
                         labelText: 'Nome',
                         labelStyle: TextStyle(
-                          color: Colors.white,
+                          //color: Colors.white,
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Colors.white,
+                            //color: Colors.white,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                          color: Colors.white,
+                          //color: Colors.white,
                         )),
                         fillColor: Colors.transparent,
                         filled: true,
@@ -124,22 +118,22 @@ class _RegistroViewState extends State<RegistroView> {
                     ),
                     TextFormField(
                       style: const TextStyle(
-                        color: Colors.white,
+                        //color: Colors.white,
                       ),
                       /*== Criando o Input e adicionando suas características ==*/
                       decoration: const InputDecoration(
                         labelText: 'Email',
                         labelStyle: TextStyle(
-                          color: Colors.white,
+                          //color: Colors.white,
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Colors.white,
+                            //color: Colors.white,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                          color: Colors.white,
+                          //color: Colors.white,
                         )),
                         fillColor: Colors.transparent,
                         filled: true,
@@ -160,17 +154,17 @@ class _RegistroViewState extends State<RegistroView> {
                       decoration: InputDecoration(
                         labelText: 'Senha',
                         labelStyle: TextStyle(
-                          color: Colors.white,
+                          //color: Colors.white,
                         ),
                         suffixIcon: IconButton(
                           icon: _obscureText
                               ? Icon(
                                   Icons.visibility_off,
-                                  color: Color.fromARGB(255, 10, 140, 176),
+                                  //color: Color.fromARGB(255, 10, 140, 176),
                                 )
                               : Icon(
                                   Icons.visibility,
-                                  color: Color.fromARGB(255, 10, 140, 176),
+                                  //color: Color.fromARGB(255, 10, 140, 176),
                                 ),
                           onPressed: () {
                             setState(() {
@@ -180,12 +174,12 @@ class _RegistroViewState extends State<RegistroView> {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Colors.white,
+                            //color: Colors.white,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                          color: Colors.white,
+                          //color: Colors.white,
                         )),
                         fillColor: Colors.transparent,
                         filled: true,
@@ -209,7 +203,7 @@ class _RegistroViewState extends State<RegistroView> {
                         // Estilizando o container
                         decoration: BoxDecoration(
                           // Adicionando preenchimento a ele
-                          color: Theme.of(context).colorScheme.secondary,
+                          color: Theme.of(context).colorScheme.primary,
                           // Definindo a sua borda
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -224,7 +218,7 @@ class _RegistroViewState extends State<RegistroView> {
                             // Estilizando o texto
                             style: TextStyle(
                               // Adicionando cor
-                              color: Colors.white,
+                              //color: Colors.white,
                               // Adicionando espessura da fonte
                               fontWeight: FontWeight.bold,
                               // Adicionando o tamanho da fonte
@@ -244,7 +238,10 @@ class _RegistroViewState extends State<RegistroView> {
                         // Adicionando texto
                         Text(
                           'Já possui conta?',
-                          style: TextStyle(color: Colors.white),
+                          // style: TextStyle(
+                          //   color:
+                          //       Theme.of(context).textTheme.displaySmall!.color,
+                          // ),
                         ),
                         TextButton(
                           onPressed: () {
@@ -263,12 +260,12 @@ class _RegistroViewState extends State<RegistroView> {
                             );
                           },
                           child: // Adicionando texto
-                              const Text(
+                              Text(
                             'Faça o login',
                             // Estilizando ele
                             style: TextStyle(
                               // Adicionando cor
-                              color: Color.fromARGB(255, 10, 140, 176),
+                              color: Theme.of(context).colorScheme.secondary,
                               // Adicionando espesura da letra
                               fontWeight: FontWeight.bold,
                             ),

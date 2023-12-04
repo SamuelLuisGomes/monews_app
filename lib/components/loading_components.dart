@@ -12,8 +12,8 @@ class MyLoading extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.2,
         ),
-        const CircularProgressIndicator(
-          color: Color.fromRGBO(67, 115, 150, 100),
+        CircularProgressIndicator(
+          color: Theme.of(context).colorScheme.primary,
         ),
       ],
     );

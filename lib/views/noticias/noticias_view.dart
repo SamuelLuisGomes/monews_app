@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:monews_app/components/categorias_components.dart';
+import 'package:monews_app/components/container_resposta_components.dart';
 import 'package:monews_app/components/list_noticias_components.dart';
 import 'package:monews_app/components/loading_components.dart';
+import 'package:monews_app/components/logo_components.dart';
 import 'package:monews_app/components/search_components.dart';
 import 'package:monews_app/controllers/categoria_controller.dart';
 import 'package:monews_app/controllers/noticias_controller.dart';
@@ -10,7 +12,7 @@ import 'package:monews_app/models/noticias_model.dart';
 import 'package:monews_app/views/noticias/pesquisa_noticias_view.dart';
 
 class NoticiasView extends StatefulWidget {
-  const NoticiasView({super.key});
+  //const NoticiasView({super.key});
 
   @override
   State<NoticiasView> createState() => _NoticiasViewtState();
@@ -39,7 +41,6 @@ class _NoticiasViewtState extends State<NoticiasView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: const Color.fromRGBO(38, 50, 56, 1),
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         automaticallyImplyLeading: false,
@@ -53,8 +54,8 @@ class _NoticiasViewtState extends State<NoticiasView> {
                   children: [
                     Row(
                       children: [
-                        Text(
-                          "MO",
+                        const Text(
+                          "Mo",
                           style: TextStyle(
                             fontSize: 24,
                             color: Colors.white,
@@ -62,10 +63,10 @@ class _NoticiasViewtState extends State<NoticiasView> {
                           ),
                         ),
                         Text(
-                          "NEWS",
+                          "News",
                           style: TextStyle(
                             fontSize: 24,
-                            color: Color.fromRGBO(34, 211, 238, 1),
+                            color: Theme.of(context).colorScheme.secondary,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -97,7 +98,7 @@ class _NoticiasViewtState extends State<NoticiasView> {
                               Text(
                                 'Categorias',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  //color: Colors.white,
                                   fontSize: 26,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -132,7 +133,7 @@ class _NoticiasViewtState extends State<NoticiasView> {
                               Text(
                                 'Notícias Recomendadas',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  //color: Colors.white,
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -146,11 +147,20 @@ class _NoticiasViewtState extends State<NoticiasView> {
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (context, index) {
-                        return MyListNoticias(
-                          noticias: _noticiasDisplay[index],
-                        );
+                        if (_noticiasDisplay.isEmpty) {
+                          return ContainerPadrao(
+                            texto:
+                                'Não encontramos notícias relacionadas a carteira',
+                          );
+                        } else {
+                          return MyListNoticias(
+                            noticias: _noticiasDisplay[index],
+                          );
+                        }
                       },
-                      childCount: _noticiasDisplay.length,
+                      childCount: _noticiasDisplay.isEmpty
+                          ? 1
+                          : _noticiasDisplay.length,
                     ),
                   ),
                 ],

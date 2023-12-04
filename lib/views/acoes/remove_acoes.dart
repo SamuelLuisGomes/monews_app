@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:monews_app/components/alert_dialog_components.dart';
 import 'package:monews_app/components/app_bar_components.dart';
 import 'package:monews_app/components/app_bar_static_components.dart';
+import 'package:monews_app/components/container_resposta_components.dart';
 import 'package:monews_app/components/search_components.dart';
 import 'package:monews_app/controllers/acoes_controller.dart';
 
@@ -39,13 +40,14 @@ class _RemoveAcoesState extends State<RemoveAcoes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarStatic(telaNome: 'Remover Ações'),
+      appBar: AppBarStatic(),
       body: SafeArea(
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            if (!_isLoading) {
-              return index == 0
-                  ? MySearch(
+        child: Center(
+          child: _isLoading
+              ? const MyLoading()
+              : Column(
+                  children: [
+                    MySearch(
                       hintText: 'Ex: sigla ou nome da empresa',
                       onChanged: (searchText) {
                         searchText = searchText.toLowerCase();
@@ -60,21 +62,29 @@ class _RemoveAcoesState extends State<RemoveAcoes> {
                           }).toList();
                         });
                       },
-                    )
-                  : MyListAcoes(
-                      acoes: carteiraDisplay[index - 1],
-                      removeCarteira: () {
-                        atualizaCarteira(
-                          context,
-                          carteiraDisplay[index - 1],
-                        );
-                      },
-                    );
-            } else {
-              return const MyLoading();
-            }
-          },
-          itemCount: carteiraDisplay.length + 1,
+                    ),
+                    if (carteiraDisplay.isEmpty)
+                      ContainerPadrao(
+                        texto: 'Não encontramos a ação',
+                      ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemBuilder: (context, index) {
+                          return MyListAcoes(
+                            acoes: carteiraDisplay[index],
+                            removeCarteira: () {
+                              atualizaCarteira(
+                                context,
+                                carteiraDisplay[index],
+                              );
+                            },
+                          );
+                        },
+                        itemCount: carteiraDisplay.length,
+                      ),
+                    ),
+                  ],
+                ),
         ),
       ),
     );

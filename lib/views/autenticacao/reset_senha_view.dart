@@ -20,7 +20,7 @@ class _ResetSenhaViewtState extends State<ResetSenhaView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarStatic(),
-      backgroundColor: Colors.blueGrey[900],
+      //backgroundColor: Colors.blueGrey[900],
       body: SafeArea(
         child: SingleChildScrollView(
             child: Form(
@@ -38,77 +38,78 @@ class _ResetSenhaViewtState extends State<ResetSenhaView> {
                     padding: const EdgeInsets.symmetric(vertical: 280),
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           'Esqueceu sua Senha?',
                           style: TextStyle(
-                            color: Colors.white,
+                            //color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 32,
                           ),
                         ),
-                        SizedBox(
-                          height: 12,
-                        ),
-                        TextFormField(
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                          /*== Criando o Input e adicionando suas características ==*/
-                          decoration: const InputDecoration(
-                            labelText: 'Email',
-                            labelStyle: TextStyle(
-                              color: Colors.white,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
-                            ),
-                            focusedBorder: OutlineInputBorder(
+                        Padding(
+                          padding: const EdgeInsets.only(top: 12),
+                          child: TextFormField(
+                            style: TextStyle(
+                                //color: Colors.white,
+                                ),
+                            /*== Criando o Input e adicionando suas características ==*/
+                            decoration: const InputDecoration(
+                              labelText: 'Email',
+                              labelStyle: TextStyle(
+                                  //color: Colors.white,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                              //color: Color.fromARGB(255, 10, 140, 176),
-                              color: Colors.white,
-                            )),
-                            fillColor: Colors.transparent,
-                            filled: true,
-                          ),
-                          controller: controller.emailController,
-                          validator: (value) =>
-                              FormularioController.validarEmail(value!),
-                        ),
-                        SizedBox(
-                          height: 12,
-                        ),
-                        GestureDetector(
-                          onTap: () => resetarSenha(context),
-                          // Criando um container
-                          child: Container(
-                            // Adicionando altura a ele
-                            padding: const EdgeInsets.all(18),
-                            // Definindo a margem dele
-                            // margin:
-                            //     const EdgeInsets.symmetric(horizontal: 25.0),
-                            // Estilizando o container
-                            decoration: BoxDecoration(
-                              // Adicionando preenchimento a ele
-                              color: Color.fromARGB(255, 10, 140, 176),
-                              // Definindo a sua borda
-                              borderRadius: BorderRadius.circular(8),
+                                  //color: Colors.white,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      //color: Color.fromARGB(255, 10, 140, 176),
+                                      //color: Colors.white,
+                                      )),
+                              fillColor: Colors.transparent,
+                              filled: true,
                             ),
-                            // Definindo seu filho e centralizando
-                            child: Center(
-                              // Atribuindo um filho ao centro e o componente text
-
-                              child: Text(
-                                // Adicionando o texto
-                                "Resetar Senha",
-                                //'Inscrever-se',
-                                // Estilizando o texto
-                                style: TextStyle(
-                                  // Adicionando cor
-                                  color: Colors.white,
-                                  // Adicionando espessura da fonte
-                                  fontWeight: FontWeight.bold,
-                                  // Adicionando o tamanho da fonte
-                                  fontSize: 16,
+                            controller: controller.emailController,
+                            validator: (value) =>
+                                FormularioController.validarEmail(value!),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16),
+                          child: GestureDetector(
+                            onTap: () => resetarSenha(context),
+                            // Criando um container
+                            child: Container(
+                              // Adicionando altura a ele
+                              padding: const EdgeInsets.all(18),
+                              // Definindo a margem dele
+                              // margin:
+                              //     const EdgeInsets.symmetric(horizontal: 25.0),
+                              // Estilizando o container
+                              decoration: BoxDecoration(
+                                // Adicionando preenchimento a ele
+                                color: Theme.of(context).colorScheme.primary,
+                                // Definindo a sua borda
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              // Definindo seu filho e centralizando
+                              child: const Center(
+                                // Atribuindo um filho ao centro e o componente text
+                                child: Text(
+                                  // Adicionando o texto
+                                  "Resetar Senha",
+                                  //'Inscrever-se',
+                                  // Estilizando o texto
+                                  style: TextStyle(
+                                    // Adicionando cor
+                                    //color: Colors.white,
+                                    // Adicionando espessura da fonte
+                                    fontWeight: FontWeight.bold,
+                                    // Adicionando o tamanho da fonte
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ),
                             ),

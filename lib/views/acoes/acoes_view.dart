@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monews_app/components/alert_dialog_components.dart';
 import 'package:monews_app/components/container_acao_components.dart';
+import 'package:monews_app/components/container_resposta_components.dart';
 import 'package:monews_app/components/list_acoes_components.dart';
 import 'package:monews_app/components/loading_components.dart';
 import 'package:monews_app/controllers/acoes_controller.dart';
@@ -31,7 +32,6 @@ class _AcoesViewState extends State<AcoesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.blueGrey[900],
       body: SafeArea(
         child: Center(
           child: CustomScrollView(
@@ -50,7 +50,7 @@ class _AcoesViewState extends State<AcoesView> {
                   title: Text(
                     'Ações',
                     style: TextStyle(
-                        color: Colors.white,
+                        color: Theme.of(context).scaffoldBackgroundColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 32),
                   ),
@@ -78,17 +78,17 @@ class _AcoesViewState extends State<AcoesView> {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: Theme.of(context).scaffoldBackgroundColor,
                               borderRadius: BorderRadius.circular(16),
                               border: Border.all(
-                                  color: const Color.fromRGBO(8, 130, 178, 1),
+                                  color: Theme.of(context).primaryColor,
                                   width: 1),
                             ),
                             height: 80, // Reduzi a altura dos botões
                             width: 80, // Reduzi a largura dos botões
-                            child: Icon(
+                            child: const Icon(
                               Icons.add,
-                              color: Colors.white,
+                              // color: Theme.of(context).colorScheme.primary,
                               size: 32, // Aumentei o tamanho do ícone
                             ),
                           ),
@@ -102,16 +102,16 @@ class _AcoesViewState extends State<AcoesView> {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: Theme.of(context).scaffoldBackgroundColor,
                               borderRadius: BorderRadius.circular(16),
                               border: Border.all(
-                                  color: const Color.fromRGBO(8, 130, 178, 1),
+                                  color: Theme.of(context).primaryColor,
                                   width: 1),
                             ),
                             height: 80, // Reduzi a altura dos botões
                             width: 80, // Reduzi a largura dos botões
-                            child: Icon(Icons.remove,
-                                color: Colors.white,
+                            child: const Icon(Icons.remove,
+                                // color:Theme.of(context).colorScheme.primary,
                                 size: 32 // Aumentei o tamanho do ícone
                                 ),
                           ),
@@ -124,30 +124,36 @@ class _AcoesViewState extends State<AcoesView> {
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
-                    return StreamBuilder<List<AcoesModel>>(
-                      stream: pegarCarteira(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const MyLoading();
-                        } else if (snapshot.hasError) {
-                          return Text('Erro: ${snapshot.error}');
-                        } else {
-                          final acoes = snapshot.data;
-                          // final acoesCarteira = converterSnapshot(acoes);
-                          if (acoes != null && index <= acoes.length) {
-                            print('Acoes Snapshot: ${acoes}');
-                            print(
-                                '=================================================');
-                            return MyListAcoes(acoes: acoes[index]);
+                    if (carteira.isEmpty) {
+                      return ContainerPadrao(
+                        texto: 'Não encontramos ações na carteira!',
+                      );
+                    } else {
+                      return StreamBuilder<List<AcoesModel>>(
+                        stream: pegarCarteira(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const MyLoading();
+                          } else if (snapshot.hasError) {
+                            return Text('Erro: ${snapshot.error}');
                           } else {
-                            return const SizedBox();
+                            final acoes = snapshot.data;
+                            // final acoesCarteira = converterSnapshot(acoes);
+                            if (acoes != null && index <= acoes.length) {
+                              print('Acoes Snapshot: ${acoes}');
+                              print(
+                                  '=================================================');
+                              return MyListAcoes(acoes: acoes[index]);
+                            } else {
+                              return const SizedBox();
+                            }
                           }
-                        }
-                      },
-                    );
+                        },
+                      );
+                    }
                   },
-                  childCount: carteira.length,
+                  childCount: carteira.isEmpty ? 1 : carteira.length,
                 ),
               ),
             ],
@@ -157,37 +163,3 @@ class _AcoesViewState extends State<AcoesView> {
     );
   }
 }
-
-//   Stream<List<AcoesModel>> pegarCarteira() {
-//     if (auth.usuarioLogado() != null) {
-//       final refUsuario =
-//           auth.firebase.collection('usuario').doc(auth.usuarioLogado().uid);
-//       return refUsuario.snapshots().map((snapshot) {
-//         final dados = snapshot.data();
-//         var carteiraAcoes = dados?['carteira'] ?? <dynamic>[];
-//         print("Carteira na Função: ${carteiraAcoes}");
-//         final carteira = converterSnapshot(carteiraAcoes);
-//         return carteira;
-//         //return converterSnapshot(carteiraAcoes);
-//         // final carteira = converterSnapshot(carteiraAcoes);
-//       });
-//     } else {
-//       return const Stream.empty();
-//     }
-//   }
-
-//   List<AcoesModel> converterSnapshot(List<dynamic> acoes) {
-//     if (acoes != null) {
-//       final listaFinal = acoes
-//           .map((item) => AcoesModel(
-//               siglaAcao: item['siglaAcao'],
-//               nomeEmpresa: item['nomeEmpresa'],
-//               imagemAcao: item['imagemAcao'],
-//               setor: item['setor']))
-//           .toList();
-//       return listaFinal;
-//     } else {
-//       return [];
-//     }
-//   }
-// }

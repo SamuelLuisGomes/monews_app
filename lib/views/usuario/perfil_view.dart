@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/retry.dart';
 import 'package:monews_app/components/loading_components.dart';
 import 'package:monews_app/controllers/autenticacao_controller.dart';
 import 'package:monews_app/views/app.dart';
@@ -41,18 +42,17 @@ class _PerfilViewState extends State<PerfilView> {
           }
 
           return Scaffold(
-            //backgroundColor: Theme.of(context).colorScheme.background,
             body: SafeArea(
               child: Center(
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 22, vertical: 42),
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 42),
                   child: Column(
                     children: [
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(24),
-                          color: Theme.of(context).colorScheme.secondary,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                         width: 380,
                         height: 240,
@@ -60,7 +60,8 @@ class _PerfilViewState extends State<PerfilView> {
                           children: [
                             Padding(
                               //padding: const EdgeInsets.only(top: 24, bottom: ),
-                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 16),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(24),
                                 child: Image.network(
@@ -104,7 +105,9 @@ class _PerfilViewState extends State<PerfilView> {
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => EditaUsuarioView(),
+                                builder: (context) {
+                                  return EditaUsuarioView();
+                                },
                               ),
                             );
                           },
@@ -117,9 +120,9 @@ class _PerfilViewState extends State<PerfilView> {
                             // // Estilizando o container
                             decoration: BoxDecoration(
                               // Adicionando preenchimento a ele
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: Theme.of(context).colorScheme.primary,
                               border: Border.all(
-                                  color: const Color.fromRGBO(8, 130, 178, 1),
+                                  color: Theme.of(context).colorScheme.primary,
                                   width: 1.5),
                               // Definindo a sua borda
                               borderRadius: BorderRadius.circular(18),
@@ -177,9 +180,9 @@ class _PerfilViewState extends State<PerfilView> {
                             // // Estilizando o container
                             decoration: BoxDecoration(
                               // Adicionando preenchimento a ele
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: Theme.of(context).colorScheme.primary,
                               border: Border.all(
-                                  color: const Color.fromRGBO(8, 130, 178, 1),
+                                  color: Theme.of(context).colorScheme.primary,
                                   width: 1.5),
                               // Definindo a sua borda
                               borderRadius: BorderRadius.circular(18),
@@ -239,9 +242,9 @@ class _PerfilViewState extends State<PerfilView> {
                             // // Estilizando o container
                             decoration: BoxDecoration(
                               // Adicionando preenchimento a ele
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: Theme.of(context).colorScheme.primary,
                               border: Border.all(
-                                  color: const Color.fromRGBO(8, 130, 178, 1),
+                                  color: Theme.of(context).colorScheme.primary,
                                   width: 1.5),
                               // Definindo a sua borda
                               borderRadius: BorderRadius.circular(18),

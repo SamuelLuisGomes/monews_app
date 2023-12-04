@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monews_app/components/logo_components.dart';
 
 class AppBarStatic extends StatelessWidget implements PreferredSizeWidget {
   final double alturaAppBar;
@@ -19,15 +20,23 @@ class AppBarStatic extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Theme.of(context).primaryColor,
       title: Expanded(
         child: Center(
-          child: Container(
-            width: MediaQuery.of(context).size.width * 0.38,
-            child: Text(
-              telaNome!,
-              style: Theme.of(context).textTheme.displaySmall,
-            ),
-          ),
+          child: Logo()
         ),
       ),
     );
+    // return AppBar(
+    //   backgroundColor: Theme.of(context).primaryColor,
+    //   title: Expanded(
+    //     child: Center(
+    //       child: Container(
+    //         width: MediaQuery.of(context).size.width * 0.38,
+    //         child: Text(
+    //           'Monews',
+    //           style: Theme.of(context).textTheme.displaySmall,
+    //         ),
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 }

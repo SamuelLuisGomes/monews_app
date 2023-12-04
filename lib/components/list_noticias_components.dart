@@ -34,19 +34,21 @@ class MyListNoticias extends StatelessWidget {
                         bottomLeft: Radius.circular(12),
                         bottomRight: Radius.circular(12),
                       ),
-                      color: Colors.blueGrey[600],
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                     child: ListTile(
                       title: Text(
                         noticias.titulo.toString(),
                         style: const TextStyle(
-                          color: Colors.white,
+                          //color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       subtitle: Text(
                         'Fonte: ${noticias.autor.toString()}',
-                        style: const TextStyle(color: Colors.white70),
+                        style: const TextStyle(
+                            //color: Colors.white70,
+                            ),
                       ),
                     ),
                   )
@@ -57,20 +59,22 @@ class MyListNoticias extends StatelessWidget {
                   Container(
                     //padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                     decoration: BoxDecoration(
-                      borderRadius:  BorderRadius.circular(12),
-                      color: Colors.blueGrey[600],
+                      borderRadius: BorderRadius.circular(12),
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                     child: ListTile(
                       title: Text(
                         noticias.titulo.toString(),
                         style: const TextStyle(
-                          color: Colors.white,
+                          //color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       subtitle: Text(
                         'Fonte: ${noticias.autor.toString()}',
-                        style: const TextStyle(color: Colors.white70),
+                        style: const TextStyle(
+                          //color: Colors.white70,
+                        ),
                       ),
                       isThreeLine: true,
                     ),
