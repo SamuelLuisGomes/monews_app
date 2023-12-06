@@ -4,6 +4,7 @@ import 'package:http/retry.dart';
 import 'package:monews_app/components/loading_components.dart';
 import 'package:monews_app/controllers/autenticacao_controller.dart';
 import 'package:monews_app/views/app.dart';
+import 'package:monews_app/views/usuario/configuracoes_view.dart';
 import 'package:monews_app/views/usuario/edita_usuario_view.dart';
 
 class PerfilView extends StatefulWidget {
@@ -19,7 +20,7 @@ class _PerfilViewState extends State<PerfilView> {
   @override
   void initState() {
     super.initState();
-    usuario = pegarUsuario();
+    usuario = auth.pegarUsuario();
   }
 
   @override
@@ -170,7 +171,15 @@ class _PerfilViewState extends State<PerfilView> {
                       Padding(
                         padding: const EdgeInsets.only(top: 22),
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return  ConfiguracoesView();
+                                },
+                              ),
+                            );
+                          },
                           // Criando um container
                           child: Container(
                             // Adicionando altura a ele
@@ -292,31 +301,19 @@ class _PerfilViewState extends State<PerfilView> {
     );
   }
 
-  Stream pegarUsuario() {
-    if (auth.usuarioLogado() != null) {
-      final refUsuario =
-          auth.firebase.collection('usuario').doc(auth.usuarioLogado().uid);
-      return refUsuario.snapshots().map((snapshot) {
-        final dados = snapshot.data();
-        print('Dados do usuário: $dados');
-        return dados;
-      });
-    } else {
-      return Stream.empty();
-    }
-  }
-
-//  Stream<List<String, dynamic>> pegarUsuario() {
-//     if (auth.usuarioLogado() != null) {
-//       final refUsuario =
-//           auth.firebase.collection('usuario').doc(auth.usuarioLogado().uid);
-//       return refUsuario.snapshots().map((snapshot) {
-//         final dados = snapshot.data();
-//         print('Dados usuário:$dados');
-//         return dados;
-//       });
-//     }
-//   }
+  // Stream pegarUsuario() {
+  //   if (auth.usuarioLogado() != null) {
+  //     final refUsuario =
+  //         auth.firebase.collection('usuario').doc(auth.usuarioLogado().uid);
+  //     return refUsuario.snapshots().map((snapshot) {
+  //       final dados = snapshot.data();
+  //       print('Dados do usuário: $dados');
+  //       return dados;
+  //     });
+  //   } else {
+  //     return Stream.empty();
+  //   }
+  // }
 
   _logout(BuildContext context) {
     auth.logout(context);

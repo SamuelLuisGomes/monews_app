@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:monews_app/themes/theme_provider.dart';
 import 'package:monews_app/views/app.dart';
+import 'package:provider/provider.dart';
 
 const firebaseConfig = FirebaseOptions(
     apiKey: "AIzaSyAEKtLCz8mC-1ZI2mAS1jYcGnGtY3fa2hk",
@@ -13,5 +15,13 @@ const firebaseConfig = FirebaseOptions(
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: firebaseConfig);
-  runApp(MyApp());
+  final themeProvider = ThemeProvider();
+  await themeProvider.temaInicial();
+
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: MyApp(),
+    ),
+  );
 }

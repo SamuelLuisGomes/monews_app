@@ -174,7 +174,7 @@ class _LoginViewState extends State<LoginView> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                         // Definindo seu filho e centralizando
-                        child: const Center(
+                        child: Center(
                           // Atribuindo um filho ao centro e o componente text
 
                           child: Text(
@@ -184,7 +184,10 @@ class _LoginViewState extends State<LoginView> {
                             // Estilizando o texto
                             style: TextStyle(
                               // Adicionando cor
-                              //color: Colors.white,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall!
+                                  .color,
                               // Adicionando espessura da fonte
                               fontWeight: FontWeight.bold,
                               // Adicionando o tamanho da fonte

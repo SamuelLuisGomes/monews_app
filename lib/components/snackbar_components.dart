@@ -8,7 +8,7 @@ void snackBarCustom(BuildContext context, String mensagem) {
           fontSize: 16,
           fontWeight: FontWeight.bold,
         )),
-    backgroundColor: const Color.fromARGB(255, 10, 140, 176),
+    backgroundColor: Theme.of(context).colorScheme.secondary,
     padding: const EdgeInsets.all(12),
     behavior: SnackBarBehavior.floating,
     duration: const Duration(seconds: 1),

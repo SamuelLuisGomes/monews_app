@@ -42,13 +42,14 @@ class AutenticacaoController {
       'uid': model.uid,
       'img': model.img,
       'carteira': [],
+      'qtdNoticias': 10,
     });
     // Navigator.of(context).pushReplacement(
     //   MaterialPageRoute(
     //     builder: (context) => LoginView(),
     //   ),
     // );
-        Navigator.pushReplacement(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) => LoginView(),
@@ -112,6 +113,28 @@ class AutenticacaoController {
         builder: (context) => HomeView(),
       ),
     );
+  }
+
+  Stream<dynamic> pegarUsuario() {
+    if (usuarioLogado() != null) {
+      final refUsuario =
+          firebase.collection('usuario').doc(usuarioLogado().uid);
+      return refUsuario.snapshots().map((snapshot) {
+        final dados = snapshot.data();
+        print('Dados do usuário: $dados');
+        return dados;
+      });
+    } else {
+      return Stream.empty();
+    }
+  }
+
+  Future<int> converterUsuarioParaLista() async {
+    final dados = await pegarUsuario().first;
+    if (dados != null && dados['qtdNoticias'] != null) {
+      return int.tryParse(dados['qtdNoticias'].toString()) ?? 10;
+    }
+    return 10;
   }
 
   logout(BuildContext context) async {

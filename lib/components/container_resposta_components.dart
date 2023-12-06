@@ -19,7 +19,7 @@ class ContainerPadrao extends StatelessWidget {
             color: Colors.grey,
             width: 1.5,
           ),
-          color: Theme.of(context).colorScheme.secondary,
+          color: Theme.of(context).primaryColor,
         ),
         child: ListTile(
           leading: Icon(
@@ -29,8 +29,9 @@ class ContainerPadrao extends StatelessWidget {
           ),
           title: Text(
             texto!,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 18,
+              color: Theme.of(context).textTheme.displaySmall!.color,
               fontWeight: FontWeight.bold,
             ),
           ),

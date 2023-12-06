@@ -28,7 +28,7 @@ class MyListAcoes extends StatelessWidget {
                 color: Theme.of(context).primaryColor,
                 width: 1.5,
               ),
-              color: Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).colorScheme.primary,
               // color: const Color.fromRGBO(67, 115, 150, 100),
             ),
             child: ListTile(

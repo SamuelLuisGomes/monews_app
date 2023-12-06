@@ -58,7 +58,7 @@ class _HomeViewState extends State<HomeView> {
                       duration: const Duration(milliseconds: 400),
                       curve: Curves.ease);
                 },
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: Theme.of(context).colorScheme.primary,
               ),
             ),
           ),

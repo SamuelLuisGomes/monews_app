@@ -5,6 +5,7 @@ import 'package:monews_app/components/list_noticias_components.dart';
 import 'package:monews_app/components/loading_components.dart';
 import 'package:monews_app/components/logo_components.dart';
 import 'package:monews_app/components/search_components.dart';
+import 'package:monews_app/controllers/autenticacao_controller.dart';
 import 'package:monews_app/controllers/categoria_controller.dart';
 import 'package:monews_app/controllers/noticias_controller.dart';
 import 'package:monews_app/models/categoria_model.dart';
@@ -19,21 +20,29 @@ class NoticiasView extends StatefulWidget {
 }
 
 class _NoticiasViewtState extends State<NoticiasView> {
+  AutenticacaoController auth = AutenticacaoController();
   final List<NoticiasModel> _noticias = <NoticiasModel>[];
   List<NoticiasModel> _noticiasDisplay = <NoticiasModel>[];
   List<CategoriaModel> categorias = [];
 
   bool _isLoading = true;
+  int? qtd;
 
   @override
   void initState() {
     super.initState();
     categorias = pegarCategorias();
-    fetchNoticiasModel().then((value) {
+    auth.converterUsuarioParaLista().then((quantidade) {
       setState(() {
-        _isLoading = false;
-        _noticias.addAll(value);
-        _noticiasDisplay = _noticias;
+        qtd = quantidade;
+        print('Quantidade de noticias que o usuário quer por ação: ${qtd}');
+        fetchNoticiasModel(qtd!).then((value) {
+          setState(() {
+            _isLoading = false;
+            _noticias.addAll(value);
+            _noticiasDisplay = _noticias;
+          });
+        });
       });
     });
   }
@@ -42,7 +51,7 @@ class _NoticiasViewtState extends State<NoticiasView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         automaticallyImplyLeading: false,
         title: Center(
           child: Padding(
@@ -66,7 +75,7 @@ class _NoticiasViewtState extends State<NoticiasView> {
                           "News",
                           style: TextStyle(
                             fontSize: 24,
-                            color: Theme.of(context).colorScheme.secondary,
+                            color: Theme.of(context).scaffoldBackgroundColor,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

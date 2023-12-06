@@ -43,7 +43,7 @@ class _AcoesViewState extends State<AcoesView> {
                 snap: true,
                 expandedHeight: 120,
                 centerTitle: true,
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: Theme.of(context).colorScheme.primary,
                 flexibleSpace: FlexibleSpaceBar(
                   centerTitle: false,
                   titlePadding: EdgeInsets.only(left: 38, bottom: 12),
@@ -60,7 +60,7 @@ class _AcoesViewState extends State<AcoesView> {
               SliverToBoxAdapter(
                 child: Container(
                   height: 200,
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).colorScheme.primary,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 64),
                     child: Row(

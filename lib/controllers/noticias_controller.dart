@@ -2,11 +2,15 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:monews_app/controllers/acoes_controller.dart';
+import 'package:monews_app/controllers/autenticacao_controller.dart';
 
 import 'package:monews_app/models/acoes_model.dart';
 
 import 'package:monews_app/models/noticias_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:monews_app/models/usuario_model.dart';
+
+AutenticacaoController auth = AutenticacaoController();
 
 // == Endpoints - NewsAPI == \\
 
@@ -27,8 +31,9 @@ Future<List<AcoesModel>> pegarCarteiraLista() async {
   return carteiraLista;
 }
 
-Future<List<NoticiasModel>> fetchNoticiasModel() async {
+Future<List<NoticiasModel>> fetchNoticiasModel(int qtd) async {
   List<AcoesModel> carteira = await pegarCarteiraLista();
+  //List<dynamic> dadosUsuario = await auth.converterUsuarioParaLista();
   List<NoticiasModel> noticias = [];
 
   for (AcoesModel acao in carteira) {
@@ -43,7 +48,11 @@ Future<List<NoticiasModel>> fetchNoticiasModel() async {
     final http.Response response = await http.get(Uri.parse(urlTodos));
 
     if (response.statusCode == 200) {
-      noticias += await compute(parseNoticiasModel, response.body);
+      List<NoticiasModel> noticiasPorAcao =
+          await compute(parseNoticiasModel, response.body);
+
+      noticias.addAll(noticiasPorAcao.take(qtd));
+      //noticias += await compute(parseNoticiasModel, response.body);
     }
   }
   return noticias;
@@ -51,7 +60,8 @@ Future<List<NoticiasModel>> fetchNoticiasModel() async {
 
 Future<List<NoticiasModel>> fetchNoticiasCategorias(String categoria) async {
   //String urlTop = "$base${endTop}country=br&category=${categoria}&apiKey=$apiKey";
-  String urlTop = "$base${endTop}country=br&category=${categoria}&apiKey=$apiKey";
+  String urlTop =
+      "$base${endTop}country=br&category=${categoria}&apiKey=$apiKey";
   final http.Response response = await http.get(Uri.parse(urlTop));
   if (response.statusCode == 200) {
     return compute(parseNoticiasModel, response.body);

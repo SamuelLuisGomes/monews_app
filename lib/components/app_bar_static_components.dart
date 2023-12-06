@@ -17,7 +17,7 @@ class AppBarStatic extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       title: Expanded(
         child: Center(
           child: Logo()
