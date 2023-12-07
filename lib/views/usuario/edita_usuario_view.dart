@@ -65,22 +65,88 @@ class _EditaUsuarioViewState extends State<EditaUsuarioView> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 24),
                                 child: imagem != null
-                                    ? ClipRRect(
-                                        borderRadius: BorderRadius.circular(24),
-                                        child: Image.file(
-                                          File(imagem!.path),
-                                          width: 140,
-                                          height: 80,
-                                          fit: BoxFit.cover,
+                                    ? Container(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                            color: Colors.white,
+                                            width: 2.5,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(24),
                                         ),
-                                      )
-                                    : ClipRRect(
-                                        borderRadius: BorderRadius.circular(24),
-                                        child: Image.network(
-                                          imagemUsuario!,
+                                        child: SizedBox(
                                           width: 180,
                                           height: 120,
-                                          fit: BoxFit.cover,
+                                          child: Stack(
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(24),
+                                                child: Image.file(
+                                                  File(imagem!.path),
+                                                  width: 180,
+                                                  height: 120,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Positioned(
+                                                bottom: 0,
+                                                right: 0,
+                                                child: Container(
+                                                  padding: EdgeInsets.all(8),
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: Icon(
+                                                    Icons.edit,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                    : Container(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                            color: Colors.white,
+                                            width: 2.5,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(24),
+                                        ),
+                                        child: SizedBox(
+                                          width: 180,
+                                          height: 120,
+                                          child: Stack(
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(24),
+                                                child: Image.network(
+                                                  imagemUsuario!,
+                                                  width: 180,
+                                                  height: 120,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Positioned(
+                                                bottom: 0,
+                                                right: 0,
+                                                child: Container(
+                                                  padding: EdgeInsets.all(8),
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: Icon(
+                                                    Icons.edit,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                               ),
@@ -97,30 +163,30 @@ class _EditaUsuarioViewState extends State<EditaUsuarioView> {
                         top: 36,
                       ),
                       child: TextFormField(
-                        style: TextStyle(
-                          //color: Colors.white,
-                        ),
+                        // style: TextStyle(
+                        //   //color: Colors.white,
+                        // ),
                         /*== Criando o Input e adicionando suas características ==*/
                         decoration: const InputDecoration(
                           hintText: 'Nome',
-                          hintStyle: TextStyle(
-                           // color: Colors.white,
-                          ),
-                          labelText: 'Nome',
-                          labelStyle: TextStyle(
-                            //color: Colors.white,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              //color: Colors.white,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                           // color: Colors.white,
-                          )),
-                          fillColor: Colors.transparent,
-                          filled: true,
+                          // hintStyle: TextStyle(
+                          //  // color: Colors.white,
+                          // ),
+                          // labelText: 'Nome',
+                          // labelStyle: TextStyle(
+                          //   //color: Colors.white,
+                          // ),
+                          // enabledBorder: OutlineInputBorder(
+                          //   borderSide: BorderSide(
+                          //     //color: Colors.white,
+                          //   ),
+                          // ),
+                          // focusedBorder: OutlineInputBorder(
+                          //     borderSide: BorderSide(
+                          //  // color: Colors.white,
+                          // )),
+                          // fillColor: Colors.transparent,
+                          // filled: true,
                         ),
                         controller: controller.nomeController,
                         validator: (value) =>
@@ -133,28 +199,10 @@ class _EditaUsuarioViewState extends State<EditaUsuarioView> {
                       ),
                       child: TextFormField(
                         enabled: false,
-                        style: TextStyle(
-                         // color: Colors.white,
-                        ),
+                        //enableIMEPersonalizedLearning: true,
                         /*== Criando o Input e adicionando suas características ==*/
                         decoration: const InputDecoration(
                           hintText: 'email',
-                          hintStyle: TextStyle(color: Colors.white),
-                          // labelText: 'Email',
-                          // labelStyle: TextStyle(
-                          //   color: Colors.white,
-                          // ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              //color: Colors.white,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                            //color: Colors.white,
-                          )),
-                          fillColor: Colors.transparent,
-                          filled: true,
                         ),
                         controller: controller.emailController,
                         validator: (value) =>
@@ -182,9 +230,9 @@ class _EditaUsuarioViewState extends State<EditaUsuarioView> {
                             borderRadius: BorderRadius.circular(8),
                           ),
                           // Definindo seu filho e centralizando
-                          child: const Center(
+                          child: Center(
                             // Atribuindo um filho ao centro e o componente text
-      
+
                             child: Text(
                               // Adicionando o texto
                               "Editar Dados",
@@ -192,7 +240,10 @@ class _EditaUsuarioViewState extends State<EditaUsuarioView> {
                               // Estilizando o texto
                               style: TextStyle(
                                 // Adicionando cor
-                                //color: Colors.white,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall!
+                                    .color,
                                 // Adicionando espessura da fonte
                                 fontWeight: FontWeight.bold,
                                 // Adicionando o tamanho da fonte

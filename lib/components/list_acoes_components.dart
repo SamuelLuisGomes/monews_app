@@ -32,22 +32,35 @@ class MyListAcoes extends StatelessWidget {
               // color: const Color.fromRGBO(67, 115, 150, 100),
             ),
             child: ListTile(
-              leading: Hero(
-                tag: acoes.siglaAcao.toString(),
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  //foregroundColor: Colors.white,
-                  radius: 32,
-                  child: ClipOval(
-                    child: SvgPicture.network(
-                      acoes.imagemAcao.toString(),
-                      height: 52,
-                      width: 52,
-                    ),
+              leading: CircleAvatar(
+                backgroundColor: Colors.white,
+                //foregroundColor: Colors.white,
+                radius: 32,
+                child: ClipOval(
+                  child: SvgPicture.network(
+                    acoes.imagemAcao.toString(),
+                    height: 52,
+                    width: 52,
                   ),
-                  // backgroundImage: NetworkImage(acoes.imagemAcao.toString()),
                 ),
+                // backgroundImage: NetworkImage(acoes.imagemAcao.toString()),
               ),
+              // leading: Hero(
+              //   tag: acoes.siglaAcao.toString(),
+              //   child: CircleAvatar(
+              //     backgroundColor: Colors.white,
+              //     //foregroundColor: Colors.white,
+              //     radius: 32,
+              //     child: ClipOval(
+              //       child: SvgPicture.network(
+              //         acoes.imagemAcao.toString(),
+              //         height: 52,
+              //         width: 52,
+              //       ),
+              //     ),
+              //     // backgroundImage: NetworkImage(acoes.imagemAcao.toString()),
+              //   ),
+              // ),
               title: Text(
                 acoes.siglaAcao.toString(),
                 style: const TextStyle(

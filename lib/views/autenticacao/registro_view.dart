@@ -41,17 +41,18 @@ class _RegistroViewState extends State<RegistroView> {
             child: Center(
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32),
+                    const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 42),
+                      padding: const EdgeInsets.only(bottom: 42,top: 60),
                       child: GestureDetector(
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(24),
                             color: Theme.of(context).colorScheme.primary,
+                            //border: Border.all(color: Colors.white, width: 2),
                           ),
                           width: 320,
                           height: 180,
@@ -60,22 +61,86 @@ class _RegistroViewState extends State<RegistroView> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 24),
                                 child: imagem != null
-                                    ? ClipRRect(
-                                        borderRadius: BorderRadius.circular(24),
-                                        child: Image.file(
-                                          File(imagem!.path),
-                                          width: 140,
-                                          height: 80,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      )
-                                    : ClipRRect(
-                                        borderRadius: BorderRadius.circular(24),
-                                        child: Image.network(
-                                          imagemBase,
+                                    ? Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: Colors.white,
+                                              width: 2.5,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(24)),
+                                        child: SizedBox(
                                           width: 180,
                                           height: 120,
-                                          fit: BoxFit.cover,
+                                          child: Stack(
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(24),
+                                                child: Image.file(
+                                                  File(imagem!.path),
+                                                  width: 180,
+                                                  height: 120,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Positioned(
+                                                bottom: 0,
+                                                right: 0,
+                                                child: Container(
+                                                  padding: EdgeInsets.all(8),
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: Icon(
+                                                    Icons.edit,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                    : Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: Colors.white,
+                                              width: 2.5,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(24)),
+                                        child: SizedBox(
+                                          width: 180,
+                                          height: 120,
+                                          child: Stack(
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(24),
+                                                child: Image.network(
+                                                  imagemBase,
+                                                  width: 180,
+                                                  height: 120,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Positioned(
+                                                bottom: 0,
+                                                right: 0,
+                                                child: Container(
+                                                  padding: EdgeInsets.all(8),
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: Icon(
+                                                    Icons.edit,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                               ),
@@ -86,196 +151,194 @@ class _RegistroViewState extends State<RegistroView> {
                           pegarFoto();
                         },
                       ),
+                      // child: GestureDetector(
+                      //   child: Container(
+                      //     decoration: BoxDecoration(
+                      //       borderRadius: BorderRadius.circular(24),
+                      //       color: Theme.of(context).colorScheme.primary,
+                      //     ),
+                      //     width: 320,
+                      //     height: 180,
+                      //     child: Column(
+                      //       children: [
+                      //         Padding(
+                      //           padding: const EdgeInsets.only(top: 24),
+                      //           child: imagem != null
+                      //               ? ClipRRect(
+                      //                   borderRadius: BorderRadius.circular(24),
+                      //                   child: Image.file(
+                      //                     File(imagem!.path),
+                      //                     width: 140,
+                      //                     height: 80,
+                      //                     fit: BoxFit.cover,
+                      //                   ),
+                      //                 )
+                      //               : ClipRRect(
+                      //                   borderRadius: BorderRadius.circular(24),
+                      //                   child: Image.network(
+                      //                     imagemBase,
+                      //                     width: 180,
+                      //                     height: 120,
+                      //                     fit: BoxFit.cover,
+                      //                   ),
+                      //                 ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      //   onTap: () {
+                      //     pegarFoto();
+                      //   },
+                      // ),
                     ),
                     /*== Campos Usuário e Senha ==*/
-                    TextFormField(
-                      style: const TextStyle(
-                          //color: Colors.white,
-                          ),
-                      /*== Criando o Input e adicionando suas características ==*/
-                      decoration: const InputDecoration(
-                        labelText: 'Nome',
-                        labelStyle: TextStyle(
-                            //color: Colors.white,
-                            ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              //color: Colors.white,
-                              ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12),
+                      child: TextFormField(
+                        /*== Criando o Input e adicionando suas características ==*/
+                        decoration: const InputDecoration(
+                          hintText: 'Nome',
                         ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                //color: Colors.white,
-                                )),
-                        fillColor: Colors.transparent,
-                        filled: true,
+                        controller: controller.nomeController,
+                        validator: (value) =>
+                            FormularioController.validarNome(value!),
                       ),
-                      controller: controller.nomeController,
-                      validator: (value) =>
-                          FormularioController.validarNome(value!),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      style: const TextStyle(
-                          //color: Colors.white,
-                          ),
-                      /*== Criando o Input e adicionando suas características ==*/
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        labelStyle: TextStyle(
-                            //color: Colors.white,
-                            ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              //color: Colors.white,
-                              ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12),
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: 'Email',
                         ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                //color: Colors.white,
-                                )),
-                        fillColor: Colors.transparent,
-                        filled: true,
+                        controller: controller.emailController,
+                        validator: (value) =>
+                            FormularioController.validarEmail(value!),
                       ),
-                      controller: controller.emailController,
-                      validator: (value) =>
-                          FormularioController.validarEmail(value!),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      style: const TextStyle(
-                        color: Colors.white,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12),
+                      child: TextFormField(
+                        obscureText: _obscureText,
+                        decoration: InputDecoration(
+                          hintText: 'Senha',
+                          suffixIcon: IconButton(
+                            icon: _obscureText
+                                ? Icon(
+                                    Icons.visibility_off,
+                                    color: Theme.of(context)
+                                        .inputDecorationTheme
+                                        .hintStyle!
+                                        .color,
+                                  )
+                                : Icon(
+                                    Icons.visibility,
+                                    color: Theme.of(context)
+                                        .inputDecorationTheme
+                                        .focusedBorder!
+                                        .borderSide
+                                        .color,
+                                  ),
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                          ),
+                        ),
+                        controller: controller.senhaController,
+                        validator: (value) =>
+                            FormularioController.validarSenha(value!),
                       ),
-                      obscureText: _obscureText,
-                      /*== Criando o Input e adicionando suas características ==*/
-                      decoration: InputDecoration(
-                        labelText: 'Senha',
-                        labelStyle: TextStyle(
-                            //color: Colors.white,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 36),
+                      child: GestureDetector(
+                        onTap: () => registro(context),
+                        // Criando um container
+                        child: Container(
+                          // Adicionando altura a ele
+                          padding: const EdgeInsets.all(25),
+                          // Definindo a margem dele
+                          // margin:
+                          //     const EdgeInsets.symmetric(horizontal: 25.0),
+                          // Estilizando o container
+                          decoration: BoxDecoration(
+                            // Adicionando preenchimento a ele
+                            color: Theme.of(context).colorScheme.primary,
+                            // Definindo a sua borda
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          // Definindo seu filho e centralizando
+                          child: Center(
+                            // Atribuindo um filho ao centro e o componente text
+                    
+                            child: Text(
+                              // Adicionando o texto
+                              "Registrar",
+                              //'Inscrever-se',
+                              // Estilizando o texto
+                              style: TextStyle(
+                                // Adicionando cor
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall!
+                                    .color,
+                                // Adicionando espessura da fonte
+                                fontWeight: FontWeight.bold,
+                                // Adicionando o tamanho da fonte
+                                fontSize: 16,
+                              ),
                             ),
-                        suffixIcon: IconButton(
-                          icon: _obscureText
-                              ? Icon(
-                                  Icons.visibility_off,
-                                  //color: Color.fromARGB(255, 10, 140, 176),
-                                )
-                              : Icon(
-                                  Icons.visibility,
-                                  //color: Color.fromARGB(255, 10, 140, 176),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 36),
+                      child: Row(
+                        // Criando a linha
+                        // Centralizando os filhos no centro
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        // Definindo os filhos da linha
+                        children: [
+                          // Adicionando texto
+                          Text(
+                            'Já possui conta?',
+                            // style: TextStyle(
+                            //   color:
+                            //       Theme.of(context).textTheme.displaySmall!.color,
+                            // ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              // Navigator.of(context).push(
+                              //   MaterialPageRoute(
+                              //     builder: (context) => LoginView(),
+                              //   ),
+                              // );
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) {
+                                    return LoginView();
+                                  },
                                 ),
-                          onPressed: () {
-                            setState(() {
-                              _obscureText = !_obscureText;
-                            });
-                          },
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              //color: Colors.white,
+                              );
+                            },
+                            child: // Adicionando texto
+                                Text(
+                              'Faça o login',
+                              // Estilizando ele
+                              style: TextStyle(
+                                // Adicionando cor
+                                color: Theme.of(context).colorScheme.secondary,
+                                // Adicionando espesura da letra
+                                fontWeight: FontWeight.bold,
                               ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                //color: Colors.white,
-                                )),
-                        fillColor: Colors.transparent,
-                        filled: true,
-                      ),
-                      controller: controller.senhaController,
-                      validator: (value) =>
-                          FormularioController.validarSenha(value!),
-                    ),
-                    SizedBox(
-                      height: 18,
-                    ),
-                    GestureDetector(
-                      onTap: () => registro(context),
-                      // Criando um container
-                      child: Container(
-                        // Adicionando altura a ele
-                        padding: const EdgeInsets.all(25),
-                        // Definindo a margem dele
-                        // margin:
-                        //     const EdgeInsets.symmetric(horizontal: 25.0),
-                        // Estilizando o container
-                        decoration: BoxDecoration(
-                          // Adicionando preenchimento a ele
-                          color: Theme.of(context).colorScheme.primary,
-                          // Definindo a sua borda
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        // Definindo seu filho e centralizando
-                        child: Center(
-                          // Atribuindo um filho ao centro e o componente text
-
-                          child: Text(
-                            // Adicionando o texto
-                            "Registrar",
-                            //'Inscrever-se',
-                            // Estilizando o texto
-                            style: TextStyle(
-                              // Adicionando cor
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .displaySmall!
-                                  .color,
-                              // Adicionando espessura da fonte
-                              fontWeight: FontWeight.bold,
-                              // Adicionando o tamanho da fonte
-                              fontSize: 16,
                             ),
-                          ),
-                        ),
+                          )
+                        ],
                       ),
-                    ),
-                    const SizedBox(height: 50),
-                    Row(
-                      // Criando a linha
-                      // Centralizando os filhos no centro
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      // Definindo os filhos da linha
-                      children: [
-                        // Adicionando texto
-                        Text(
-                          'Já possui conta?',
-                          // style: TextStyle(
-                          //   color:
-                          //       Theme.of(context).textTheme.displaySmall!.color,
-                          // ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            // Navigator.of(context).push(
-                            //   MaterialPageRoute(
-                            //     builder: (context) => LoginView(),
-                            //   ),
-                            // );
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (BuildContext context) {
-                                  return LoginView();
-                                },
-                              ),
-                            );
-                          },
-                          child: // Adicionando texto
-                              Text(
-                            'Faça o login',
-                            // Estilizando ele
-                            style: TextStyle(
-                              // Adicionando cor
-                              color: Theme.of(context).colorScheme.secondary,
-                              // Adicionando espesura da letra
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        )
-                      ],
                     )
                   ],
                 ),

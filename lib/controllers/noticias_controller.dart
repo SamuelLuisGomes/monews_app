@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:monews_app/controllers/acoes_controller.dart';
@@ -36,11 +37,18 @@ Future<List<NoticiasModel>> fetchNoticiasModel(int qtd) async {
   //List<dynamic> dadosUsuario = await auth.converterUsuarioParaLista();
   List<NoticiasModel> noticias = [];
 
+  DateTime dataAtual = DateTime.now();
+  DateTime dataAntes = dataAtual.subtract(Duration(days: 7));
+
+  String dataAtualFormat = DateFormat('yyyy-MM-dd').format(dataAtual);
+  String dataAntesFormat = DateFormat('yyyy-MM-dd').format(dataAntes);
+
   for (AcoesModel acao in carteira) {
     // Formato das URLs \\
     // https://newsapi.org/v2/everything?language=pt&q=Americanas&sortBy=popularity&apiKey=fc0ae4d053a8431eac1deeb7d667cc27
     String urlTodos =
-        "$base${endEverything}q=${acao.nomeEmpresa}&sortBy=popularity&apiKey=$apiKey";
+        "$base${endEverything}q=${acao.nomeEmpresa}&sortBy=publishedAt&to=${dataAtualFormat}or${dataAntesFormat}&apiKey=$apiKey";
+    // "$base${endEverything}q=${acao.nomeEmpresa}&sortBy=popularity&apiKey=$apiKey";
 
     //https: newsapi.org/v2/top-headlines?q=Americanas&category=business&apiKey=fc0ae4d053a8431eac1deeb7d667cc27:
     String urlTop =
@@ -70,27 +78,6 @@ Future<List<NoticiasModel>> fetchNoticiasCategorias(String categoria) async {
   }
 }
 
-Future<List<NoticiasModel>> fetchNoticiasPesquisa(String texto) async {
-  List<NoticiasModel> noticias = [];
-  // Formato das URLs \\
-  // https://newsapi.org/v2/everything?language=pt&q=Americanas&sortBy=popularity&apiKey=fc0ae4d053a8431eac1deeb7d667cc27
-  if (texto.isNotEmpty) {
-    String urlTodos =
-        "$base${endEverything}q=${texto}&sortBy=popularity&apiKey=$apiKey";
-
-    https: //newsapi.org/v2/top-headlines?q=Americanas&category=business&apiKey=fc0ae4d053a8431eac1deeb7d667cc27:
-    String urlTop = "$base${endTop}q=${texto}&category=business&apiKey=$apiKey";
-    final http.Response response = await http.get(Uri.parse(urlTodos));
-
-    if (response.statusCode == 200) {
-      noticias += await compute(parseNoticiasModel, response.body);
-    }
-  } else {
-    noticias = [];
-  }
-  return noticias;
-}
-
 List<NoticiasModel> parseNoticiasModel(String responceBody) {
   var data = json.decode(responceBody) as Map<String, dynamic>;
   var list = data['articles'] as List<dynamic>;
@@ -112,4 +99,25 @@ List<NoticiasModel> parseNoticiasModel(String responceBody) {
 //   }
 //   print(url);
 //   return url;
+// }
+
+// Future<List<NoticiasModel>> fetchNoticiasPesquisa(String texto) async {
+//   List<NoticiasModel> noticias = [];
+//   // Formato das URLs \\
+//   // https://newsapi.org/v2/everything?language=pt&q=Americanas&sortBy=popularity&apiKey=fc0ae4d053a8431eac1deeb7d667cc27
+//   if (texto.isNotEmpty) {
+//     String urlTodos =
+//         "$base${endEverything}q=${texto}&sortBy=popularity&apiKey=$apiKey";
+
+//     https: //newsapi.org/v2/top-headlines?q=Americanas&category=business&apiKey=fc0ae4d053a8431eac1deeb7d667cc27:
+//     String urlTop = "$base${endTop}q=${texto}&category=business&apiKey=$apiKey";
+//     final http.Response response = await http.get(Uri.parse(urlTodos));
+
+//     if (response.statusCode == 200) {
+//       noticias += await compute(parseNoticiasModel, response.body);
+//     }
+//   } else {
+//     noticias = [];
+//   }
+//   return noticias;
 // }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:monews_app/controllers/autenticacao_controller.dart';
 import 'package:monews_app/controllers/formulario_controller.dart';
 import 'package:monews_app/views/autenticacao/registro_view.dart';
@@ -24,7 +25,7 @@ class _LoginViewState extends State<LoginView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    dadosUsurio();
+   // dadosUsurio();
   }
 
   @override
@@ -36,100 +37,66 @@ class _LoginViewState extends State<LoginView> {
             key: formKey,
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  //mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: 280,
-                    ),
-                    TextFormField(
-                      style: TextStyle(
-                          //color: Colors.white,
-                          ),
-                      /*== Criando o Input e adicionando suas características ==*/
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        labelStyle: TextStyle(
-                            //  color: Colors.white,
-                            ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              //  color: Colors.white,
-                              ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                          color: Colors.white,
-                        )),
-                        fillColor: Colors.transparent,
-                        filled: true,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 120),
+                      child: SvgPicture.asset(
+                        'lib/images/logoMonews.svg',
+                        height: 140,
+                        // width: 80,
+                        //fit: BoxFit.cover,
                       ),
-                      controller: controller.emailController,
-                      validator: (value) =>
-                          FormularioController.validarEmail(value!),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      style: TextStyle(
-                          //color: Colors.white,
-                          ),
-                      obscureText: _obscureText,
-                      /*== Criando o Input e adicionando suas características ==*/
-                      decoration: InputDecoration(
-                        labelText: 'Senha',
-                        labelStyle: TextStyle(
-                            //  color: Colors.white,
-                            ),
-                        suffixIcon: IconButton(
-                          icon: _obscureText
-                              ? Icon(
-                                  Icons.visibility_off,
-                                  //color: Color.fromARGB(255, 10, 140, 176),
-                                )
-                              : Icon(
-                                  Icons.visibility,
-                                  //color: Color.fromARGB(255, 10, 140, 176),
-                                ),
-                          onPressed: () {
-                            setState(() {
-                              _obscureText = !_obscureText;
-                            });
-                          },
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              // color: Colors.white,
-                              ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                //color: Colors.white,
-                                )),
-                        fillColor: Colors.transparent,
-                        filled: true,
-                      ),
-                      controller: controller.senhaController,
-                      validator: (value) =>
-                          FormularioController.validarSenha(value!),
-                    ),
-                    SizedBox(
-                      height: 12,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      padding: const EdgeInsets.only(top: 56),
+                      child: TextFormField(
+
+                        decoration: const InputDecoration(
+                          hintText: 'Email',
+                        ),
+                        controller: controller.emailController,
+                        validator: (value) =>
+                            FormularioController.validarEmail(value!),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12),
+                      child: TextFormField(
+
+                        obscureText: _obscureText,
+
+                        decoration: InputDecoration(
+                          hintText: 'Senha',
+                          suffixIcon: IconButton(
+                            icon: _obscureText
+                                ? Icon(
+                                    Icons.visibility_off,
+                                    color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
+                                  )
+                                : Icon(
+                                    Icons.visibility,
+                                    color: Theme.of(context).inputDecorationTheme.focusedBorder!.borderSide.color,
+                                  ),
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                          ),
+                        ),
+                        controller: controller.senhaController,
+                        validator: (value) =>
+                            FormularioController.validarSenha(value!),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 12),
                       child: GestureDetector(
                         onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) {
-                          //       return ResetSenhaView();
-                          //     },
-                          //   ),
-                          // );
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -139,7 +106,7 @@ class _LoginViewState extends State<LoginView> {
                             ),
                           );
                         },
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
@@ -153,84 +120,86 @@ class _LoginViewState extends State<LoginView> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    GestureDetector(
-                      onTap: () => login(context),
-                      // Criando um container
-                      child: Container(
-                        // Adicionando altura a ele
-                        padding: const EdgeInsets.all(25),
-                        // Definindo a margem dele
-                        // margin:
-                        //     const EdgeInsets.symmetric(horizontal: 25.0),
-                        // Estilizando o container
-                        decoration: BoxDecoration(
-                          // Adicionando preenchimento a ele
-                          color: Theme.of(context).colorScheme.primary,
-                          // color: Color.fromARGB(255, 10, 140, 176),
-                          // Definindo a sua borda
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        // Definindo seu filho e centralizando
-                        child: Center(
-                          // Atribuindo um filho ao centro e o componente text
+                    Padding(
+                      padding: const EdgeInsets.only(top: 28),
+                      child: GestureDetector(
+                        onTap: () => login(context),
+                        // Criando um container
+                        child: Container(
+                          // Adicionando altura a ele
+                          padding: const EdgeInsets.all(25),
+                          // Definindo a margem dele
+                          // margin:
+                          //     const EdgeInsets.symmetric(horizontal: 25.0),
+                          // Estilizando o container
+                          decoration: BoxDecoration(
+                            // Adicionando preenchimento a ele
+                            color: Theme.of(context).colorScheme.primary,
+                            // color: Color.fromARGB(255, 10, 140, 176),
+                            // Definindo a sua borda
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          // Definindo seu filho e centralizando
+                          child: Center(
+                            // Atribuindo um filho ao centro e o componente text
 
-                          child: Text(
-                            // Adicionando o texto
-                            "Logar",
-                            //'Inscrever-se',
-                            // Estilizando o texto
-                            style: TextStyle(
-                              // Adicionando cor
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .displaySmall!
-                                  .color,
-                              // Adicionando espessura da fonte
-                              fontWeight: FontWeight.bold,
-                              // Adicionando o tamanho da fonte
-                              fontSize: 16,
+                            child: Text(
+                              // Adicionando o texto
+                              "Logar",
+                              //'Inscrever-se',
+                              // Estilizando o texto
+                              style: TextStyle(
+                                // Adicionando cor
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall!
+                                    .color,
+                                // Adicionando espessura da fonte
+                                fontWeight: FontWeight.bold,
+                                // Adicionando o tamanho da fonte
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 50),
-                    Row(
-                      // Criando a linha
-                      // Centralizando os filhos no centro
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      // Definindo os filhos da linha
-                      children: [
-                        // Adicionando texto
-                        Text(
-                          'Não possui conta?',
-                          //style: Theme.of(context).textTheme.bodyText1,
-                          // style: TextStyle(color: Colors.white),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => RegistroView(),
-                              ),
-                            );
-                          },
-                          child: // Adicionando texto
-                              Text(
-                            'Faça seu Cadastro',
-                            // Estilizando ele
-                            style: TextStyle(
-                              // Adicionando cor
-                              color: Theme.of(context).colorScheme.secondary,
-                              // Adicionando espesura da letra
-                              fontWeight: FontWeight.bold,
-                            ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 48),
+                      child: Row(
+                        // Criando a linha
+                        // Centralizando os filhos no centro
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        // Definindo os filhos da linha
+                        children: [
+                          // Adicionando texto
+                          const Text(
+                            'Não possui conta?',
+                            //style: Theme.of(context).textTheme.bodyText1,
+                            // style: TextStyle(color: Colors.white),
                           ),
-                        )
-                      ],
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => RegistroView(),
+                                ),
+                              );
+                            },
+                            child: // Adicionando texto
+                                Text(
+                              'Faça seu Cadastro',
+                              // Estilizando ele
+                              style: TextStyle(
+                                // Adicionando cor
+                                color: Theme.of(context).colorScheme.secondary,
+                                // Adicionando espesura da letra
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -262,9 +231,9 @@ class _LoginViewState extends State<LoginView> {
     setState(() => carregando = false);
   }
 
-  void dadosUsurio() {
-    // var controller;
-    controller.emailController.text = 'samuel.gomes1529@gmail.com';
-    controller.senhaController.text = 'samuel1234';
-  }
+  // void dadosUsurio() {
+  //   // var controller;
+  //   controller.emailController.text = 'samuel.gomes1529@gmail.com';
+  //   controller.senhaController.text = 'samuel1234';
+  // }
 }

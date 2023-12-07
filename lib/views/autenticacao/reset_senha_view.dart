@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:monews_app/components/alert_dialog_components.dart';
 import 'package:monews_app/components/app_bar_components.dart';
 import 'package:monews_app/components/app_bar_static_components.dart';
@@ -29,13 +30,22 @@ class _ResetSenhaViewtState extends State<ResetSenhaView> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
-                mainAxisAlignment:
-                    MainAxisAlignment.center, // Centraliza verticalmente
-                crossAxisAlignment:
-                    CrossAxisAlignment.center, // Centraliza horizontalmente
+                // mainAxisAlignment:
+                //     MainAxisAlignment.center, // Centraliza verticalmente
+                // crossAxisAlignment:
+                //     CrossAxisAlignment.center, // Centraliza horizontalmente
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 280),
+                    padding: const EdgeInsets.only(top: 120),
+                    child: SvgPicture.asset(
+                      'lib/images/logoMonews.svg',
+                      height: 140,
+                      // width: 80,
+                      //fit: BoxFit.cover,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 56),
                     child: Column(
                       children: [
                         const Text(
@@ -49,27 +59,8 @@ class _ResetSenhaViewtState extends State<ResetSenhaView> {
                         Padding(
                           padding: const EdgeInsets.only(top: 12),
                           child: TextFormField(
-                            style: TextStyle(
-                                //color: Colors.white,
-                                ),
-                            /*== Criando o Input e adicionando suas características ==*/
                             decoration: const InputDecoration(
-                              labelText: 'Email',
-                              labelStyle: TextStyle(
-                                  //color: Colors.white,
-                                  ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  //color: Colors.white,
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      //color: Color.fromARGB(255, 10, 140, 176),
-                                      //color: Colors.white,
-                                      )),
-                              fillColor: Colors.transparent,
-                              filled: true,
+                              hintText: 'Email',
                             ),
                             controller: controller.emailController,
                             validator: (value) =>
@@ -95,7 +86,7 @@ class _ResetSenhaViewtState extends State<ResetSenhaView> {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               // Definindo seu filho e centralizando
-                              child: const Center(
+                              child:  Center(
                                 // Atribuindo um filho ao centro e o componente text
                                 child: Text(
                                   // Adicionando o texto
@@ -104,7 +95,7 @@ class _ResetSenhaViewtState extends State<ResetSenhaView> {
                                   // Estilizando o texto
                                   style: TextStyle(
                                     // Adicionando cor
-                                    //color: Colors.white,
+                                    color: Theme.of(context).textTheme.displaySmall!.color,
                                     // Adicionando espessura da fonte
                                     fontWeight: FontWeight.bold,
                                     // Adicionando o tamanho da fonte

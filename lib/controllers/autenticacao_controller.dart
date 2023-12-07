@@ -2,10 +2,12 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:monews_app/components/alert_dialog_components.dart';
 
 import 'package:monews_app/models/usuario_model.dart';
 import 'package:monews_app/views/home_view.dart';
 import 'package:monews_app/views/autenticacao/login_view.dart';
+import 'package:monews_app/views/usuario/configuracoes_view.dart';
 import 'package:monews_app/views/usuario/perfil_view.dart';
 
 // Classe responsavel por pegar a resposa de erro Firebase
@@ -49,11 +51,20 @@ class AutenticacaoController {
     //     builder: (context) => LoginView(),
     //   ),
     // );
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => LoginView(),
-      ),
+    // Navigator.pushReplacement(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => LoginView(),
+    //   ),
+    // );
+    showDialog(
+      context: context,
+      builder: (context) {
+        // return AlertDialog(
+        //   content: Text('Alteração de senha enviado para seu email!'),
+        // );
+        return showAlertDialogSucess(context, 'Cadatro realizado com Sucesso');
+      },
     );
   }
 
@@ -66,15 +77,41 @@ class AutenticacaoController {
         'img': model.img,
         //'senha': senha,
       });
-      // Navigator.of(context).pushReplacement(
+      // Navigator.pushReplacement(
+      //   context,
       //   MaterialPageRoute(
       //     builder: (context) => PerfilView(),
       //   ),
       // );
+      // showDialog(
+      //   context: context,
+      //   builder: (context) {
+      //     // return AlertDialog(
+      //     //   content: Text('Alteração de senha enviado para seu email!'),
+      //     // );
+      //     showAlertDialogEditaSucess(context, 'Perfil alterado com sucesso');
+      //   },
+      // );
+      await showAlertDialogEditaSucess(context, 'Perfil alterado com sucesso');
+    } on FirebaseAuthException catch (e) {
+      throw AuthenticationException(
+        e.toString(),
+      );
+    }
+  }
+
+  alterarQtdNoticias(BuildContext context, int qtd) async {
+    try {
+      final dadosUsuarios =
+          firebase.collection('usuario').doc(usuarioLogado().uid);
+      await dadosUsuarios.update({
+        'qtdNoticias': qtd,
+        //'senha': senha,
+      });
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => PerfilView(),
+          builder: (context) => ConfiguracoesView(),
         ),
       );
     } on FirebaseAuthException catch (e) {

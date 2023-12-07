@@ -19,29 +19,29 @@ class _MySearchState extends State<MySearch> {
         top: 8,
         bottom: 16,
       ),
-      child: TextField(
+      child: TextFormField(
         style: const TextStyle(
             //color: Colors.white,
             ),
         autofocus: false,
         onChanged: widget.onChanged,
         decoration: InputDecoration(
-          enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                  //color: Colors.white,
-                  )),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  //color: Colors.white,
-                  )),
+          // enabledBorder: const OutlineInputBorder(
+          //     borderSide: BorderSide(
+          //         //color: Colors.white,
+          //         )),
+          // focusedBorder: OutlineInputBorder(
+          //     borderSide: BorderSide(
+          //         //color: Colors.white,
+          //         )),
           prefixIcon: const Icon(
             Icons.search,
             //color: Colors.white,
           ),
           hintText: widget.hintText,
-          hintStyle: const TextStyle(
-            //color: Colors.white,
-          ),
+          // hintStyle: const TextStyle(
+          //   //color: Colors.white,
+          // ),
         ),
       ),
     );

@@ -18,11 +18,11 @@ class Logo extends StatelessWidget {
             ),
           ),
           Text(
-            'News',
+            'news',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).scaffoldBackgroundColor,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           )
         ],

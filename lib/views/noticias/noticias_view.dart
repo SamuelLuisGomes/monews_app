@@ -72,10 +72,10 @@ class _NoticiasViewtState extends State<NoticiasView> {
                           ),
                         ),
                         Text(
-                          "News",
+                          "news",
                           style: TextStyle(
                             fontSize: 24,
-                            color: Theme.of(context).scaffoldBackgroundColor,
+                            color: Theme.of(context).colorScheme.secondary,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

@@ -9,6 +9,7 @@ class FormularioController {
   final TextEditingController nomeController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController senhaController = TextEditingController();
+  final TextEditingController qtdNoticiasController = TextEditingController();
   //final TextEditingController nomeController = TextEditingController();
 
   static validarNome(String nome) {
@@ -30,6 +31,11 @@ class FormularioController {
     RegExp regex = RegExp(pattern.toString());
     if (email.isEmpty) return 'Email obrigatório';
     if (!regex.hasMatch(email)) return 'Email inválido';
+    // return true;
+  }
+    static validaQrtNoticias(String qtd) {
+    if (qtd.isEmpty) return 'quantidade obrigatória';
+    if (int.parse(qtd) <= 0) return 'Quantidade inválida';
     // return true;
   }
 }
